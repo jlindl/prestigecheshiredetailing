@@ -23,12 +23,17 @@ export default function LazyLoader() {
       if (en[0]?.isIntersecting) { document.querySelectorAll(".garage img[data-src]").forEach(load); gio.disconnect(); }
     }, { rootMargin: "100% 0px" });
     if (gar) gio.observe(gar);
+    // header gets its solid background as soon as the page scrolls (no dependency on the animation libraries)
+    const hdr = document.querySelector(".hdr");
+    const onScroll = () => hdr?.classList.toggle("scrolled", window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
     // the mobile thumb bar steps aside while the final WhatsApp form is on screen
     const bar = document.querySelector(".mbar");
     const fin = document.querySelector(".final");
     const fio = new IntersectionObserver((en) => bar?.classList.toggle("away", !!en[0]?.isIntersecting), { threshold: 0.25 });
     if (fin) fio.observe(fin);
-    return () => { io.disconnect(); gio.disconnect(); fio.disconnect(); };
+    return () => { io.disconnect(); gio.disconnect(); fio.disconnect(); window.removeEventListener("scroll", onScroll); };
   }, []);
   return null;
 }

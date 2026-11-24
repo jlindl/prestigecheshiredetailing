@@ -107,7 +107,7 @@ export default function Motion() {
       gsap.from("[data-town]", { opacity: 0, scale: 0.4, transformOrigin: "center", svgOrigin: undefined, duration: 0.9, ease: "back.out(2)", stagger: 0.09, scrollTrigger: { trigger: "[data-map]", start: "top 70%", once: true } });
 
       // ---------- proof counter ----------
-      const num = document.querySelector<HTMLElement>("[data-count]");
+      const num = null as HTMLElement | null; // the 100% is rendered final in HTML; no count-up that could show a wrong figure
       if (num) {
         const o = { v: 0 };
         gsap.to(o, { v: Number(num.dataset.count), duration: 2.2, ease: SMOOTH, onUpdate: () => (num.textContent = String(Math.round(o.v))), scrollTrigger: { trigger: num, start: "top 85%", once: true } });

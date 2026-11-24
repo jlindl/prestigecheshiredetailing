@@ -39,6 +39,10 @@ export default function PolishPass() {
     let swirled: HTMLCanvasElement | null = null;
     const mask = document.createElement("canvas");
     const mctx = mask.getContext("2d")!;
+    // swirl lines only (transparent), used by the swirl-finder light to make remaining swirls flare up
+    let lines: HTMLCanvasElement | null = null;
+    const lmask = document.createElement("canvas");
+    const lctx = lmask.getContext("2d")!;
     let path: { x: number; y: number }[] = [];
     let progress = reduce ? 1 : 0;
     let spin = 0;
@@ -51,10 +55,10 @@ export default function PolishPass() {
     const build = () => {
       if (!img.complete || !img.naturalWidth) return;
       const r = st.getBoundingClientRect();
-      dpr = Math.min(window.devicePixelRatio || 1, 1.6);
+      dpr = Math.min(window.devicePixelRatio || 1, 1.25);
       W = Math.max(2, Math.round(r.width * dpr));
       H = Math.max(2, Math.round(r.height * dpr));
-      cv.width = W; cv.height = H; mask.width = W; mask.height = H;
+      cv.width = W; cv.height = H; mask.width = W; mask.height = H; lmask.width = W; lmask.height = H;
 
       // cover-fit the real photo
       clean = document.createElement("canvas");
@@ -75,6 +79,9 @@ export default function PolishPass() {
       w.globalCompositeOperation = "multiply";
       w.fillRect(0, 0, W, H);
       w.globalCompositeOperation = "source-over";
+      lines = document.createElement("canvas");
+      lines.width = W; lines.height = H;
+      const lw2 = lines.getContext("2d")!;
       const rnd = rand(7);
       const centres = [
         { x: W * 0.28, y: H * 0.22, k: 1 },
@@ -97,14 +104,16 @@ export default function PolishPass() {
         pth.arc(cc.x, cc.y, rad, a0, a0 + len);
       }
       w.lineWidth = 0.9 * dpr;
-      paths.forEach((pth, b) => { w.strokeStyle = `rgba(255,255,255,${0.07 + (b / (BUCKETS - 1)) * 0.3})`; w.stroke(pth); });
+      lw2.lineWidth = 0.9 * dpr;
+      paths.forEach((pth, b) => { lw2.strokeStyle = `rgba(255,255,255,${0.07 + (b / (BUCKETS - 1)) * 0.3})`; lw2.stroke(pth); });
       // a few deeper random scratches
       for (let i = 0; i < 26; i++) {
-        w.strokeStyle = `rgba(255,255,255,${0.08 + rnd() * 0.12})`;
-        w.lineWidth = 0.7 * dpr;
+        lw2.strokeStyle = `rgba(255,255,255,${0.08 + rnd() * 0.12})`;
+        lw2.lineWidth = 0.7 * dpr;
         const x = rnd() * W, y = rnd() * H, l = (30 + rnd() * 120) * dpr, a = rnd() * Math.PI;
-        w.beginPath(); w.moveTo(x, y); w.quadraticCurveTo(x + l * 0.5, y + 8 * dpr, x + Math.cos(a) * l, y + Math.sin(a) * l * 0.3); w.stroke();
+        lw2.beginPath(); lw2.moveTo(x, y); lw2.quadraticCurveTo(x + l * 0.5, y + 8 * dpr, x + Math.cos(a) * l, y + Math.sin(a) * l * 0.3); lw2.stroke();
       }
+      w.drawImage(lines, 0, 0);
 
       // serpentine polishing path (overlapping section passes)
       const rows = W / dpr < 600 ? 5 : 4;
@@ -146,6 +155,15 @@ export default function PolishPass() {
         mctx.globalAlpha = 1;
       }
       if (pp >= 0.999) mctx.clearRect(0, 0, W, H);
+      const erase = (c2: CanvasRenderingContext2D) => {
+        if (!(pp > 0 && upto > 0)) return;
+        c2.globalCompositeOperation = "destination-out";
+        c2.lineCap = "round"; c2.lineJoin = "round"; c2.lineWidth = brush * 1.15;
+        c2.beginPath(); c2.moveTo(path[0].x, path[0].y);
+        for (let i = 1; i <= upto; i++) c2.lineTo(path[i].x, path[i].y);
+        c2.stroke();
+        c2.globalCompositeOperation = "source-over";
+      };
 
       ctx.globalCompositeOperation = "source-over";
       ctx.drawImage(clean, 0, 0);
@@ -187,9 +205,14 @@ export default function PolishPass() {
         const TR = Math.min(W, H) * 0.2;
         ctx.save();
         ctx.beginPath(); ctx.arc(torch.x, torch.y, TR, 0, Math.PI * 2); ctx.clip();
-        ctx.globalCompositeOperation = "lighter";
-        ctx.globalAlpha = 0.85; ctx.drawImage(mask, 0, 0);
-        ctx.globalAlpha = 1;
+        // remaining swirls flare under the light, exactly as under a detailer's inspection torch
+        if (lines && pp < 0.999) {
+          lctx.globalCompositeOperation = "copy";
+          lctx.drawImage(lines, 0, 0);
+          erase(lctx);
+          ctx.globalCompositeOperation = "lighter";
+          ctx.drawImage(lmask, 0, 0); ctx.drawImage(lmask, 0, 0); ctx.drawImage(lmask, 0, 0);
+        }
         ctx.globalCompositeOperation = "screen";
         const tg = ctx.createRadialGradient(torch.x, torch.y, 0, torch.x, torch.y, TR);
         tg.addColorStop(0, "rgba(255,250,240,.38)"); tg.addColorStop(0.55, "rgba(255,250,240,.10)"); tg.addColorStop(1, "rgba(255,250,240,0)");
@@ -280,7 +303,7 @@ export default function PolishPass() {
         <div className="polish-stage" ref={stage}>
           <canvas ref={canvas} role="img" aria-label="Illustration: swirl marks drawn digitally over a photo of a black Range Rover panel, cleared by an animated machine polisher" />
           <div className="polish-hud mono">
-            <span>Illustration<span className="hide-m"> · swirls added digitally</span></span>
+            <span>Illustration · swirls added digitally</span>
             <span>{step === 0 ? "Swirled" : step === 1 ? "Polishing" : "Finished"}</span>
           </div>
           <span className="torch-hint mono" ref={hint} style={{ opacity: step === 2 ? 0 : 1 }}>Swirl-finder light<span className="hide-m"> · hover or touch the panel</span></span>

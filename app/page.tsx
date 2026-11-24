@@ -235,9 +235,9 @@ export default function Home() {
         {/* PROOF */}
         <section className="proof wrap" aria-labelledby="pr-h">
           <div className="proof-top">
-            <div className="pct" aria-label={`${SITE.reviews.recommend} percent`}><span data-count={SITE.reviews.recommend}>0</span><sup>%</sup></div>
+            <div className="pct" aria-label={`${SITE.reviews.recommend} percent`}><span data-count={SITE.reviews.recommend}>{SITE.reviews.recommend}</span><sup>%</sup></div>
             <div>
-              <span className="mono eyebrow">Reviewers mention Craig by name</span>
+              <span className="mono eyebrow">Facebook recommendations</span>
               <h2 id="pr-h" className="display-soft">{SITE.reviews.count} Facebook reviews. Every one recommends.</h2>
               <a href={SITE.facebookReviews} target="_blank" rel="noopener" className="mono" style={{ display: "inline-flex", gap: 10, alignItems: "center", color: "var(--chrome)", borderBottom: "1px solid var(--red)", paddingBottom: 6 }}>
                 Read them on Facebook <Arrow size={14} />
@@ -245,9 +245,9 @@ export default function Home() {
             </div>
           </div>
           <div className="themes">
-            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>He replies quickly.</h3><p>Message on WhatsApp and you&rsquo;re not left waiting days to hear back.</p></div>
-            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>He turns up on time.</h3><p>Appointment only, and reviewers say he arrives when he says he will.</p></div>
-            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>He talks you through it.</h3><p>You&rsquo;ll know what&rsquo;s being done to your car and why.</p></div>
+            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>He replies quickly.</h3><p>Reviewers say Craig gets back to them quickly.</p></div>
+            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>He turns up on time.</h3><p>Appointment only, and reviewers say he turns up on time.</p></div>
+            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>He talks you through it.</h3><p>Reviewers say he talks them through the job.</p></div>
           </div>
         </section>
 

@@ -11,7 +11,7 @@ export default function Builder() {
   const [town, setTown] = useState("");
 
   const msg = useMemo(() => {
-    const v = vehicle.trim() || "my vehicle";
+    const v = vehicle.trim() ? `my ${vehicle.trim()}` : "my vehicle";
     const s = service === "Not sure yet" ? "I'm not sure whether it needs polishing, a coating or both" : service === "Both" ? "I'm interested in a machine polish and a ceramic coating" : `I'm interested in a ${service.toLowerCase()}`;
     const t = town ? ` I'm in ${town}.` : "";
     return `Hi Craig, I'd like a quote for ${v}. ${s}.${t} I'll send a couple of photos.`;
