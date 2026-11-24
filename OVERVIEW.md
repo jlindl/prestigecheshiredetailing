@@ -112,8 +112,8 @@ Each item is tied to a problem found above.
 - A canvas-based Polish Pass with procedurally generated swirl marks and a pointer-driven swirl-finder light.
 - An IntersectionObserver image loader and WebP images at 800w and 1400w. **Customer number plates are pixelated** in every photo.
 - `noindex, nofollow` in the meta tag and an `X-Robots-Tag` header.
-- **Lighthouse mobile (local production build, final):** performance 91–92, accessibility 100, best practices 100. LCP is 3.0s, TBT 140ms, CLS 0.008. SEO is intentionally low because of noindex.
-- **Layout shift while scrolling the whole page:** 0.027 on desktop and 0.059 on mobile.
+- **Lighthouse mobile (local production build, final):** performance 94, accessibility 100, best practices 100. LCP is 3.0s, TBT 70ms, CLS 0.013. SEO is intentionally low because of noindex.
+- **Layout shift while scrolling the whole page:** 0.018 on desktop and 0.012 on mobile.
 
 ### Critique rounds
 - **Round 1.**
@@ -147,13 +147,14 @@ Each item is tied to a problem found above.
 
 ## 12. Independent quality gate
 
-Three fresh reviewer agents, each with no knowledge of the build, tried to fail the site. **All three returned FAIL**, so the skill's rule applies: the demo stops before shipping until Jack decides.
+Four fresh reviewer agents, each with no knowledge of the build, tried to fail the site. **All four returned FAIL** (round 4 on craft scores only, with no invented facts and every technical check passing). Per the skill's rule the demo stops before shipping until Jack decides.
 
 | Round | Lowest scores | Main blockers found | Fixed |
 |---|---|---|---|
 | 1 | Originality 6, Polish 6 | Lighthouse perf 67–80; layout shifts of 1.0 from pinned scenes; "campervans", "Audi RS", "the name in every review" and a simulated before/after labelled as real; reduced-motion gaps | All |
 | 2 | Polish 6 | 100% stat showing 0% for reduced-motion users; header bleed-through; swirl-finder light washing out instead of revealing; legible number plates; contrast | All |
 | 3 | Polish 6, Originality 7 | One background van plate still legible; mobile bar overlapping the polish scene; orphan "COVERING" label; soft copy extrapolations; small tap targets; black panel flash | All |
+| 4 (requested by Jack) | Originality 7, Motion 7, Composition 7 | No facts invented, all technical checks passed (Lighthouse 94/94/94, a11y 100). Craft only: swirls looked like straight hairlines; proof arrived late; dead space; "every wash" absolute claim; "Recent work" unverified | All |
 
 Round 3's technical results already passed: Lighthouse 92/92/90, accessibility 100, CLS 0.008, no console errors, reduced motion correct, all links correct. The remaining sub-9 scores are judgement calls on craft (originality 7, journey 7, motion 7, composition 7, polish 6, trust 7), not defects.
 
