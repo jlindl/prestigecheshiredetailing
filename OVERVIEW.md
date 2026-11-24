@@ -158,6 +158,13 @@ Four fresh reviewer agents, each with no knowledge of the build, tried to fail t
 
 Round 3's technical results already passed: Lighthouse 92/92/90, accessibility 100, CLS 0.008, no console errors, reduced motion correct, all links correct. The remaining sub-9 scores are judgement calls on craft (originality 7, journey 7, motion 7, composition 7, polish 6, trust 7), not defects.
 
-## 13. Next step
+## 13. Live demo
+
+- **Live URL:** https://prestige-cheshire-detailing-demo.vercel.app (Vercel, team "Jack's projects"; served with `X-Robots-Tag: noindex, nofollow` and a robots noindex meta tag)
+- **Deployed by Jack's decision after gate 4**, from commit `62ef401` on `main` of jlindl/prestigecheshiredetailing.
+- **Live Lighthouse mobile (from this machine, warm cache):** performance 88 / 86 (one noisy run at 72), accessibility 100, best practices 100, CLS 0.001–0.013.
+- **Live screenshots:** `qa/live/desktop-00.jpg`, `qa/live/mobile-00.jpg`
+
+## 14. Next step
 
 Book a call with Jack to plan the full build: website, town pages, Google Business Profile, review automation and the WhatsApp lead agent.
