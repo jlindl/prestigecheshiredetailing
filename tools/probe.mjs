@@ -1,0 +1,10 @@
+import { chromium } from 'playwright-core';
+const exe=process.env.LOCALAPPDATA+'/ms-playwright/chromium-1255/chrome-win64/chrome.exe';
+const b=await chromium.launch({executablePath:exe});
+const p=await b.newPage({viewport:{width:1440,height:900}});
+await p.goto('http://localhost:3123/',{waitUntil:'networkidle'});await p.waitForTimeout(1500);
+const y=await p.evaluate(()=>document.querySelector('[data-map]').getBoundingClientRect().top+scrollY-300);
+await p.evaluate(y=>scrollTo(0,y),y);await p.waitForTimeout(2000);
+console.log(await p.evaluate(()=>{const r=document.querySelector('[data-route]');const cs=getComputedStyle(r);return {off:cs.strokeDashoffset,arr:cs.strokeDasharray,len:r.getTotalLength(),vis:cs.visibility,op:cs.opacity, bb:JSON.stringify(r.getBoundingClientRect())}}));
+await p.screenshot({path:'qa/probe-map.jpg',type:'jpeg',quality:60});
+await b.close();

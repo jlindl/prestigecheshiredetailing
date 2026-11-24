@@ -1,0 +1,10 @@
+import { chromium } from 'playwright-core';
+const exe=process.env.LOCALAPPDATA+'/ms-playwright/chromium-1255/chrome-win64/chrome.exe';
+const b=await chromium.launch({executablePath:exe});
+const p=await b.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:2});
+await p.goto('http://localhost:3123/',{waitUntil:'networkidle'});await p.waitForTimeout(1500);
+const y=await p.evaluate(()=>document.querySelector('.garage').getBoundingClientRect().top+scrollY+400);
+await p.evaluate(y=>scrollTo(0,y),y);await p.waitForTimeout(2000);
+console.log(await p.evaluate(()=>[...document.querySelectorAll('.car')].map(c=>{const r=c.getBoundingClientRect(),ph=c.querySelector('.ph')?.getBoundingClientRect();return [Math.round(r.left),Math.round(r.width),ph&&Math.round(ph.width),ph&&Math.round(ph.left),getComputedStyle(c).getPropertyValue('--ph')]})));
+await p.screenshot({path:'qa/probe-gar.jpg',type:'jpeg',quality:60});
+await b.close();
