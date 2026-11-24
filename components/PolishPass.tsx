@@ -83,36 +83,50 @@ export default function PolishPass() {
       lines.width = W; lines.height = H;
       const lw2 = lines.getContext("2d")!;
       const rnd = rand(7);
-      const centres = [
-        { x: W * 0.28, y: H * 0.22, k: 1 },
-        { x: W * 0.72, y: H * 0.5, k: 0.9 },
-        { x: W * 0.42, y: H * 0.82, k: 0.75 },
-      ];
+      // real swirl marks are concentric "holograms" around wherever the light reflects, so find the photo's brightest spots
+      const SW = 48, SH = Math.max(8, Math.round((48 * H) / W));
+      const probe = document.createElement("canvas"); probe.width = SW; probe.height = SH;
+      const pc = probe.getContext("2d", { willReadFrequently: true })!;
+      pc.drawImage(clean, 0, 0, SW, SH);
+      const px = pc.getImageData(0, 0, SW, SH).data;
+      const cells: { x: number; y: number; l: number }[] = [];
+      for (let yy = 0; yy < SH; yy++) for (let xx = 0; xx < SW; xx++) {
+        const i = (yy * SW + xx) * 4;
+        cells.push({ x: xx, y: yy, l: px[i] * 0.3 + px[i + 1] * 0.59 + px[i + 2] * 0.11 });
+      }
+      cells.sort((p, q) => q.l - p.l);
+      const centres: { x: number; y: number }[] = [];
+      for (const cell of cells) {
+        const x = ((cell.x + 0.5) / SW) * W, y = ((cell.y + 0.5) / SH) * H;
+        if (centres.every((c0) => Math.hypot(c0.x - x, c0.y - y) > Math.min(W, H) * 0.3)) centres.push({ x, y });
+        if (centres.length === 4) break;
+      }
       // swirls are batched into a few paths by brightness, so thousands of arcs cost a handful of strokes
-      const count = Math.min(9000, Math.round((W * H) / (dpr * dpr) / 24));
       const BUCKETS = 6;
       const paths = Array.from({ length: BUCKETS }, () => new Path2D());
+      const D = Math.hypot(W, H);
+      const count = Math.min(5200, Math.round((W * H) / (dpr * dpr) / 55));
       for (let i = 0; i < count; i++) {
-        const cc = centres[Math.floor(rnd() * centres.length)];
-        const rad = Math.pow(rnd(), 0.7) * Math.max(W, H) * 0.75 * cc.k + 4;
+        const cc = centres[i % centres.length];
+        const rad = (8 + Math.pow(rnd(), 0.85) * D * 0.55) ;
         const a0 = rnd() * Math.PI * 2;
-        const len = (0.04 + rnd() * 0.22) * (90 / (rad / dpr + 60));
-        const near = Math.max(0, 1 - rad / (Math.max(W, H) * 0.8));
-        const b = Math.min(BUCKETS - 1, Math.floor(near * rnd() * BUCKETS));
-        const pth = paths[b];
+        const len = Math.min(1.1, ((22 + rnd() * 70) * dpr) / rad); // arc length roughly 22-90px, clearly curved
+        const near = Math.max(0, 1 - rad / (D * 0.5));
+        const bk = Math.min(BUCKETS - 1, Math.floor((0.25 + near * 0.75) * (0.4 + rnd() * 0.6) * BUCKETS));
+        const pth = paths[bk];
         pth.moveTo(cc.x + Math.cos(a0) * rad, cc.y + Math.sin(a0) * rad);
         pth.arc(cc.x, cc.y, rad, a0, a0 + len);
       }
-      w.lineWidth = 0.9 * dpr;
-      lw2.lineWidth = 0.9 * dpr;
-      paths.forEach((pth, b) => { lw2.strokeStyle = `rgba(255,255,255,${0.07 + (b / (BUCKETS - 1)) * 0.3})`; lw2.stroke(pth); });
-      // a few deeper random scratches
-      for (let i = 0; i < 26; i++) {
-        lw2.strokeStyle = `rgba(255,255,255,${0.08 + rnd() * 0.12})`;
-        lw2.lineWidth = 0.7 * dpr;
-        const x = rnd() * W, y = rnd() * H, l = (30 + rnd() * 120) * dpr, a = rnd() * Math.PI;
-        lw2.beginPath(); lw2.moveTo(x, y); lw2.quadraticCurveTo(x + l * 0.5, y + 8 * dpr, x + Math.cos(a) * l, y + Math.sin(a) * l * 0.3); lw2.stroke();
+      // loose looping wash-sponge marks scattered across the panel
+      for (let i = 0; i < 260; i++) {
+        const x = rnd() * W, y = rnd() * H, r0 = (14 + rnd() * 60) * dpr, a0 = rnd() * Math.PI * 2;
+        const pth = paths[1 + Math.floor(rnd() * 2)];
+        pth.moveTo(x + Math.cos(a0) * r0, y + Math.sin(a0) * r0);
+        pth.arc(x, y, r0, a0, a0 + 0.8 + rnd() * 2.2);
       }
+      lw2.lineWidth = 0.85 * dpr;
+      lw2.lineCap = "round";
+      paths.forEach((pth, bk) => { lw2.strokeStyle = `rgba(255,255,255,${0.05 + (bk / (BUCKETS - 1)) * 0.36})`; lw2.stroke(pth); });
       w.drawImage(lines, 0, 0);
 
       // serpentine polishing path (overlapping section passes)
@@ -242,8 +256,9 @@ export default function PolishPass() {
     const offPtr = () => { torch = null; draw(); };
     st.addEventListener("pointermove", onPtr);
     st.addEventListener("pointerdown", onPtr);
-    st.addEventListener("pointerleave", offPtr);
-    st.addEventListener("pointerup", (e) => { if (e.pointerType !== "mouse") offPtr(); });
+    st.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse") offPtr(); });
+    let offT: ReturnType<typeof setTimeout> | undefined;
+    st.addEventListener("pointerup", (e) => { if (e.pointerType !== "mouse") { clearTimeout(offT); offT = setTimeout(offPtr, 1400); } });
 
     img.onload = () => {
       const ric = (window as unknown as { requestIdleCallback?: (cb: () => void) => void }).requestIdleCallback;
@@ -282,7 +297,7 @@ export default function PolishPass() {
       setStep(2);
     }
 
-    return () => { near.disconnect(); st.removeEventListener("pointermove", onPtr); st.removeEventListener("pointerdown", onPtr); st.removeEventListener("pointerleave", offPtr); ro.disconnect(); dead = true; trig?.kill(); removeTick(); };
+    return () => { near.disconnect(); st.removeEventListener("pointermove", onPtr); st.removeEventListener("pointerdown", onPtr);  ro.disconnect(); dead = true; trig?.kill(); removeTick(); };
   }, []);
 
   return (

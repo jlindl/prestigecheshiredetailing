@@ -19,7 +19,7 @@ const CARS = [
 ];
 
 const STATEMENT =
-  "Every wash, every sponge and every automatic brush leaves fine circular scratches. In sunlight they show up as swirls, and they scatter the light so the colour looks flat. Craig polishes them out by machine, then locks the finish in with a Gyeon ceramic coating.";
+  "Over time, most washing leaves fine circular scratches in the paint. In sunlight they show up as swirls, and they scatter the light so the colour looks flat. Craig polishes them out by machine, then locks the finish in with a Gyeon ceramic coating.";
 
 export default function Home() {
   return (
@@ -77,7 +77,7 @@ export default function Home() {
               <span className="sweep" aria-hidden="true" />
               <figcaption>
                 <span className="m">Porsche Macan</span>
-                <span className="mono">Recent work</span>
+                <span className="mono">Customer car</span>
               </figcaption>
             </figure>
           </div>
@@ -116,8 +116,8 @@ export default function Home() {
           <div className="garage-sticky">
           <div className="garage-head">
             <div>
-              <span className="mono eyebrow">The garage · real customer cars</span>
-              <h2 id="gar-h" className="display">Recent work</h2>
+              <span className="mono eyebrow">The garage</span>
+              <h2 id="gar-h" className="display">Customer cars</h2>
             </div>
             <span className="mono r" style={{ color: "var(--dim)" }}>Hover for a second angle</span>
           </div>
@@ -143,6 +143,25 @@ export default function Home() {
               <WaButton label="Send photos" text="Hi Craig, here are a few photos of my car. Could you give me a quote? " />
             </div>
           </div>
+          </div>
+        </section>
+
+        {/* PROOF */}
+        <section className="proof wrap" aria-labelledby="pr-h">
+          <div className="proof-top">
+            <div className="pct" aria-label={`${SITE.reviews.recommend} percent`}><span data-count={SITE.reviews.recommend}>{SITE.reviews.recommend}</span><sup>%</sup></div>
+            <div>
+              <span className="mono eyebrow">Facebook recommendations</span>
+              <h2 id="pr-h" className="display-soft">{SITE.reviews.count} Facebook reviews. Every one recommends.</h2>
+              <a href={SITE.facebookReviews} target="_blank" rel="noopener" className="btn btn-ghost" style={{ marginTop: 6 }}>
+                Read the reviews on Facebook <Arrow size={16} />
+              </a>
+            </div>
+          </div>
+          <div className="themes">
+            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>He replies quickly.</h3><p>Reviewers say Craig gets back to them quickly.</p></div>
+            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>He turns up on time.</h3><p>Appointment only, and reviewers say he turns up on time.</p></div>
+            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>He talks you through it.</h3><p>Reviewers say he talks them through the job.</p></div>
           </div>
         </section>
 
@@ -232,25 +251,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* PROOF */}
-        <section className="proof wrap" aria-labelledby="pr-h">
-          <div className="proof-top">
-            <div className="pct" aria-label={`${SITE.reviews.recommend} percent`}><span data-count={SITE.reviews.recommend}>{SITE.reviews.recommend}</span><sup>%</sup></div>
-            <div>
-              <span className="mono eyebrow">Facebook recommendations</span>
-              <h2 id="pr-h" className="display-soft">{SITE.reviews.count} Facebook reviews. Every one recommends.</h2>
-              <a href={SITE.facebookReviews} target="_blank" rel="noopener" className="mono" style={{ display: "inline-flex", gap: 10, alignItems: "center", color: "var(--chrome)", borderBottom: "1px solid var(--red)", paddingBottom: 6 }}>
-                Read them on Facebook <Arrow size={14} />
-              </a>
-            </div>
-          </div>
-          <div className="themes">
-            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>He replies quickly.</h3><p>Reviewers say Craig gets back to them quickly.</p></div>
-            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>He turns up on time.</h3><p>Appointment only, and reviewers say he turns up on time.</p></div>
-            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>He talks you through it.</h3><p>Reviewers say he talks them through the job.</p></div>
-          </div>
-        </section>
-
         {/* FAQ */}
         <Faq />
 
@@ -260,7 +260,7 @@ export default function Home() {
           <div className="wrap final-grid">
             <div>
               <span className="mono eyebrow">Ready when you are</span>
-              <h2 id="fin-h" className="display">Let&rsquo;s get it <span className="red">booked in.</span></h2>
+              <h2 id="fin-h" className="display">Let&rsquo;s get&nbsp;it <span className="red">booked&nbsp;in.</span></h2>
               <p className="lede">Tell Craig what you drive and where you are. It opens WhatsApp with the message written for you. Add a photo and send.</p>
               <div className="alt-contact">
                 <span>Or call <a href={SITE.phoneHref}>{SITE.phoneDisplay}</a></span>
