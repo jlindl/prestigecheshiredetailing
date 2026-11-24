@@ -19,11 +19,11 @@ const QA: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "Which areas do you cover?",
-    a: <>{SITE.towns.slice(0, -1).join(", ")} and {SITE.towns[SITE.towns.length - 1]}, plus the places in between. If you&rsquo;re nearby but not listed, just ask.</>,
+    a: <>{SITE.towns.slice(0, -1).join(", ")} and {SITE.towns[SITE.towns.length - 1]}. If you&rsquo;re nearby but not listed, just ask.</>,
   },
   {
     q: "How long does a ceramic coating last?",
-    a: <>Craig uses Gyeon coatings, and most jobs use Gyeon&rsquo;s 5-year coating. How long any coating lasts in practice depends on how the car is washed and looked after, and Craig will talk you through that.</>,
+    a: <>Craig uses Gyeon coatings, most often Gyeon&rsquo;s 5-year coating. How long any coating lasts in practice depends on how the car is washed and looked after, and Craig will talk you through that.</>,
   },
   {
     q: "Do you do vans and motorbikes?",

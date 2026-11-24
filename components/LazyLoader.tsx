@@ -23,7 +23,12 @@ export default function LazyLoader() {
       if (en[0]?.isIntersecting) { document.querySelectorAll(".garage img[data-src]").forEach(load); gio.disconnect(); }
     }, { rootMargin: "100% 0px" });
     if (gar) gio.observe(gar);
-    return () => { io.disconnect(); gio.disconnect(); };
+    // the mobile thumb bar steps aside while the final WhatsApp form is on screen
+    const bar = document.querySelector(".mbar");
+    const fin = document.querySelector(".final");
+    const fio = new IntersectionObserver((en) => bar?.classList.toggle("away", !!en[0]?.isIntersecting), { threshold: 0.25 });
+    if (fin) fio.observe(fin);
+    return () => { io.disconnect(); gio.disconnect(); fio.disconnect(); };
   }, []);
   return null;
 }

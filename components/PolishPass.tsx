@@ -9,7 +9,7 @@ const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 const STEPS = [
   { t: "Prep the paint", d: "The paint is cleaned back first, so the polisher works on the paint and not on dirt." },
   { t: "Machine polish", d: "Overlapping passes with a machine polisher level out the swirls and fine scratches." },
-  { t: "Gyeon ceramic coating", d: "The corrected finish is sealed under a Gyeon coating, usually the 5-year one." },
+  { t: "Gyeon ceramic coating", d: "The corrected finish is sealed under a Gyeon coating, most often the 5-year one." },
 ];
 
 // Stage boundaries along the scroll (0..1)
@@ -45,7 +45,7 @@ export default function PolishPass() {
     let visible = false;
     let torch: { x: number; y: number } | null = null;
     const img = new Image();
-    const near = new IntersectionObserver((en) => { if (en[0]?.isIntersecting) { img.src = "/img/pcd-42.webp"; near.disconnect(); } }, { rootMargin: "150% 0px" });
+    const near = new IntersectionObserver((en) => { if (en[0]?.isIntersecting) { img.src = "/img/pcd-42.webp"; near.disconnect(); } }, { rootMargin: "60% 0px" });
     near.observe(st);
 
     const build = () => {
@@ -81,19 +81,23 @@ export default function PolishPass() {
         { x: W * 0.72, y: H * 0.5, k: 0.9 },
         { x: W * 0.42, y: H * 0.82, k: 0.75 },
       ];
-      const count = Math.round((W * H) / (dpr * dpr) / 24);
+      // swirls are batched into a few paths by brightness, so thousands of arcs cost a handful of strokes
+      const count = Math.min(9000, Math.round((W * H) / (dpr * dpr) / 24));
+      const BUCKETS = 6;
+      const paths = Array.from({ length: BUCKETS }, () => new Path2D());
       for (let i = 0; i < count; i++) {
         const cc = centres[Math.floor(rnd() * centres.length)];
         const rad = Math.pow(rnd(), 0.7) * Math.max(W, H) * 0.75 * cc.k + 4;
         const a0 = rnd() * Math.PI * 2;
         const len = (0.04 + rnd() * 0.22) * (90 / (rad / dpr + 60));
         const near = Math.max(0, 1 - rad / (Math.max(W, H) * 0.8));
-        w.strokeStyle = `rgba(255,255,255,${0.06 + near * 0.34 * rnd()})`;
-        w.lineWidth = (0.5 + rnd() * 0.8) * dpr;
-        w.beginPath();
-        w.arc(cc.x, cc.y, rad, a0, a0 + len);
-        w.stroke();
+        const b = Math.min(BUCKETS - 1, Math.floor(near * rnd() * BUCKETS));
+        const pth = paths[b];
+        pth.moveTo(cc.x + Math.cos(a0) * rad, cc.y + Math.sin(a0) * rad);
+        pth.arc(cc.x, cc.y, rad, a0, a0 + len);
       }
+      w.lineWidth = 0.9 * dpr;
+      paths.forEach((pth, b) => { w.strokeStyle = `rgba(255,255,255,${0.07 + (b / (BUCKETS - 1)) * 0.3})`; w.stroke(pth); });
       // a few deeper random scratches
       for (let i = 0; i < 26; i++) {
         w.strokeStyle = `rgba(255,255,255,${0.08 + rnd() * 0.12})`;
@@ -110,9 +114,10 @@ export default function PolishPass() {
         const y = pad * (rI + 0.5);
         const dir = rI % 2 === 0 ? 1 : -1;
         const N = 90;
+        const m = pad * 1.25 * 0.38; // keep the pad fully inside the panel
         for (let i = 0; i <= N; i++) {
           const t = i / N;
-          const x = dir > 0 ? -W * 0.04 + t * W * 1.08 : W * 1.04 - t * W * 1.08;
+          const x = dir > 0 ? m + t * (W - 2 * m) : W - m - t * (W - 2 * m);
           path.push({ x, y: y + Math.sin(t * Math.PI * 6 + rI) * pad * 0.08 });
         }
       }
@@ -162,7 +167,7 @@ export default function PolishPass() {
       // polisher pad
       if (pp > 0 && pp < 1) {
         const p = path[Math.min(upto, path.length - 1)];
-        const R = brush * 0.42;
+        const R = brush * 0.36;
         ctx.save();
         ctx.translate(p.x, p.y);
         ctx.shadowColor = "rgba(0,0,0,.6)"; ctx.shadowBlur = 30 * dpr;
@@ -211,7 +216,10 @@ export default function PolishPass() {
     st.addEventListener("pointerleave", offPtr);
     st.addEventListener("pointerup", (e) => { if (e.pointerType !== "mouse") offPtr(); });
 
-    img.onload = build;
+    img.onload = () => {
+      const ric = (window as unknown as { requestIdleCallback?: (cb: () => void) => void }).requestIdleCallback;
+      if (ric) ric(build); else setTimeout(build, 50);
+    };
     if (img.complete) build();
     const ro = new ResizeObserver(() => build());
     ro.observe(st);
@@ -226,10 +234,8 @@ export default function PolishPass() {
         refreshPriority: 2,
         trigger: root.current,
         start: "top top",
-        end: () => "+=" + window.innerHeight * 2.6,
-        pin: true,
+        end: "bottom bottom",
         scrub: 0.6,
-        anticipatePin: 1,
         onUpdate: (self) => {
           progress = self.progress;
           const s = progress < POLISH_START ? 0 : progress < POLISH_END ? 1 : 2;
@@ -252,9 +258,10 @@ export default function PolishPass() {
 
   return (
     <section className="polish" id="process" ref={root} aria-labelledby="pol-h">
+      <div className="polish-sticky">
       <div className="polish-grid">
         <div className="polish-copy">
-          <span className="mono eyebrow">The process · scroll to polish</span>
+          <span className="mono eyebrow">The process<span className="scroll-cue"> · scroll to polish</span></span>
           <h2 id="pol-h" className="display polish-h">Watch the swirls <span className="red">come out.</span></h2>
           <ol className="steps">
             {STEPS.map((s, i) => (
@@ -267,16 +274,16 @@ export default function PolishPass() {
           </ol>
           <div className="meter">
             <span className="n"><span ref={meter}>0</span>%</span>
-            <span className="mono" style={{ color: "var(--mist)" }}>Swirls removed</span>
+            <span className="mono" style={{ color: "var(--mist)" }}>Polish progress</span>
           </div>
         </div>
         <div className="polish-stage" ref={stage}>
-          <canvas ref={canvas} role="img" aria-label="A black Range Rover panel covered in swirl marks being machine polished back to a mirror finish" />
+          <canvas ref={canvas} role="img" aria-label="Illustration: swirl marks drawn digitally over a photo of a black Range Rover panel, cleared by an animated machine polisher" />
           <div className="polish-hud mono">
-            <span>Range Rover · black</span>
-            <span>{step === 0 ? "Before" : step === 1 ? "Polishing" : "Coated"}</span>
+            <span>Illustration<span className="hide-m"> · swirls added digitally</span></span>
+            <span>{step === 0 ? "Swirled" : step === 1 ? "Polishing" : "Finished"}</span>
           </div>
-          <span className="torch-hint mono" ref={hint} style={{ opacity: step === 2 ? 0 : 1 }}>Hover or touch the panel · swirl-finder light</span>
+          <span className="torch-hint mono" ref={hint} style={{ opacity: step === 2 ? 0 : 1 }}>Swirl-finder light<span className="hide-m"> · hover or touch the panel</span></span>
           <a
             href={waLink("Hi Craig, I'd like my paint corrected and coated. Could you give me a quote? ")}
             target="_blank"
@@ -287,6 +294,7 @@ export default function PolishPass() {
             Get this for your car <span className="ico" style={{ width: 34, height: 34 }}><WaIcon /></span>
           </a>
         </div>
+      </div>
       </div>
     </section>
   );

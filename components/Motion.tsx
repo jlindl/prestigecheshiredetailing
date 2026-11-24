@@ -68,24 +68,29 @@ export default function Motion() {
 
       // ---------- statement word light-up ----------
       gsap.to("[data-words] .w", {
-        opacity: 1, stagger: 0.05, ease: "none",
+        color: "#f2f1ed", stagger: 0.05, ease: "none",
         scrollTrigger: { trigger: "[data-words]", start: "top 82%", end: "bottom 45%", scrub: true },
       });
 
       // ---------- generic reveals ----------
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
-        gsap.from(el, { y: 46, opacity: 0, duration: 1.3, ease: EXPO, scrollTrigger: { trigger: el, start: "top 88%", once: true } });
+        gsap.from(el, { y: 36, opacity: 0, duration: 1, ease: EXPO, scrollTrigger: { trigger: el, start: "top 96%", once: true } });
       });
 
       // ---------- garage horizontal passage ----------
       const track = document.querySelector<HTMLElement>(".garage-track");
       if (track) {
         const dist = () => Math.max(0, track.scrollWidth - window.innerWidth);
+        // the garage is a sticky scene: its height is the horizontal distance to travel (no pin reparenting, no layout shift)
+        const garage = document.querySelector<HTMLElement>(".garage")!;
+        const setH = () => { garage.style.height = window.innerHeight + dist() + "px"; };
+        setH();
+        ScrollTrigger.addEventListener("refreshInit", setH);
         gsap.to(track, {
           x: () => -dist(), ease: "none",
-          scrollTrigger: { trigger: ".garage", start: "top top", end: () => "+=" + dist(), pin: true, scrub: 0.8, invalidateOnRefresh: true, anticipatePin: 1, refreshPriority: 1 },
+          scrollTrigger: { trigger: ".garage", start: "top top", end: "bottom bottom", scrub: 0.8, invalidateOnRefresh: true },
         });
-        gsap.to(".garage-ghost", { xPercent: -30, ease: "none", scrollTrigger: { trigger: ".garage", start: "top top", end: () => "+=" + dist(), scrub: true } });
+        gsap.to(".garage-ghost", { xPercent: -30, ease: "none", scrollTrigger: { trigger: ".garage", start: "top top", end: "bottom bottom", scrub: true } });
         gsap.utils.toArray<HTMLElement>(".car .ph").forEach((ph, i) => {
           gsap.from(ph, { clipPath: "inset(100% 0 0 0)", duration: 1.4, ease: "expo.inOut", delay: i * 0.08, scrollTrigger: { trigger: ".garage", start: "top 70%", once: true } });
         });

@@ -10,8 +10,8 @@ import LazyLoader from "@/components/LazyLoader";
 
 const CARS = [
   { name: "Porsche Macan", img: "pcd-48", alt: "pcd-47", note: "Gloss deep enough to read the sky in" },
-  { name: "Range Rover", img: "pcd-43", alt: "pcd-39", note: "Black paint, no swirls showing" },
-  { name: "Audi RS Avant", img: "pcd-73", alt: "pcd-78", note: "Gloss black, start to finish" },
+  { name: "Range Rover", img: "pcd-43", alt: "pcd-39", note: "Deep black gloss" },
+  { name: "Audi Avant", img: "pcd-73", alt: "pcd-78", note: "Gloss black estate" },
   { name: "BMW M2", img: "pcd-80", alt: "pcd-82", note: "Bright paint, crisp reflections" },
   { name: "Range Rover Sport", img: "pcd-66", alt: "pcd-70", note: "Grey metallic, deep and clean" },
   { name: "BMW 3 Series", img: "pcd-02", alt: "pcd-03", note: "Blue that looks wet" },
@@ -58,7 +58,7 @@ export default function Home() {
               <h1 className="display">
                 <span className="ln"><span>Paint you</span></span>
                 <span className="ln"><span>can see</span></span>
-                <span className="ln"><span>yourself <span className="red">in.</span></span></span>
+                <span className="ln ln-last"><span>yourself</span><span className="in-word"><span className="red">in.</span></span></span>
               </h1>
               <p className="lede">
                 <b>Machine polishing</b> to take out swirl marks and <b>Gyeon ceramic coatings</b> to keep the gloss, for cars, vans and motorbikes. Craig comes to you across Cheshire with <b>his own water and power</b>.
@@ -73,7 +73,7 @@ export default function Home() {
               </a>
             </div>
             <figure className="hero-card">
-              <img data-src="/img/pcd-48.webp" data-srcset="/img/pcd-48-sm.webp 640w, /img/pcd-48.webp 1400w" sizes="320px" alt="Freshly detailed purple Porsche Macan bonnet with mirror reflections" />
+              <img data-src="/img/pcd-48.webp" data-srcset="/img/pcd-48-sm.webp 800w, /img/pcd-48.webp 1400w" sizes="320px" alt="Freshly detailed purple Porsche Macan bonnet with mirror reflections" />
               <span className="sweep" aria-hidden="true" />
               <figcaption>
                 <span className="m">Porsche Macan</span>
@@ -113,6 +113,7 @@ export default function Home() {
 
         {/* GARAGE */}
         <section className="garage" id="work" aria-labelledby="gar-h">
+          <div className="garage-sticky">
           <div className="garage-head">
             <div>
               <span className="mono eyebrow">The garage · real customer cars</span>
@@ -126,8 +127,8 @@ export default function Home() {
               <article className="car" key={c.name}>
                 <span className="idx mono">{String(i + 1).padStart(2, "0")} / {String(CARS.length).padStart(2, "0")}</span>
                 <div className="ph">
-                  <img data-src={`/img/${c.img}.webp`} data-srcset={`/img/${c.img}-sm.webp 640w, /img/${c.img}.webp 1400w`} sizes="(max-width: 820px) 80vw, 460px" alt={`${c.name} after a Prestige Cheshire detail`} loading="lazy" />
-                  <img className="alt" data-src={`/img/${c.alt}.webp`} data-srcset={`/img/${c.alt}-sm.webp 640w, /img/${c.alt}.webp 1400w`} sizes="(max-width: 820px) 80vw, 460px" alt="" loading="lazy" aria-hidden="true" />
+                  <img data-src={`/img/${c.img}.webp`} data-srcset={`/img/${c.img}-sm.webp 800w, /img/${c.img}.webp 1400w`} sizes="(max-width: 820px) 80vw, 460px" alt={`${c.name}, a Prestige Cheshire Detailing customer car`} loading="lazy" />
+                  <img className="alt" data-src={`/img/${c.alt}.webp`} data-srcset={`/img/${c.alt}-sm.webp 800w, /img/${c.alt}.webp 1400w`} sizes="(max-width: 820px) 80vw, 460px" alt="" loading="lazy" aria-hidden="true" />
                 </div>
                 <div className="meta">
                   <h3 className="name">{c.name}</h3>
@@ -141,6 +142,7 @@ export default function Home() {
               <p className="lede" style={{ margin: 0 }}>A couple of pictures on WhatsApp is all it takes to get a quote.</p>
               <WaButton label="Send photos" text="Hi Craig, here are a few photos of my car. Could you give me a quote? " />
             </div>
+          </div>
           </div>
         </section>
 
@@ -166,8 +168,8 @@ export default function Home() {
               </ul>
             </div>
             <figure className="im" style={{ margin: 0 }}>
-              <img data-src="/img/pcd-39.webp" data-srcset="/img/pcd-39-sm.webp 640w, /img/pcd-39.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Mirror finish on the rear of a black Range Rover" loading="lazy" data-speed="0.12" />
-              <span className="tag mono">Range Rover · after polishing</span>
+              <img data-src="/img/pcd-39.webp" data-srcset="/img/pcd-39-sm.webp 800w, /img/pcd-39.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Mirror finish on the rear of a black Range Rover" loading="lazy" data-speed="0.12" />
+              <span className="tag mono">Range Rover</span>
             </figure>
           </article>
 
@@ -175,16 +177,16 @@ export default function Home() {
             <span className="no mono" style={{ gridColumn: "1", gridRow: "1" }}>02</span>
             <div className="tx">
               <h3 className="display">Gyeon ceramic <span className="red">coatings</span></h3>
-              <p className="lede">A hard, glossy layer of protection over the corrected paint. Water beads and runs off, dirt struggles to stick, and the car is far easier to keep clean. Most of Craig&rsquo;s coatings are Gyeon&rsquo;s 5-year coating.</p>
+              <p className="lede">A hard, glossy layer of protection over the corrected paint. Water beads and runs off, dirt struggles to stick, and the car is far easier to keep clean. Craig&rsquo;s posts most often feature Gyeon&rsquo;s 5-year coating.</p>
               <ul>
-                <li>Gyeon coatings, mostly the 5-year coating</li>
+                <li>Gyeon coatings, most often the 5-year</li>
                 <li>Strong water beading</li>
                 <li>Easier, safer washing afterwards</li>
               </ul>
             </div>
             <figure className="im" style={{ margin: 0 }}>
-              <img data-src="/img/pcd-51.webp" data-srcset="/img/pcd-51-sm.webp 640w, /img/pcd-51.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Glossy purple Porsche wing reflecting its surroundings" loading="lazy" data-speed="0.12" />
-              <span className="tag mono">Porsche Macan · coated finish</span>
+              <img data-src="/img/pcd-51.webp" data-srcset="/img/pcd-51-sm.webp 800w, /img/pcd-51.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Glossy purple Porsche wing reflecting its surroundings" loading="lazy" data-speed="0.12" />
+              <span className="tag mono">Porsche Macan</span>
             </figure>
           </article>
 
@@ -202,13 +204,13 @@ export default function Home() {
         <section className="vans wrap" aria-labelledby="van-h">
           <div className="vans-grid">
             <div className="a">
-              <span className="mono eyebrow">Vans and campervans</span>
-              <h2 id="van-h" className="display" data-reveal>Your van is your <span className="red">shop window.</span></h2>
-              <p className="lede" data-reveal>Vans are a big part of the work, from Transporters to Transit Customs. They get the same polish and coating as the cars, done on your drive or at your yard.</p>
+              <span className="mono eyebrow">Vans</span>
+              <h2 id="van-h" className="display" data-reveal>Your van is your <span className="red">shop window<span className="dot">.</span></span></h2>
+              <p className="lede" data-reveal>Vans are a big part of the work, from Transporters to Transit Customs, done on your drive or at your yard. Send a photo of yours for a quote.</p>
               <div style={{ marginTop: 30 }}><WaButton label="Book your van in" text="Hi Craig, I'd like a quote for my van. It's a " /></div>
             </div>
-            <figure className="ph p1" style={{ margin: 0 }}><img data-src="/img/pcd-21.webp" data-srcset="/img/pcd-21-sm.webp 640w, /img/pcd-21.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Black VW Transporter after a detail, front view" loading="lazy" data-speed="0.1" /></figure>
-            <figure className="ph p2" style={{ margin: 0 }}><img data-src="/img/pcd-23.webp" data-srcset="/img/pcd-23-sm.webp 640w, /img/pcd-23.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Black VW Transporter flank reflecting the sky" loading="lazy" data-speed="0.18" /></figure>
+            <figure className="ph p1" style={{ margin: 0 }}><img data-src="/img/pcd-21.webp" data-srcset="/img/pcd-21-sm.webp 800w, /img/pcd-21.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Black VW Transporter after a detail, front view" loading="lazy" data-speed="0.1" /></figure>
+            <figure className="ph p2" style={{ margin: 0 }}><img data-src="/img/pcd-23.webp" data-srcset="/img/pcd-23-sm.webp 800w, /img/pcd-23.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Black VW Transporter flank reflecting the sky" loading="lazy" data-speed="0.18" /></figure>
           </div>
         </section>
 
@@ -235,17 +237,17 @@ export default function Home() {
           <div className="proof-top">
             <div className="pct" aria-label={`${SITE.reviews.recommend} percent`}><span data-count={SITE.reviews.recommend}>0</span><sup>%</sup></div>
             <div>
-              <span className="mono eyebrow">The name in every review</span>
-              <h2 id="pr-h" className="display-soft">Of {SITE.reviews.count} Facebook reviewers recommend Craig.</h2>
+              <span className="mono eyebrow">Reviewers mention Craig by name</span>
+              <h2 id="pr-h" className="display-soft">{SITE.reviews.count} Facebook reviews. Every one recommends.</h2>
               <a href={SITE.facebookReviews} target="_blank" rel="noopener" className="mono" style={{ display: "inline-flex", gap: 10, alignItems: "center", color: "var(--chrome)", borderBottom: "1px solid var(--red)", paddingBottom: 6 }}>
                 Read them on Facebook <Arrow size={14} />
               </a>
             </div>
           </div>
           <div className="themes">
-            <div className="theme" data-reveal><span className="mono red">What reviewers say</span><h3>He replies quickly.</h3><p>Message on WhatsApp and you&rsquo;re not left waiting days to hear back.</p></div>
-            <div className="theme" data-reveal><span className="mono red">What reviewers say</span><h3>He turns up on time.</h3><p>Appointment only, and reviewers say he arrives when he says he will.</p></div>
-            <div className="theme" data-reveal><span className="mono red">What reviewers say</span><h3>He talks you through it.</h3><p>You&rsquo;ll know what&rsquo;s being done to your car and why.</p></div>
+            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>He replies quickly.</h3><p>Message on WhatsApp and you&rsquo;re not left waiting days to hear back.</p></div>
+            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>He turns up on time.</h3><p>Appointment only, and reviewers say he arrives when he says he will.</p></div>
+            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>He talks you through it.</h3><p>You&rsquo;ll know what&rsquo;s being done to your car and why.</p></div>
           </div>
         </section>
 
