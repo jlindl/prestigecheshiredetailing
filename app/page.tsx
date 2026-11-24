@@ -9,7 +9,7 @@ import CoverageMap from "@/components/CoverageMap";
 import LazyLoader from "@/components/LazyLoader";
 
 const CARS = [
-  { name: "Porsche Macan", img: "pcd-48", alt: "pcd-47", note: "Gloss deep enough to read the sky in" },
+  { name: "Porsche Macan", img: "pcd-48", alt: "pcd-47", note: "Deep purple gloss" },
   { name: "Range Rover", img: "pcd-43", alt: "pcd-39", note: "Deep black gloss" },
   { name: "Audi Avant", img: "pcd-73", alt: "pcd-78", note: "Gloss black estate" },
   { name: "BMW M2", img: "pcd-80", alt: "pcd-82", note: "Bright paint, crisp reflections" },
@@ -54,7 +54,7 @@ export default function Home() {
           <div className="hero-spec" aria-hidden="true" />
           <div className="wrap hero-inner">
             <div>
-              <span className="mono eyebrow">Mobile detailing · Cheshire · By appointment</span>
+              <span className="mono eyebrow hero-eb">Mobile detailing · Cheshire<span className="hide-m"> · By appointment</span></span>
               <h1 className="display">
                 <span className="ln"><span>Paint you</span></span>
                 <span className="ln"><span>can see</span></span>
@@ -73,7 +73,7 @@ export default function Home() {
               </a>
             </div>
             <figure className="hero-card">
-              <img data-src="/img/pcd-48.webp" data-srcset="/img/pcd-48-sm.webp 800w, /img/pcd-48.webp 1400w" sizes="320px" alt="Freshly detailed purple Porsche Macan bonnet with mirror reflections" />
+              <img decoding="async" data-src="/img/pcd-48.webp" data-srcset="/img/pcd-48-sm.webp 800w, /img/pcd-48.webp 1400w" sizes="320px" alt="Freshly detailed purple Porsche Macan bonnet with mirror reflections" />
               <span className="sweep" aria-hidden="true" />
               <figcaption>
                 <span className="m">Porsche Macan</span>
@@ -127,8 +127,8 @@ export default function Home() {
               <article className="car" key={c.name}>
                 <span className="idx mono">{String(i + 1).padStart(2, "0")} / {String(CARS.length).padStart(2, "0")}</span>
                 <div className="ph">
-                  <img data-src={`/img/${c.img}.webp`} data-srcset={`/img/${c.img}-sm.webp 800w, /img/${c.img}.webp 1400w`} sizes="(max-width: 820px) 80vw, 460px" alt={`${c.name}, a Prestige Cheshire Detailing customer car`} loading="lazy" />
-                  <img className="alt" data-src={`/img/${c.alt}.webp`} data-srcset={`/img/${c.alt}-sm.webp 800w, /img/${c.alt}.webp 1400w`} sizes="(max-width: 820px) 80vw, 460px" alt="" loading="lazy" aria-hidden="true" />
+                  <img decoding="async" data-src={`/img/${c.img}.webp`} data-srcset={`/img/${c.img}-sm.webp 800w, /img/${c.img}.webp 1400w`} sizes="(max-width: 820px) 80vw, 460px" alt={`${c.name}, a Prestige Cheshire Detailing customer car`} loading="lazy" />
+                  <img decoding="async" className="alt" data-src={`/img/${c.alt}.webp`} data-srcset={`/img/${c.alt}-sm.webp 800w, /img/${c.alt}.webp 1400w`} sizes="(max-width: 820px) 80vw, 460px" alt="" loading="lazy" aria-hidden="true" />
                 </div>
                 <div className="meta">
                   <h3 className="name">{c.name}</h3>
@@ -153,7 +153,7 @@ export default function Home() {
               <span className="mono eyebrow">What Craig does</span>
               <h2 id="svc-h" className="display" data-reveal>Two things, done <span className="red">properly.</span></h2>
             </div>
-            <p className="lede" data-reveal>Prestige Cheshire Detailing specialises in correcting paint and then protecting it, on cars, vans and motorbikes, at your home or work.</p>
+            <p className="lede" data-reveal>Prestige Cheshire Detailing specialises in correcting paint and then protecting it, on cars, vans and motorbikes. Fully mobile.</p>
           </div>
 
           <article className="svc">
@@ -168,7 +168,7 @@ export default function Home() {
               </ul>
             </div>
             <figure className="im" style={{ margin: 0 }}>
-              <img data-src="/img/pcd-39.webp" data-srcset="/img/pcd-39-sm.webp 800w, /img/pcd-39.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Mirror finish on the rear of a black Range Rover" loading="lazy" data-speed="0.12" />
+              <img decoding="async" data-src="/img/pcd-39.webp" data-srcset="/img/pcd-39-sm.webp 800w, /img/pcd-39.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Mirror finish on the rear of a black Range Rover" loading="lazy" data-speed="0.12" />
               <span className="tag mono">Range Rover</span>
             </figure>
           </article>
@@ -185,7 +185,7 @@ export default function Home() {
               </ul>
             </div>
             <figure className="im" style={{ margin: 0 }}>
-              <img data-src="/img/pcd-51.webp" data-srcset="/img/pcd-51-sm.webp 800w, /img/pcd-51.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Glossy purple Porsche wing reflecting its surroundings" loading="lazy" data-speed="0.12" />
+              <img decoding="async" data-src="/img/pcd-51.webp" data-srcset="/img/pcd-51-sm.webp 800w, /img/pcd-51.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Glossy purple Porsche wing reflecting its surroundings" loading="lazy" data-speed="0.12" />
               <span className="tag mono">Porsche Macan</span>
             </figure>
           </article>
@@ -197,7 +197,7 @@ export default function Home() {
             <span className="chip">Fully mobile</span>
             <span className="chip">Appointment only</span>
           </div>
-          <CtaStrip line="Not sure which you need?" sub="Send a photo and Craig will tell you honestly." text="Hi Craig, I'm not sure whether my car needs polishing, a ceramic coating or both. Here's a photo: " />
+          <CtaStrip line="Not sure which you need?" sub="Send Craig a photo and ask." text="Hi Craig, I'm not sure whether my car needs polishing, a ceramic coating or both. Here's a photo: " />
         </section>
 
         {/* VANS */}
@@ -206,11 +206,11 @@ export default function Home() {
             <div className="a">
               <span className="mono eyebrow">Vans</span>
               <h2 id="van-h" className="display" data-reveal>Your van is your <span className="red">shop window<span className="dot">.</span></span></h2>
-              <p className="lede" data-reveal>Vans are a big part of the work, from Transporters to Transit Customs, done on your drive or at your yard. Send a photo of yours for a quote.</p>
+              <p className="lede" data-reveal>Vans are a big part of the work, from Transporters to Transit Customs. Send a photo of yours for a quote.</p>
               <div style={{ marginTop: 30 }}><WaButton label="Book your van in" text="Hi Craig, I'd like a quote for my van. It's a " /></div>
             </div>
-            <figure className="ph p1" style={{ margin: 0 }}><img data-src="/img/pcd-21.webp" data-srcset="/img/pcd-21-sm.webp 800w, /img/pcd-21.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Black VW Transporter after a detail, front view" loading="lazy" data-speed="0.1" /></figure>
-            <figure className="ph p2" style={{ margin: 0 }}><img data-src="/img/pcd-23.webp" data-srcset="/img/pcd-23-sm.webp 800w, /img/pcd-23.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Black VW Transporter flank reflecting the sky" loading="lazy" data-speed="0.18" /></figure>
+            <figure className="ph p1" style={{ margin: 0 }}><img decoding="async" data-src="/img/pcd-21.webp" data-srcset="/img/pcd-21-sm.webp 800w, /img/pcd-21.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Black VW Transporter after a detail, front view" loading="lazy" data-speed="0.1" /></figure>
+            <figure className="ph p2" style={{ margin: 0 }}><img decoding="async" data-src="/img/pcd-23.webp" data-srcset="/img/pcd-23-sm.webp 800w, /img/pcd-23.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Black VW Transporter flank reflecting the sky" loading="lazy" data-speed="0.18" /></figure>
           </div>
         </section>
 
@@ -220,7 +220,7 @@ export default function Home() {
             <div>
               <span className="mono eyebrow">Fully mobile</span>
               <h2 id="cov-h" className="display" data-reveal>We bring the water. <span className="red">And the power.</span></h2>
-              <p className="lede" data-reveal>No hose, socket or garage needed. Craig works by appointment across Cheshire, on your drive, at work or wherever the car lives.</p>
+              <p className="lede" data-reveal>No need to provide water or power. Craig comes to you, by appointment, across the towns below.</p>
               <div className="facts">
                 <div><span className="mono" style={{ color: "var(--dim)" }}>Water</span><span className="k">Own supply</span></div>
                 <div><span className="mono" style={{ color: "var(--dim)" }}>Power</span><span className="k">Own supply</span></div>
@@ -261,7 +261,7 @@ export default function Home() {
             <div>
               <span className="mono eyebrow">Ready when you are</span>
               <h2 id="fin-h" className="display">Let&rsquo;s get it <span className="red">booked in.</span></h2>
-              <p className="lede">Tell Craig what you drive, what you&rsquo;re after and where you are. It opens WhatsApp with the message written for you. Add a photo and send.</p>
+              <p className="lede">Tell Craig what you drive and where you are. It opens WhatsApp with the message written for you. Add a photo and send.</p>
               <div className="alt-contact">
                 <span>Or call <a href={SITE.phoneHref}>{SITE.phoneDisplay}</a></span>
                 <span>Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a></span>

@@ -15,15 +15,15 @@ const QA: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "Do I need to provide water or electricity?",
-    a: <>No. Craig is fully mobile and brings his own water and power, so the work can be done on your drive or at your workplace.</>,
+    a: <>No. Craig is fully mobile and brings his own water and power.</>,
   },
   {
     q: "Which areas do you cover?",
-    a: <>{SITE.towns.slice(0, -1).join(", ")} and {SITE.towns[SITE.towns.length - 1]}. If you&rsquo;re nearby but not listed, just ask.</>,
+    a: <>{SITE.towns.slice(0, -1).join(", ")} and {SITE.towns[SITE.towns.length - 1]}.</>,
   },
   {
     q: "How long does a ceramic coating last?",
-    a: <>Craig uses Gyeon coatings, most often Gyeon&rsquo;s 5-year coating. How long any coating lasts in practice depends on how the car is washed and looked after, and Craig will talk you through that.</>,
+    a: <>Craig uses Gyeon coatings, most often Gyeon&rsquo;s 5-year coating. How long any coating lasts in practice depends on how the car is washed and looked after.</>,
   },
   {
     q: "Do you do vans and motorbikes?",
@@ -33,7 +33,7 @@ const QA: { q: string; a: React.ReactNode }[] = [
     q: "How do I book?",
     a: (
       <>
-        It&rsquo;s appointment only. Message on WhatsApp or call <a href={SITE.phoneHref}>{SITE.phoneDisplay}</a> and Craig will find a date that suits you.
+        It&rsquo;s appointment only. Message on WhatsApp or call <a href={SITE.phoneHref}>{SITE.phoneDisplay}</a> to arrange a date.
       </>
     ),
   },

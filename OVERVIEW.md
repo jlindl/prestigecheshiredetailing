@@ -57,12 +57,12 @@ Prepared by Integrate · 24 November 2026
 ### Scroll journey
 1. **Hero.** Macro water beading on black paint with a red light streak, and a highlight that follows your cursor. The headline is "Paint you can see yourself in." Within one screen: polishing and Gyeon coatings, cars, vans and bikes, Cheshire, own water and power. The WhatsApp CTA and the phone number in full sit alongside a "100% recommend · 21 Facebook reviews" chip.
 2. **Why paint looks tired.** "Most paint isn't dull. It's scratched." The explanation lights up word by word as you scroll.
-3. **Signature moment: The Polish Pass.** A pinned scene built on Craig's own photo of a black Range Rover panel, covered in a drawn layer of swirl marks. As you scroll, a rotary polisher pad makes overlapping passes and erases the swirls, revealing the true reflection. A live counter runs from 0% to 100% "swirls removed", and the stages advance: Prep → Machine polish → Gyeon ceramic coating. Your cursor or finger becomes a **swirl-finder light**, the same inspection torch detailers use. Under it, the remaining swirls light up, so you can check his work yourself. Scroll back and the swirls return. When it finishes: "Get this for your car" (WhatsApp).
+3. **Signature moment: The Polish Pass.** A sticky scroll scene built on Craig's own photo of a black Range Rover panel, covered in a drawn layer of swirl marks. The panel is clearly labelled "Illustration · swirls added digitally". As you scroll, a rotary polisher pad makes overlapping passes and erases the swirls, revealing the true reflection. A live "polish progress" counter runs from 0% to 100%, and the stages advance: Prep → Machine polish → Gyeon ceramic coating. Your cursor or finger becomes a **swirl-finder light**, the same inspection torch detailers use. Under it, any swirls left on the panel flare up, just as they do under a real inspection light. Scroll back and the swirls return. When it finishes: "Get this for your car" (WhatsApp).
 4. **The garage.** A horizontal, pinned passage of real customer cars at full height. Hover shows a second angle. It ends with "Send Craig a photo of yours."
 5. **Two things, done properly.** Machine polishing and Gyeon ceramic coatings, with Craig's close-up photos. Then a "Not sure which you need?" WhatsApp prompt.
 6. **Vans.** "Your van is your shop window." The black Transporter, with Transit Customs mentioned.
 7. **Coverage.** "We bring the water. And the power." The nine towns are plotted from real coordinates, joined by a red route that draws as you scroll. Own water, own power, appointment only.
-8. **Proof.** A huge 100% count-up, "Of 21 Facebook reviewers recommend Craig", and the three things reviewers say. These are written as themes, not invented quotes, with a link to the real reviews.
+8. **Proof.** A huge 100%, "21 Facebook reviews. Every one recommends.", and the three things reviewers mention. These are written as themes, not invented quotes, with a link to the real reviews.
 9. **Good questions.** Price, water and power, areas, coating lifespan, vans and bikes, booking.
 10. **Climax: "Let's get it booked in."** A studio stage with a red neon horizon, and a three-tap builder (vehicle, service, town) that writes the WhatsApp message for the visitor.
 11. **Footer.** A giant outlined PRESTIGE wordmark with the red line drawn under it.
@@ -108,11 +108,12 @@ Each item is tied to a problem found above.
 ## 9. Tech stack and quality
 
 - Next.js 15 (App Router), React 19, TypeScript, Tailwind v4 and hand-written CSS tokens.
-- GSAP + ScrollTrigger (pins, scrubs) and Lenis smooth scroll, code-split so they load after first paint.
+- GSAP + ScrollTrigger (scrubs) and Lenis smooth scroll, code-split and loaded on the visitor's first interaction. The pinned scenes are CSS `position: sticky`, so there are no layout shifts.
 - A canvas-based Polish Pass with procedurally generated swirl marks and a pointer-driven swirl-finder light.
-- An IntersectionObserver image loader and WebP images at two sizes.
+- An IntersectionObserver image loader and WebP images at 800w and 1400w. **Customer number plates are pixelated** in every photo.
 - `noindex, nofollow` in the meta tag and an `X-Robots-Tag` header.
-- **Lighthouse mobile (local production build):** performance 85–87, accessibility 96, best practices 100. SEO is intentionally low because of noindex.
+- **Lighthouse mobile (local production build, final):** performance 91–92, accessibility 100, best practices 100. LCP is 3.0s, TBT 140ms, CLS 0.008. SEO is intentionally low because of noindex.
+- **Layout shift while scrolling the whole page:** 0.027 on desktop and 0.059 on mobile.
 
 ### Critique rounds
 - **Round 1.**
@@ -125,27 +126,36 @@ Each item is tied to a problem found above.
   - Problem found: Lighthouse mobile performance was 62.
   - Fixes: the hero intro moved to CSS so text is never hidden by JS; GSAP and Lenis were code-split; viewport-based image loading was added; a lighter mobile hero image was used.
   - Result: performance went from 62 to 85–87.
-- **Independent quality gate:** see section 12.
+- **Independent quality gate rounds 1–3:** see section 12.
 
 ## 10. Screenshots
 
 - **Current site:** `qa/evidence/current-site-desktop.png`, `qa/evidence/current-site-mobile.png`
-- **New homepage, desktop:** `qa/r4-d-00.jpg` (hero) to `qa/r4-d-13.jpg` (footer). Contact sheets: `qa/r4-d-a.jpg`, `qa/r4-d-b.jpg`
-- **New homepage, mobile:** `qa/r4-m-00.jpg` to `qa/r4-m-15.jpg`. Contact sheets: `qa/r4-m-a.jpg`, `qa/r4-m-b.jpg`
-- **Swirl-finder light:** `qa/r3-torch-a.jpg`, `qa/r3-torch-b.jpg`
+- **New homepage, desktop:** `qa/final/desktop-00.jpg` (hero) to `qa/final/desktop-11.jpg` (footer). Contact sheets: `qa/final/desktop-sheet-a.jpg`, `qa/final/desktop-sheet-b.jpg`
+- **New homepage, mobile (375px):** `qa/final/mobile-00.jpg` to `qa/final/mobile-13.jpg`. Contact sheets: `qa/final/mobile-sheet-a.jpg`, `qa/final/mobile-sheet-b.jpg`
 
 ## 11. Facts left out because they couldn't be verified
 
 - **Trustpilot (about 11 reviews, TrustScore about 4.5).** It belongs to prestigevaletingcheshire.co.uk, which shows a different phone number, so it may be a different business. Not used on the site.
 - **Review quotes.** We couldn't access the review text, so reviewer themes are paraphrased from the brief and no quotes are invented.
 - **Prices, years trading, insurance and accreditations** (for example Gyeon certification): not supplied, so not claimed.
-- **Exact model variants** (for example whether the Audi is an RS 6): labelled generically as "Audi RS Avant" and "BMW X3".
+- **Exact model variants** (for example whether the Audi is an RS 6): labelled generically as "Audi Avant" and "BMW X3".
+- **Van/campervan and "same treatment as cars"** claims: removed. Only Transporters and Transit Customs are named.
+- **Where the work happens** ("on your drive / at work / no garage needed"): removed. The site says only that Craig is fully mobile with his own water and power.
 - **Which service each pictured car received:** not known, so captions describe the finish, not the job.
 - **The two atmospheric images** (water beading, dark studio) are AI-generated mood images and are not presented as Craig's work.
 
 ## 12. Independent quality gate
 
-See the final report in the handover. Scores and verdict are recorded once the gate completes.
+Three fresh reviewer agents, each with no knowledge of the build, tried to fail the site. **All three returned FAIL**, so the skill's rule applies: the demo stops before shipping until Jack decides.
+
+| Round | Lowest scores | Main blockers found | Fixed |
+|---|---|---|---|
+| 1 | Originality 6, Polish 6 | Lighthouse perf 67–80; layout shifts of 1.0 from pinned scenes; "campervans", "Audi RS", "the name in every review" and a simulated before/after labelled as real; reduced-motion gaps | All |
+| 2 | Polish 6 | 100% stat showing 0% for reduced-motion users; header bleed-through; swirl-finder light washing out instead of revealing; legible number plates; contrast | All |
+| 3 | Polish 6, Originality 7 | One background van plate still legible; mobile bar overlapping the polish scene; orphan "COVERING" label; soft copy extrapolations; small tap targets; black panel flash | All |
+
+Round 3's technical results already passed: Lighthouse 92/92/90, accessibility 100, CLS 0.008, no console errors, reduced motion correct, all links correct. The remaining sub-9 scores are judgement calls on craft (originality 7, journey 7, motion 7, composition 7, polish 6, trust 7), not defects.
 
 ## 13. Next step
 

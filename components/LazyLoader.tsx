@@ -30,9 +30,13 @@ export default function LazyLoader() {
     window.addEventListener("scroll", onScroll, { passive: true });
     // the mobile thumb bar steps aside while the final WhatsApp form is on screen
     const bar = document.querySelector(".mbar");
-    const fin = document.querySelector(".final");
-    const fio = new IntersectionObserver((en) => bar?.classList.toggle("away", !!en[0]?.isIntersecting), { threshold: 0.25 });
-    if (fin) fio.observe(fin);
+    const showing = new Map<Element, boolean>();
+    const fio = new IntersectionObserver((en) => {
+      en.forEach((e) => showing.set(e.target, e.isIntersecting));
+      bar?.classList.toggle("away", [...showing.values()].some(Boolean));
+    }, { threshold: 0.25 });
+    // the final form has its own send button
+    document.querySelectorAll(".final").forEach((el) => fio.observe(el));
     return () => { io.disconnect(); gio.disconnect(); fio.disconnect(); window.removeEventListener("scroll", onScroll); };
   }, []);
   return null;

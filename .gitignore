@@ -11,3 +11,4 @@ qa/r1-*
 qa/r2-*
 qa/probe*
 .env*
+qa/*.html

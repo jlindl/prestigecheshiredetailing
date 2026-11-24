@@ -7,7 +7,7 @@ import { WaIcon } from "./Icons";
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 
 const STEPS = [
-  { t: "Prep the paint", d: "The paint is cleaned back first, so the polisher works on the paint and not on dirt." },
+  { t: "Prep the paint", d: "Paint needs to be clean before it is polished, so dirt isn't worked into it." },
   { t: "Machine polish", d: "Overlapping passes with a machine polisher level out the swirls and fine scratches." },
   { t: "Gyeon ceramic coating", d: "The corrected finish is sealed under a Gyeon coating, most often the 5-year one." },
 ];
@@ -196,6 +196,12 @@ export default function PolishPass() {
         ctx.rotate(spin);
         ctx.strokeStyle = "rgba(255,255,255,.22)"; ctx.lineWidth = 1.4 * dpr;
         for (let i = 0; i < 10; i++) { ctx.rotate((Math.PI * 2) / 10); ctx.beginPath(); ctx.moveTo(R * 0.18, 0); ctx.lineTo(R * 0.66, 0); ctx.stroke(); }
+        // specular highlight sweeping round the spinning pad, plus a faint motion-blur halo
+        const hl = ctx.createLinearGradient(-R, 0, R, 0);
+        hl.addColorStop(0, "rgba(255,255,255,0)"); hl.addColorStop(0.5, "rgba(255,255,255,.28)"); hl.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.fillStyle = hl; ctx.beginPath(); ctx.moveTo(0, 0); ctx.arc(0, 0, R * 0.7, -0.5, 0.5); ctx.closePath(); ctx.fill();
+        ctx.strokeStyle = "rgba(255,42,31,.35)"; ctx.lineWidth = 3 * dpr;
+        ctx.beginPath(); ctx.arc(0, 0, R * 1.08, spin * 0.3, spin * 0.3 + Math.PI * 1.2); ctx.stroke();
         ctx.fillStyle = "#f2f1ed"; ctx.beginPath(); ctx.arc(0, 0, R * 0.1, 0, Math.PI * 2); ctx.fill();
         ctx.restore();
       }

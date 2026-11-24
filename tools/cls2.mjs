@@ -1,0 +1,10 @@
+import { chromium } from 'playwright-core';
+const exe=process.env.LOCALAPPDATA+'/ms-playwright/chromium-1255/chrome-win64/chrome.exe';
+const b=await chromium.launch({executablePath:exe});
+const p=await b.newPage({viewport:{width:390,height:844}});
+await p.addInitScript(()=>{window.__e=[];new PerformanceObserver(l=>{for(const e of l.getEntries())window.__e.push([Math.round(e.startTime),e.value.toFixed(3),(e.sources||[]).map(s=>(s.node?.className||s.node?.nodeName)+':'+JSON.stringify([s.previousRect.y,s.currentRect.y])).join(' | ')])}).observe({type:'layout-shift',buffered:true});});
+await p.goto('http://localhost:3123/',{waitUntil:'networkidle'});await p.waitForTimeout(1500);
+console.log('load',JSON.stringify(await p.evaluate(()=>window.__e)));
+await p.mouse.wheel(0,200);await p.waitForTimeout(1500);
+console.log('after',JSON.stringify(await p.evaluate(()=>window.__e)));
+await b.close();

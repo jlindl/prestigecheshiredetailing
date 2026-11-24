@@ -4,15 +4,16 @@ import { SITE, waLink } from "@/lib/site";
 import { WaIcon } from "./Icons";
 
 const SERVICES = ["Machine polish", "Ceramic coating", "Both", "Not sure yet"];
+const NONE = "";
 
 export default function Builder() {
   const [vehicle, setVehicle] = useState("");
-  const [service, setService] = useState("Both");
+  const [service, setService] = useState(NONE);
   const [town, setTown] = useState("");
 
   const msg = useMemo(() => {
     const v = vehicle.trim() ? `my ${vehicle.trim()}` : "my vehicle";
-    const s = service === "Not sure yet" ? "I'm not sure whether it needs polishing, a coating or both" : service === "Both" ? "I'm interested in a machine polish and a ceramic coating" : `I'm interested in a ${service.toLowerCase()}`;
+    const s = !service ? "Could you tell me what you'd recommend" : service === "Not sure yet" ? "I'm not sure whether it needs polishing, a coating or both" : service === "Both" ? "I'm interested in a machine polish and a ceramic coating" : `I'm interested in a ${service.toLowerCase()}`;
     const t = town ? ` I'm in ${town}.` : "";
     return `Hi Craig, I'd like a quote for ${v}. ${s}.${t} I'll send a couple of photos.`;
   }, [vehicle, service, town]);
@@ -21,13 +22,13 @@ export default function Builder() {
     <form className="builder" onSubmit={(e) => { e.preventDefault(); window.open(waLink(msg), "_blank", "noopener"); }} aria-label="Build your WhatsApp quote request">
       <div className="fld">
         <label className="mono" htmlFor="veh">Your vehicle</label>
-        <input id="veh" placeholder="e.g. Range Rover Sport, Transit Custom" value={vehicle} onChange={(e) => setVehicle(e.target.value)} autoComplete="off" />
+        <input id="veh" placeholder="e.g. Transit Custom" value={vehicle} onChange={(e) => setVehicle(e.target.value)} autoComplete="off" />
       </div>
       <div className="fld">
         <span className="mono" style={{ display: "block", marginBottom: 10, color: "var(--mist)" }} id="svc-l">What you&rsquo;re after</span>
         <div className="seg" role="group" aria-labelledby="svc-l">
           {SERVICES.map((s) => (
-            <button type="button" key={s} aria-pressed={service === s} onClick={() => setService(s)}>{s}</button>
+            <button type="button" key={s} aria-pressed={service === s} onClick={() => setService(service === s ? NONE : s)}>{s}</button>
           ))}
         </div>
       </div>

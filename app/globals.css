@@ -130,7 +130,7 @@ button { font: inherit; color: inherit; }
   .hero-ctas .btn-ghost { display: none; }
   .hero-ctas .btn { width: 100%; justify-content: space-between; }
   .proof-chip { margin-top: 18px; font-size: 13px; }
-  .hero-foot .towns { display: none; }
+  .hero-foot { display: none; }
   .hero-bg { background-position: 30% 40%; }
 }
 
@@ -143,7 +143,7 @@ button { font: inherit; color: inherit; }
 @media (max-width: 820px) { .statement .body { grid-template-columns: 1fr; gap: 28px; } }
 
 /* ---------- polish pass ---------- */
-.polish { position: relative; height: 360svh; background: var(--black); }
+.polish { position: relative; height: 300svh; background: var(--black); }
 .polish-sticky { position: sticky; top: 0; height: 100svh; overflow: hidden; }
 .polish-grid { position: absolute; inset: 0; display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 4vw; align-items: center; padding: 90px var(--gutter) 40px; }
 .polish-stage { position: relative; height: min(76svh, 760px); border-radius: 8px; overflow: hidden; box-shadow: 0 0 0 1px var(--line), 0 50px 100px -40px #000; background: #000; }
@@ -161,14 +161,16 @@ button { font: inherit; color: inherit; }
 .meter { display: flex; align-items: baseline; gap: 14px; margin-top: 26px; }
 .meter .n { font-size: clamp(44px, 5vw, 84px); font-weight: 800; font-variation-settings: "wdth" 125; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; line-height: 1; }
 @media (max-width: 820px) {
-  .polish-grid { grid-template-columns: 1fr; grid-template-rows: auto 1fr; gap: 16px; padding: 78px 16px 96px; align-items: stretch; }
-  .polish-copy .lede, .polish-copy .steps li p { display: none; }
+  .polish-grid { grid-template-columns: 1fr; grid-template-rows: auto 1fr; gap: 16px; padding: 74px 16px 104px; align-items: stretch; }
+  .polish-copy .lede { display: none; }
+  .steps li p { font-size: 13px; }
+  .steps li.on p { max-height: 60px; }
   .polish-h { font-size: 30px; margin: 10px 0 12px; }
   .steps li { padding: 9px 0; grid-template-columns: 36px 1fr; }
   .steps li .t { font-size: 15px; }
   .meter { margin-top: 10px; }
   .meter .n { font-size: 34px; }
-  .polish-stage { height: auto; min-height: 46svh; }
+  .polish-stage { height: auto; min-height: 0; }
 }
 
 /* ---------- garage ---------- */
@@ -399,3 +401,8 @@ img[data-src] { opacity: 0; } img { transition: opacity .7s var(--ease-out); }
 @media (max-width: 820px) { .hero h1 .in-word { margin-left: 0; } .hide-m { display: none; } .polish-hud, .torch-hint { font-size: 10px; } }
 @media (prefers-reduced-motion: reduce) { .polish-stage { min-height: 0; height: auto; aspect-ratio: 4 / 5; max-height: 80svh; } }
 @media (max-width: 820px) { .polish-hud { flex-wrap: wrap; } .polish-hud > span:first-child { max-width: 70%; } }
+.alt-contact a, .proof a.mono { display: inline-flex; align-items: center; min-height: 44px; }
+.qa .ans a { display: inline-block; padding-block: 8px; }
+.polish-stage { background: #000 url(/img/pcd-42-sm.webp) center 42% / cover no-repeat; }
+@media (max-width: 820px) { .hero .eyebrow { font-size: 10px; letter-spacing: 0.1em; } }
+@media (max-width: 820px) { .hero-eb { white-space: nowrap; } }
