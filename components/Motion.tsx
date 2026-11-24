@@ -59,12 +59,9 @@ export default function Motion() {
       if (reduce) return;
 
       // ---------- hero intro (fast, never blocks the CTAs) ----------
-      // hero intro runs in CSS (starts at first paint, never waits for JS); only the card light-sweep is scripted
-      gsap.to(".hero-card .sweep", { xPercent: 200, duration: 1.4, ease: "power2.inOut", delay: 1.1 });
 
       gsap.to(".hero-bg", { yPercent: 10, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
       gsap.to(".hero-inner", { yPercent: -10, opacity: 0.2, ease: "none", scrollTrigger: { trigger: ".hero", start: "40% top", end: "bottom top", scrub: true } });
-      gsap.to(".hero-card", { rotateY: 6, y: -60, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
 
       // ---------- statement word light-up ----------
       gsap.to("[data-words] .w", {

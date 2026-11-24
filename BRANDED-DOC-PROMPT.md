@@ -1,6 +1,6 @@
 # Prompt: branded audit and proposal for Prestige Cheshire Detailing
 
-Copy everything below the line into Claude, and attach `OVERVIEW.md`, the screenshots listed in it (`qa/evidence/current-site-desktop.png`, `qa/evidence/current-site-mobile.png`, `qa/final/desktop-00.jpg`, `qa/final/desktop-02.jpg`, `qa/final/desktop-sheet-a.jpg`, `qa/final/mobile-sheet-a.jpg`) and the logo file `public/mark.svg`.
+Copy everything below the line into Claude, and attach `OVERVIEW.md`, the screenshots listed in it (`qa/evidence/current-site-desktop.png`, `qa/evidence/current-site-mobile.png`, `qa/final/desktop-00.jpg`, `qa/final/desktop-sheet-a.jpg`, `qa/final/mobile-sheet-a.jpg`) and the logo file `public/mark.svg`.
 
 ---
 
@@ -12,7 +12,7 @@ Create a polished, branded client document from the attached OVERVIEW.md and scr
 - One accent only: logo red `#E3120B` (use `#FF2A1F` sparingly for emphasis). Use red for a thin horizon line under headings, key numbers and the call to action. Never use it for large fills.
 - Hairline dividers: `rgba(242,241,237,0.12)`.
 - Headlines: **Archivo**, widest width (wdth 125), weight 800, UPPERCASE, tight letter-spacing. Body: Archivo regular at normal width. Labels and eyebrows: **JetBrains Mono**, 11px, uppercase, letter-spaced.
-- Logo: `mark.svg` (black disc, white car outline, red line beneath) on the cover and in the footer.
+- Logo: Craig's logo, a white car silhouette with a red sweep under the nose above "PRESTIGE CHESHIRE DETAILING" (`components/Icons.tsx` → `Logo`; favicon `public/mark.svg`), on the cover and in the footer.
 - Signature motif: a single thin red horizontal line, like the red line under the car in Craig's logo and a reflection on polished paint. Use it under the cover title and as section dividers.
 - Tone of voice: confident, warm, plain English, written to Craig as "you". It should feel like a premium studio talking to a skilled tradesperson it respects. No jargon (write "show up in Google", not "SERP visibility").
 
@@ -23,7 +23,7 @@ Create a polished, branded client document from the attached OVERVIEW.md and scr
 4. **How customers find you now, and who they find instead.** The indicative search checks from OVERVIEW.md: TKO Detailing, Cheshire Car Care, and directories like Checkatrade and Bark showing for the searches Craig should own. Keep the method note that these are indicative, not a ranked Google UK report.
 5. **What a weak online presence is costing you.** The missed searches, the dead link from Facebook and the name confusion. Include the estimate, labelled clearly as an estimate, with no invented figures.
 6. **Quick wins you can do this week.** The five free actions from OVERVIEW.md, as a numbered checklist Craig could tick off.
-7. **Your new homepage.** A before and after: the 404 screenshots next to the new desktop and mobile screenshots. Explain the concept (the red line from his logo), the Polish Pass with its swirl-finder light (use `qa/final/desktop-02.jpg`), and how every section leads to a WhatsApp message.
+7. **Your new homepage.** A before and after: the 404 screenshots next to the new desktop and mobile screenshots. Explain the concept (the red line from his logo), the garage of real customer cars, and how every section leads to a WhatsApp message.
 8. **How we fix the rest.** Four blocks, each tied to a specific problem found:
    - Full website build, hosting and edits → fixes the 404
    - SEO automations (town and service pages, content engine, schema, Google Business Profile posts, rank tracking, monthly report) → wins "ceramic coating Chester" and similar searches

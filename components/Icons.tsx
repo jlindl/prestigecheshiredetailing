@@ -1,18 +1,26 @@
-export function LogoMark({ size = 44, decorative = false }: { size?: number; decorative?: boolean }) {
-  // Vector redraw of the Prestige Cheshire Detailing mark: black disc, white car outline, red line beneath.
+const SWOOSH_BODY = "M40 178 C110 148 200 134 320 132 C520 130 760 152 965 160 L1135 168 C1080 186 1010 194 930 192 C760 188 560 168 400 154 C280 146 160 150 40 178 Z";
+const SWOOSH_ROOF = "M360 112 C470 62 600 42 720 43 C830 44 900 80 990 132 L1135 168 L965 162 C900 112 820 66 720 66 C610 66 480 84 360 112 Z";
+const SWOOSH_RED = "M790 240 C870 236 950 230 1010 225 L962 218 C1040 210 1100 198 1142 176 C1166 198 1160 236 1100 252 C1020 268 900 256 790 240 Z";
+
+/** Vector redraw of Craig's logo car: white body and roof lines with the red sweep under the nose. */
+export function LogoSwoosh({ className }: { className?: string }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 120 120" {...(decorative ? { "aria-hidden": true } : { role: "img", "aria-label": "Prestige Cheshire Detailing logo" })}>
-      <circle cx="60" cy="60" r="58" fill="#000" stroke="rgba(255,255,255,.9)" strokeWidth="2" />
-      <g fill="none" stroke="#fff" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M17 66 C17 61 19 58.5 25 57.5 L37 55.5 C44 48 52 44 63 44 C73 44 81 47.5 88 54 L98 56 C103 57 105 60 105 65" />
-        <path d="M17 66 L26 66 M44 66 L76 66 M94 66 L105 66" />
-        <path d="M26 66 A9 9 0 0 1 44 66 M76 66 A9 9 0 0 1 94 66" />
-        <circle cx="35" cy="67.5" r="5.6" />
-        <circle cx="85" cy="67.5" r="5.6" />
-        <path d="M43 55 C49 50 55 48 63 48 C70 48 75 50 80 54.5 Z" strokeWidth="2.4" />
-      </g>
-      <rect x="22" y="80" width="76" height="3.2" rx="1.6" fill="#e3120b" />
+    <svg className={className} viewBox="30 34 1140 232" aria-hidden="true">
+      <path fill="currentColor" d={SWOOSH_BODY} />
+      <path fill="currentColor" d={SWOOSH_ROOF} />
+      <path fill="#e3120b" d={SWOOSH_RED} />
     </svg>
+  );
+}
+
+/** Full stacked lockup, as in Craig's logo: car above "PRESTIGE CHESHIRE / DETAILING". */
+export function Logo({ size = "md", decorative = false }: { size?: "sm" | "md" | "lg"; decorative?: boolean }) {
+  return (
+    <span className={`logo logo-${size}`} {...(decorative ? { "aria-hidden": true } : { role: "img", "aria-label": "Prestige Cheshire Detailing" })}>
+      <LogoSwoosh className="logo-car" />
+      <span className="logo-t1">PRESTIGE CHESHIRE</span>
+      <span className="logo-t2">DETAILING</span>
+    </span>
   );
 }
 

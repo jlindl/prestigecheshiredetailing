@@ -1,7 +1,6 @@
 import { SITE, waLink } from "@/lib/site";
-import { LogoMark, WaIcon, PhoneIcon, Arrow } from "@/components/Icons";
+import { Logo, WaIcon, PhoneIcon, Arrow } from "@/components/Icons";
 import { WaButton, CallButton, CtaStrip } from "@/components/Cta";
-import PolishPass from "@/components/PolishPass";
 import Faq from "@/components/Faq";
 import Builder from "@/components/Builder";
 import Motion from "@/components/Motion";
@@ -27,13 +26,10 @@ export default function Home() {
       <div className="progress" aria-hidden="true" />
       <header className="hdr">
         <a href="#top" className="hdr-brand">
-          <LogoMark size={42} decorative />
-          <span className="wm">
-            PRESTIGE<span>CHESHIRE DETAILING</span>
-          </span>
+          <Logo size="sm" />
         </a>
         <nav className="hdr-nav" aria-label="Main">
-          <a className="lnk" href="#process">The process</a>
+          <a className="lnk" href="#services">Services</a>
           <a className="lnk" href="#work">Work</a>
           <a className="lnk" href="#areas">Areas</a>
           <a className="lnk tel" href={SITE.phoneHref}>{SITE.phoneDisplay}</a>
@@ -72,14 +68,7 @@ export default function Home() {
                 <span><b>recommend</b> · from {SITE.reviews.count} Facebook reviews</span>
               </a>
             </div>
-            <figure className="hero-card">
-              <img decoding="async" data-src="/img/pcd-48.webp" data-srcset="/img/pcd-48-sm.webp 800w, /img/pcd-48.webp 1400w" sizes="320px" alt="Freshly detailed purple Porsche Macan bonnet with mirror reflections" />
-              <span className="sweep" aria-hidden="true" />
-              <figcaption>
-                <span className="m">Porsche Macan</span>
-                <span className="mono">Customer car</span>
-              </figcaption>
-            </figure>
+            <div className="hero-logo" aria-hidden="true"><Logo size="lg" decorative /></div>
           </div>
           <div className="wrap">
             <div className="hero-redline" aria-hidden="true" />
@@ -103,13 +92,11 @@ export default function Home() {
               ))}
             </p>
             <p className="lede" data-reveal>
-              That&rsquo;s why a wash alone never brings it back. The gloss isn&rsquo;t hiding under dirt. It&rsquo;s been cut up by thousands of tiny marks. Scroll on to watch them come out.
+              That&rsquo;s why a wash alone never brings it back. The gloss isn&rsquo;t hiding under dirt. It&rsquo;s been cut up by thousands of tiny marks.
             </p>
           </div>
         </section>
 
-        {/* SIGNATURE: POLISH PASS */}
-        <PolishPass />
 
         {/* GARAGE */}
         <section className="garage" id="work" aria-labelledby="gar-h">
@@ -166,7 +153,7 @@ export default function Home() {
         </section>
 
         {/* SERVICES */}
-        <section className="services wrap" aria-labelledby="svc-h">
+        <section className="services wrap" id="services" aria-labelledby="svc-h">
           <div className="svc-head">
             <div>
               <span className="mono eyebrow">What Craig does</span>
@@ -275,7 +262,7 @@ export default function Home() {
       <footer className="foot">
         <div className="foot-cols">
           <div>
-            <LogoMark size={56} />
+            <Logo size="lg" />
             <p style={{ marginTop: 18, maxWidth: 340 }}>Machine polishing and Gyeon ceramic coatings. Mobile across Cheshire, by appointment.</p>
           </div>
           <div>

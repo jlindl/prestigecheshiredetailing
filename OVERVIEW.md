@@ -55,21 +55,22 @@ Prepared by Integrate · 24 November 2026
 *The red line under the car in Craig's logo becomes the horizon of the whole site.* It's the reflection running along a freshly polished panel, and it leads the visitor from dull, swirled paint to deep gloss, then into a WhatsApp chat with Craig. It fits because it's built from Craig's own logo and Craig's own photos. A competitor couldn't reskin it without both.
 
 ### Scroll journey
-1. **Hero.** Macro water beading on black paint with a red light streak, and a highlight that follows your cursor. The headline is "Paint you can see yourself in." Within one screen: polishing and Gyeon coatings, cars, vans and bikes, Cheshire, own water and power. The WhatsApp CTA and the phone number in full sit alongside a "100% recommend · 21 Facebook reviews" chip.
+1. **Hero.** Macro water beading on black paint with a red light streak, and a highlight that follows your cursor. The headline is "Paint you can see yourself in." Craig's own logo, redrawn as a vector, sits beside it on desktop. Within one screen: polishing and Gyeon coatings, cars, vans and bikes, Cheshire, own water and power. The WhatsApp CTA and the phone number in full sit alongside a "100% recommend · 21 Facebook reviews" chip.
 2. **Why paint looks tired.** "Most paint isn't dull. It's scratched." The explanation lights up word by word as you scroll.
-3. **Signature moment: The Polish Pass.** A sticky scroll scene built on Craig's own photo of a black Range Rover panel, covered in a drawn layer of swirl marks. The panel is clearly labelled "Illustration · swirls added digitally". As you scroll, a rotary polisher pad makes overlapping passes and erases the swirls, revealing the true reflection. A live "polish progress" counter runs from 0% to 100%, and the stages advance: Prep → Machine polish → Gyeon ceramic coating. Your cursor or finger becomes a **swirl-finder light**, the same inspection torch detailers use. Under it, any swirls left on the panel flare up, just as they do under a real inspection light. Scroll back and the swirls return. When it finishes: "Get this for your car" (WhatsApp).
-4. **The garage.** A horizontal, pinned passage of real customer cars at full height. Hover shows a second angle. It ends with "Send Craig a photo of yours."
+3. **Signature moment: the garage.** A horizontal, sticky passage of real customer cars at full height, with a giant PRESTIGE ghost word behind them. Hover shows a second angle. It ends with "Send Craig a photo of yours."
+4. **Proof.** A huge 100%, "21 Facebook reviews. Every one recommends.", and the three things reviewers mention. These are written as themes, not invented quotes, with a link to the real reviews.
 5. **Two things, done properly.** Machine polishing and Gyeon ceramic coatings, with Craig's close-up photos. Then a "Not sure which you need?" WhatsApp prompt.
 6. **Vans.** "Your van is your shop window." The black Transporter, with Transit Customs mentioned.
 7. **Coverage.** "We bring the water. And the power." The nine towns are plotted from real coordinates, joined by a red route that draws as you scroll. Own water, own power, appointment only.
-8. **Proof.** A huge 100%, "21 Facebook reviews. Every one recommends.", and the three things reviewers mention. These are written as themes, not invented quotes, with a link to the real reviews.
-9. **Good questions.** Price, water and power, areas, coating lifespan, vans and bikes, booking.
-10. **Climax: "Let's get it booked in."** A studio stage with a red neon horizon, and a three-tap builder (vehicle, service, town) that writes the WhatsApp message for the visitor.
-11. **Footer.** A giant outlined PRESTIGE wordmark with the red line drawn under it.
+8. **Good questions.** Price, water and power, areas, coating lifespan, vans and bikes, booking.
+9. **Climax: "Let's get it booked in."** A studio stage with a red neon horizon, and a three-tap builder (vehicle, service, town) that writes the WhatsApp message for the visitor.
+10. **Footer.** Craig's logo, then a giant outlined PRESTIGE wordmark with the red line drawn under it.
+
+*Revision after review (24 November 2026): at Jack's request, the Porsche photo card was removed from the hero, the Polish Pass swirl-removal scene was removed, and Craig's actual logo replaced the earlier disc mark.*
 
 ### How it converts
 - WhatsApp is one tap away at all times: a header pill on desktop, and a fixed thumb bar on mobile (WhatsApp + Call).
-- There are action points at every decision moment: hero, after the polish pass, end of the garage, services, vans, coverage, FAQ and the final builder.
+- There are action points at every decision moment: hero, end of the garage, services, vans, coverage, FAQ and the final builder.
 - Objections are answered before the final CTA: price (send photos for a quote), trust (100% of 21, Craig named), area (map), logistics (own water and power), timing (appointment only).
 - No animation hides contact details. The hero intro runs in CSS from first paint, and every CTA is a real link.
 
@@ -102,14 +103,13 @@ Each item is tied to a problem found above.
 | Hairlines | `rgba(242,241,237,0.12)` |
 
 - **Type:** Archivo (variable, width axis). Headlines use the widest setting (125), weight 800, uppercase and tight tracking for an engineered, coachbuilt feel. Body copy uses width 100. JetBrains Mono is used for spec labels and eyebrows.
-- **Logo:** redrawn as a vector (`components/Icons.tsx` → `LogoMark`, and `public/mark.svg`): black disc, white car outline, red line beneath.
+- **Logo:** Craig's logo redrawn as a vector (`components/Icons.tsx` → `Logo` and `LogoSwoosh`, favicon `public/mark.svg`): a white car silhouette with a red sweep under the nose, above "PRESTIGE CHESHIRE / DETAILING" in a heavy sans.
 - **Motion principles:** expo-out easing, no linear tweens except scroll-scrubs, motion that follows the light (reflections, sweeps, the red line), scroll that controls rather than triggers, and a full `prefers-reduced-motion` fallback (no pins, static finished states).
 
 ## 9. Tech stack and quality
 
 - Next.js 15 (App Router), React 19, TypeScript, Tailwind v4 and hand-written CSS tokens.
 - GSAP + ScrollTrigger (scrubs) and Lenis smooth scroll, code-split and loaded on the visitor's first interaction. The pinned scenes are CSS `position: sticky`, so there are no layout shifts.
-- A canvas-based Polish Pass with procedurally generated swirl marks and a pointer-driven swirl-finder light.
 - An IntersectionObserver image loader and WebP images at 800w and 1400w. **Customer number plates are pixelated** in every photo.
 - `noindex, nofollow` in the meta tag and an `X-Robots-Tag` header.
 - **Lighthouse mobile (local production build, final):** performance 94, accessibility 100, best practices 100. LCP is 3.0s, TBT 70ms, CLS 0.013. SEO is intentionally low because of noindex.
