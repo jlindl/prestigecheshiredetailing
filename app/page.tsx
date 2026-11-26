@@ -1,6 +1,7 @@
 import { SITE, waLink } from "@/lib/site";
 import { Logo, WaIcon, PhoneIcon, Arrow } from "@/components/Icons";
 import { WaButton, CallButton, CtaStrip } from "@/components/Cta";
+import Social from "@/components/Social";
 import Faq from "@/components/Faq";
 import Builder from "@/components/Builder";
 import Motion from "@/components/Motion";
@@ -267,6 +268,10 @@ export default function Home() {
                 <span>Or call <a href={SITE.phoneHref}>{SITE.phoneDisplay}</a></span>
                 <span>Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a></span>
               </div>
+              <div className="follow-row">
+                <span className="mono">See more of Craig&rsquo;s work</span>
+                <Social />
+              </div>
             </div>
             <Builder />
           </div>
@@ -277,7 +282,7 @@ export default function Home() {
         <div className="foot-cols">
           <div>
             <Logo size="lg" />
-            <p style={{ marginTop: 18, maxWidth: 340 }}>Machine polishing and Gyeon ceramic coatings. Mobile across Cheshire, by appointment.</p>
+            <p style={{ marginTop: 18, maxWidth: 340 }}>Machine polishing and Gyeon ceramic coatings. Mobile across Cheshire, the North West and North Wales, by appointment.</p>
           </div>
           <div>
             <p className="mono fh">Contact</p>
@@ -291,8 +296,8 @@ export default function Home() {
           </div>
           <div>
             <p className="mono fh">Follow</p>
-            <a href={SITE.facebook} target="_blank" rel="noopener">Facebook</a>
-            <a href={SITE.facebookReviews} target="_blank" rel="noopener">Reviews</a>
+            <Social />
+            <a href={SITE.facebookReviews} target="_blank" rel="noopener" style={{ marginTop: 10 }}>Read the reviews</a>
           </div>
         </div>
         <div className="wordmark" aria-hidden="true">
