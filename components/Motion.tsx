@@ -74,24 +74,10 @@ export default function Motion() {
         gsap.from(el, { y: 36, opacity: 0, duration: 1, ease: EXPO, scrollTrigger: { trigger: el, start: "top 96%", once: true } });
       });
 
-      // ---------- garage horizontal passage ----------
-      const track = document.querySelector<HTMLElement>(".garage-track");
-      if (track) {
-        const dist = () => Math.max(0, track.scrollWidth - window.innerWidth);
-        // the garage is a sticky scene: its height is the horizontal distance to travel (no pin reparenting, no layout shift)
-        const garage = document.querySelector<HTMLElement>(".garage")!;
-        const setH = () => { garage.style.height = window.innerHeight + dist() + "px"; };
-        setH();
-        ScrollTrigger.addEventListener("refreshInit", setH);
-        gsap.to(track, {
-          x: () => -dist(), ease: "none",
-          scrollTrigger: { trigger: ".garage", start: "top top", end: "bottom bottom", scrub: 0.8, invalidateOnRefresh: true },
-        });
-        gsap.to(".garage-ghost", { xPercent: -30, ease: "none", scrollTrigger: { trigger: ".garage", start: "top top", end: "bottom bottom", scrub: true } });
-        gsap.utils.toArray<HTMLElement>(".car .ph").forEach((ph, i) => {
-          gsap.from(ph, { clipPath: "inset(100% 0 0 0)", duration: 1.4, ease: "expo.inOut", delay: i * 0.08, scrollTrigger: { trigger: ".garage", start: "top 70%", once: true } });
-        });
-      }
+      // ---------- garage: photos reveal once, the strip itself auto-scrolls in CSS ----------
+      gsap.utils.toArray<HTMLElement>(".car .ph").slice(0, 7).forEach((ph, i) => {
+        gsap.from(ph, { clipPath: "inset(100% 0 0 0)", duration: 1.4, ease: "expo.inOut", delay: i * 0.08, scrollTrigger: { trigger: ".garage", start: "top 70%", once: true } });
+      });
 
       // ---------- in-image parallax ----------
       gsap.utils.toArray<HTMLElement>("[data-speed]").forEach((img) => {

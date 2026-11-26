@@ -138,12 +138,19 @@ button { font: inherit; color: inherit; }
 @media (max-width: 820px) { .statement .body { grid-template-columns: 1fr; gap: 28px; } }
 
 /* ---------- garage ---------- */
-.garage { position: relative; height: 340vh; }
-.garage-sticky { position: sticky; top: 0; height: 100svh; overflow: hidden; }
-.garage-head { position: absolute; top: 96px; left: var(--gutter); right: var(--gutter); display: flex; justify-content: space-between; align-items: end; z-index: 2; pointer-events: none; }
+.garage { position: relative; overflow: hidden; padding-block: clamp(80px, 12vh, 140px) clamp(50px, 8vh, 90px); }
+.garage-head { position: relative; display: flex; justify-content: space-between; align-items: end; z-index: 2; margin-bottom: clamp(30px, 5vh, 54px); }
 .garage-head h2 { font-size: clamp(30px, 3.6vw, 60px); margin: 12px 0 0; }
-.garage-track { position: absolute; left: 0; top: 0; height: 100%; display: flex; align-items: flex-end; gap: clamp(18px, 2.4vw, 40px); padding: 0 var(--gutter) 56px; will-change: transform; }
-.car { --ph: min(62svh, 600px); position: relative; flex: 0 0 auto; width: calc(var(--ph) * 0.75); }
+.garage-view { position: relative; z-index: 1; overflow: hidden; }
+.garage-track { --g: clamp(18px, 2.4vw, 40px); display: flex; width: max-content; animation: garage-loop calc(var(--n) * 6.5s) linear infinite; }
+.garage-view:hover .garage-track { animation-play-state: paused; }
+.garage-track .car { margin-right: var(--g); }
+@keyframes garage-loop { to { transform: translateX(-50%); } }
+.rm .garage-track, .garage-track:focus-within { animation: none; }
+.rm .garage-view { overflow-x: auto; }
+.garage-next { position: relative; z-index: 2; display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-top: clamp(40px, 6vh, 70px); }
+.garage-next h3 { font-size: clamp(28px, 3vw, 50px); margin: 14px 0 12px; }
+.car { --ph: min(56svh, 540px); position: relative; flex: 0 0 auto; width: calc(var(--ph) * 0.75); }
 .car .ph { position: relative; overflow: hidden; border-radius: 6px; background: var(--graphite); box-shadow: 0 0 0 1px var(--line); height: var(--ph); width: 100%; }
 .car .ph img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); transition: transform 1.2s var(--ease-out), filter 0.8s; filter: saturate(0.92); }
 .car:hover .ph img { transform: scale(1.0); filter: saturate(1.08); }
@@ -159,10 +166,11 @@ button { font: inherit; color: inherit; }
 .car.end .btn { align-self: flex-start; }
 .garage-ghost { position: absolute; left: 0; bottom: -0.12em; font-size: 26vw; color: transparent; -webkit-text-stroke: 1px rgba(242, 241, 237, 0.05); white-space: nowrap; pointer-events: none; z-index: 0; }
 @media (max-width: 820px) {
-  .garage-head { top: 76px; flex-direction: column; align-items: flex-start; gap: 6px; }
+  .garage-head { flex-direction: column; align-items: flex-start; gap: 6px; }
   .garage-head .mono.r { display: none; }
-  .garage-track { padding: 150px 16px 96px; align-items: center; }
-  .car { --ph: min(54svh, 98vw); }
+  .car { --ph: min(52svh, 96vw); }
+  .garage-next { flex-direction: column; align-items: stretch; }
+  .garage-next .btn { justify-content: space-between; }
   .car .name { font-size: 22px; }
 }
 
@@ -182,6 +190,11 @@ button { font: inherit; color: inherit; }
 .svc .im { grid-column: 8 / span 5; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 6px; position: relative; box-shadow: 0 0 0 1px var(--line); }
 .svc .im img { width: 100%; height: 118%; object-fit: cover; }
 .svc .im .tag { position: absolute; left: 12px; bottom: 12px; color: #fff; background: rgba(8, 8, 10, 0.72); backdrop-filter: blur(6px); padding: 6px 10px; border-radius: 999px; }
+.process { margin-top: clamp(30px, 5vh, 56px); border-top: 1px solid var(--line); padding-top: 28px; }
+.process ol { list-style: none; margin: 20px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.process li { background: var(--black); padding: 22px 20px; display: grid; gap: 12px; font-size: clamp(18px, 1.5vw, 22px); font-weight: 700; font-variation-settings: "wdth" 115; }
+.process li .mono { color: var(--red-hot); }
+@media (max-width: 820px) { .process ol { grid-template-columns: 1fr 1fr; } }
 .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
 .chip { border: 1px solid var(--line); border-radius: 999px; padding: 10px 18px; font-size: 14px; color: var(--chrome); font-weight: 500; }
 @media (max-width: 820px) {
@@ -341,12 +354,11 @@ img[data-src] { opacity: 0; } img { transition: opacity .7s var(--ease-out); }
 
 /* ---------- reduced motion: no scroll scenes, everything visible ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .garage { height: auto !important; }
-  .garage-sticky { position: relative; height: auto; overflow: visible; padding: 120px 0 40px; }
-  .garage-head { position: relative; top: 0; left: 0; right: 0; padding-inline: var(--gutter); margin-bottom: 30px; }
   .garage-ghost { display: none; }
-  .garage-track { position: relative; height: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 28px 20px; padding: 0 var(--gutter); transform: none !important; }
-  .car, .car.end { width: auto; --ph: auto; }
+  .garage-track { animation: none; width: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 28px 20px; padding: 0 var(--gutter); }
+  .garage-track .car { margin: 0; }
+  .garage-track .car[aria-hidden] { display: none; }
+  .car { width: auto; --ph: auto; }
   .car .ph { height: auto; aspect-ratio: 3 / 4; }
   .statement .big .w { color: var(--chrome); }
   .hero h1 .ln > span, .hero-redline, .hero-logo, .hero-bg { animation: none !important; }

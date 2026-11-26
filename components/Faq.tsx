@@ -15,11 +15,11 @@ const QA: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "Do I need to provide water or electricity?",
-    a: <>No. Craig is fully mobile and brings his own water and power.</>,
+    a: <>You don&rsquo;t need to provide water, Craig is fully mobile and brings his own. He will need access to a power socket.</>,
   },
   {
     q: "Which areas do you cover?",
-    a: <>{SITE.towns.slice(0, -1).join(", ")} and {SITE.towns[SITE.towns.length - 1]}.</>,
+    a: <>A wide area, including {SITE.towns.join(", ")}. Not sure if you&rsquo;re covered? Just message Craig.</>,
   },
   {
     q: "How long does a ceramic coating last?",

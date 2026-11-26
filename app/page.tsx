@@ -57,7 +57,7 @@ export default function Home() {
                 <span className="ln ln-last"><span>yourself</span><span className="in-word"><span className="red">in.</span></span></span>
               </h1>
               <p className="lede">
-                <b>Machine polishing</b> to take out swirl marks and <b>Gyeon ceramic coatings</b> to keep the gloss, for cars, vans and motorbikes. Craig comes to you across Cheshire with <b>his own water and power</b>.
+                <b>Machine polishing</b> to take out swirl marks and <b>Gyeon ceramic coatings</b> to keep the gloss, for cars, vans and motorbikes. Craig comes to you across Cheshire and <b>brings his own water</b>.
               </p>
               <div className="hero-ctas">
                 <WaButton label="Get a quote on WhatsApp" />
@@ -100,8 +100,7 @@ export default function Home() {
 
         {/* GARAGE */}
         <section className="garage" id="work" aria-labelledby="gar-h">
-          <div className="garage-sticky">
-          <div className="garage-head">
+          <div className="garage-head wrap">
             <div>
               <span className="mono eyebrow">The garage</span>
               <h2 id="gar-h" className="display">Customer cars</h2>
@@ -109,27 +108,32 @@ export default function Home() {
             <span className="mono r" style={{ color: "var(--dim)" }}>Hover for a second angle</span>
           </div>
           <div className="garage-ghost display" aria-hidden="true">PRESTIGE</div>
-          <div className="garage-track">
-            {CARS.map((c, i) => (
-              <article className="car" key={c.name}>
-                <span className="idx mono">{String(i + 1).padStart(2, "0")} / {String(CARS.length).padStart(2, "0")}</span>
-                <div className="ph">
-                  <img decoding="async" data-src={`/img/${c.img}.webp`} data-srcset={`/img/${c.img}-sm.webp 800w, /img/${c.img}.webp 1400w`} sizes="(max-width: 820px) 80vw, 460px" alt={`${c.name}, a Prestige Cheshire Detailing customer car`} loading="lazy" />
-                  <img decoding="async" className="alt" data-src={`/img/${c.alt}.webp`} data-srcset={`/img/${c.alt}-sm.webp 800w, /img/${c.alt}.webp 1400w`} sizes="(max-width: 820px) 80vw, 460px" alt="" loading="lazy" aria-hidden="true" />
-                </div>
-                <div className="meta">
-                  <h3 className="name">{c.name}</h3>
-                  <span className="mono" style={{ color: "var(--dim)" }}>{c.note}</span>
-                </div>
-              </article>
-            ))}
-            <div className="car end">
+          <div className="garage-view">
+            <div className="garage-track" style={{ ["--n" as string]: CARS.length }}>
+              {[0, 1].map((loop) =>
+                CARS.map((c, i) => (
+                  <article className="car" key={`${loop}-${c.name}`} aria-hidden={loop === 1 ? true : undefined}>
+                    <span className="idx mono">{String(i + 1).padStart(2, "0")} / {String(CARS.length).padStart(2, "0")}</span>
+                    <div className="ph">
+                      <img decoding="async" data-src={`/img/${c.img}.webp`} data-srcset={`/img/${c.img}-sm.webp 800w, /img/${c.img}.webp 1400w`} sizes="(max-width: 820px) 70vw, 420px" alt={loop === 1 ? "" : `${c.name}, a Prestige Cheshire Detailing customer car`} loading="lazy" />
+                      <img decoding="async" className="alt" data-src={`/img/${c.alt}.webp`} data-srcset={`/img/${c.alt}-sm.webp 800w, /img/${c.alt}.webp 1400w`} sizes="(max-width: 820px) 70vw, 420px" alt="" loading="lazy" aria-hidden="true" />
+                    </div>
+                    <div className="meta">
+                      <h3 className="name">{c.name}</h3>
+                      <span className="mono" style={{ color: "var(--dim)" }}>{c.note}</span>
+                    </div>
+                  </article>
+                ))
+              )}
+            </div>
+          </div>
+          <div className="garage-next wrap">
+            <div>
               <span className="mono eyebrow">Yours next</span>
               <h3 className="display">Send Craig a photo of yours.</h3>
               <p className="lede" style={{ margin: 0 }}>A couple of pictures on WhatsApp is all it takes to get a quote.</p>
-              <WaButton label="Send photos" text="Hi Craig, here are a few photos of my car. Could you give me a quote? " />
             </div>
-          </div>
+            <WaButton label="Send photos" text="Hi Craig, here are a few photos of my car. Could you give me a quote? " />
           </div>
         </section>
 
@@ -196,6 +200,16 @@ export default function Home() {
             </figure>
           </article>
 
+          <div className="process" data-reveal>
+            <p className="mono eyebrow">How Craig does it</p>
+            <ol>
+              <li><span className="mono">01</span>Digital paint mapping</li>
+              <li><span className="mono">02</span>Pre-wash</li>
+              <li><span className="mono">03</span>Contact wash</li>
+              <li><span className="mono">04</span>Chemical decontamination</li>
+            </ol>
+          </div>
+
           <div className="chips" data-reveal>
             <span className="chip">Cars</span>
             <span className="chip">Vans</span>
@@ -225,11 +239,11 @@ export default function Home() {
           <div className="cover-grid">
             <div>
               <span className="mono eyebrow">Fully mobile</span>
-              <h2 id="cov-h" className="display" data-reveal>We bring the water. <span className="red">And the power.</span></h2>
-              <p className="lede" data-reveal>No need to provide water or power. Craig comes to you, by appointment, across the towns below.</p>
+              <h2 id="cov-h" className="display" data-reveal>We bring the water. <span className="red">You supply the power.</span></h2>
+              <p className="lede" data-reveal>No need to provide water, Craig brings his own. All he needs from you is access to a power socket. He covers a wide area, by appointment, including the towns below.</p>
               <div className="facts">
                 <div><span className="mono" style={{ color: "var(--dim)" }}>Water</span><span className="k">Own supply</span></div>
-                <div><span className="mono" style={{ color: "var(--dim)" }}>Power</span><span className="k">Own supply</span></div>
+                <div><span className="mono" style={{ color: "var(--dim)" }}>Power</span><span className="k">Your socket</span></div>
                 <div><span className="mono" style={{ color: "var(--dim)" }}>Booking</span><span className="k">Appointment only</span></div>
               </div>
               <div style={{ marginTop: 30 }}><WaButton label="Check a date" text="Hi Craig, do you have any availability coming up? I'm in " /></div>
@@ -273,7 +287,7 @@ export default function Home() {
           </div>
           <div>
             <p className="mono fh">Areas</p>
-            <p>{SITE.towns.join(", ")}</p>
+            <p>{SITE.towns.join(", ")} and many more</p>
           </div>
           <div>
             <p className="mono fh">Follow</p>
