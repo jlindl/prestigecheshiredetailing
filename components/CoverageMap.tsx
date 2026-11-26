@@ -1,21 +1,23 @@
 // Towns plotted from real latitude/longitude (projected into the viewBox), joined by a red route drawn on scroll.
 const TOWNS: { n: string; x: number; y: number; side: "l" | "r" | "t" | "b" }[] = [
-  { n: "Chester", x: 75, y: 288, side: "t" },
-  { n: "Winsford", x: 296, y: 289, side: "b" },
-  { n: "Northwich", x: 298, y: 208, side: "l" },
-  { n: "Wilmslow", x: 470, y: 128, side: "l" },
-  { n: "Bramhall", x: 510, y: 89, side: "l" },
-  { n: "Macclesfield", x: 533, y: 208, side: "l" },
-  { n: "Sandbach", x: 391, y: 344, side: "r" },
-  { n: "Crewe", x: 344, y: 398, side: "r" },
-  { n: "Nantwich", x: 296, y: 436, side: "r" },
+  { n: "Chester", x: 243, y: 336, side: "t" },
+  { n: "Winsford", x: 391, y: 337, side: "b" },
+  { n: "Northwich", x: 393, y: 292, side: "l" },
+  { n: "Wigan", x: 347, y: 100, side: "l" },
+  { n: "Manchester", x: 503, y: 144, side: "l" },
+  { n: "Bramhall", x: 534, y: 225, side: "t" },
+  { n: "Wilmslow", x: 508, y: 247, side: "l" },
+  { n: "Macclesfield", x: 550, y: 292, side: "b" },
+  { n: "Sandbach", x: 455, y: 369, side: "r" },
+  { n: "Crewe", x: 424, y: 399, side: "r" },
+  { n: "Nantwich", x: 391, y: 420, side: "r" },
 ];
 
 export default function CoverageMap() {
   const d = TOWNS.map((t, i) => `${i ? "L" : "M"}${t.x} ${t.y}`).join(" ");
   return (
     <div className="map" data-map>
-      <svg viewBox="0 0 600 520" role="img" aria-label="Map of the Cheshire towns covered: Chester, Winsford, Northwich, Wilmslow, Bramhall, Macclesfield, Sandbach, Crewe and Nantwich">
+      <svg viewBox="0 0 600 520" role="img" aria-label="Map of the area covered: Cheshire, the North West as far north as Wigan and Manchester, and North Wales">
         <defs>
           <pattern id="dots" width="16" height="16" patternUnits="userSpaceOnUse">
             <circle cx="1" cy="1" r="1" fill="rgba(242,241,237,.09)" />
@@ -29,7 +31,12 @@ export default function CoverageMap() {
         {[90, 170, 250].map((r) => (
           <circle key={r} cx="300" cy="270" r={r} fill="none" stroke="rgba(242,241,237,.06)" strokeDasharray="2 6" />
         ))}
-        <text x="0" y="16" className="mono" fill="rgba(242,241,237,.35)" fontSize="11" letterSpacing="2">CHESHIRE · 53.2°N 2.5°W</text>
+        <text x="0" y="16" className="mono" fill="rgba(242,241,237,.35)" fontSize="11" letterSpacing="2">CHESHIRE · NORTH WEST · NORTH WALES</text>
+        <g className="region" data-town>
+          <ellipse cx="112" cy="318" rx="92" ry="58" fill="rgba(227,18,11,.07)" stroke="rgba(227,18,11,.55)" strokeDasharray="4 6" />
+          <text x="112" y="323" textAnchor="middle">North Wales</text>
+        </g>
+        <path d="M243 336 L204 326" fill="none" stroke="#e3120b" strokeWidth="2" strokeDasharray="3 5" opacity=".8" />
         <path d={d} fill="none" stroke="#e3120b" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" filter="url(#glow)" data-route pathLength={1} strokeDasharray="1" strokeDashoffset="0" />
         {TOWNS.map((t) => (
           <g key={t.n} className="town" data-town>

@@ -8,7 +8,8 @@ export const SITE = {
   facebookReviews: "https://www.facebook.com/prestigecheshirevaleting/reviews",
   waNumber: "447791543486",
   reviews: { count: 21, recommend: 100 },
-  towns: ["Chester", "Northwich", "Winsford", "Sandbach", "Crewe", "Nantwich", "Macclesfield", "Wilmslow", "Bramhall"],
+  areas: "Cheshire, the North West and North Wales",
+  towns: ["Chester", "Northwich", "Winsford", "Sandbach", "Crewe", "Nantwich", "Macclesfield", "Wilmslow", "Bramhall", "Manchester", "Wigan"],
 };
 
 export function waLink(text = "Hi Craig, I'd like a quote for a detail on my vehicle. ") {

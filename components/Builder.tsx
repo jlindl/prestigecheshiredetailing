@@ -37,6 +37,7 @@ export default function Builder() {
         <select id="town" value={town} onChange={(e) => setTown(e.target.value)}>
           <option value="">Choose a town (optional)</option>
           {SITE.towns.map((t) => <option key={t} value={t}>{t}</option>)}
+          <option value="North Wales">North Wales</option>
           <option value="another area nearby">Somewhere nearby</option>
         </select>
       </div>

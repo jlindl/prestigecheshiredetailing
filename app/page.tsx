@@ -57,7 +57,7 @@ export default function Home() {
                 <span className="ln ln-last"><span>yourself</span><span className="in-word"><span className="red">in.</span></span></span>
               </h1>
               <p className="lede">
-                <b>Machine polishing</b> to take out swirl marks and <b>Gyeon ceramic coatings</b> to keep the gloss, for cars, vans and motorbikes. Craig comes to you across Cheshire and <b>brings his own water</b>.
+                <b>Machine polishing</b> to take out swirl marks and <b>Gyeon ceramic coatings</b> to keep the gloss, for cars, vans and motorbikes. Craig comes to you across Cheshire, the North West and North Wales, and <b>brings his own water</b>.
               </p>
               <div className="hero-ctas">
                 <WaButton label="Get a quote on WhatsApp" />
@@ -240,7 +240,7 @@ export default function Home() {
             <div>
               <span className="mono eyebrow">Fully mobile</span>
               <h2 id="cov-h" className="display" data-reveal>We bring the water. <span className="red">You supply the power.</span></h2>
-              <p className="lede" data-reveal>No need to provide water, Craig brings his own. All he needs from you is access to a power socket. He covers a wide area, by appointment, including the towns below.</p>
+              <p className="lede" data-reveal>No need to provide water, Craig brings his own. All he needs from you is access to a power socket. He covers Cheshire, the North West and North Wales, as far north as Wigan and Manchester. By appointment.</p>
               <div className="facts">
                 <div><span className="mono" style={{ color: "var(--dim)" }}>Water</span><span className="k">Own supply</span></div>
                 <div><span className="mono" style={{ color: "var(--dim)" }}>Power</span><span className="k">Your socket</span></div>
@@ -287,7 +287,7 @@ export default function Home() {
           </div>
           <div>
             <p className="mono fh">Areas</p>
-            <p>{SITE.towns.join(", ")} and many more</p>
+            <p>{SITE.areas}. As far north as Wigan and Manchester.</p>
           </div>
           <div>
             <p className="mono fh">Follow</p>

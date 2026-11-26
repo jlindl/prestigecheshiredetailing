@@ -19,7 +19,7 @@ const QA: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "Which areas do you cover?",
-    a: <>A wide area, including {SITE.towns.join(", ")}. Not sure if you&rsquo;re covered? Just message Craig.</>,
+    a: <>{SITE.areas}, as far north as Wigan and Manchester. Not sure if you&rsquo;re covered? Just message Craig.</>,
   },
   {
     q: "How long does a ceramic coating last?",
