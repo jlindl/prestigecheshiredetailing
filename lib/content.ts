@@ -27,14 +27,14 @@ export const SERVICES = [
 
 // one photo per vehicle
 export const WORK = [
-  { img: "pcd-80", name: "BMW M2" },
-  { img: "pcd-73", name: "Audi Avant" },
-  { img: "pcd-47", name: "Porsche Macan" },
-  { img: "pcd-23", name: "Volkswagen van" },
-  { img: "pcd-66", name: "Range Rover Sport" },
-  { img: "pcd-02", name: "BMW 3 Series" },
-  { img: "pcd-34", name: "BMW X3" },
-  { img: "pcd-43", name: "Range Rover" },
+  { img: "pcd-80", alt: "pcd-82", name: "BMW M2" },
+  { img: "pcd-73", alt: "pcd-78", name: "Audi Avant" },
+  { img: "pcd-48", alt: "pcd-47", name: "Porsche Macan" },
+  { img: "pcd-21", alt: "pcd-23", name: "Volkswagen van" },
+  { img: "pcd-66", alt: "pcd-70", name: "Range Rover Sport" },
+  { img: "pcd-02", alt: "pcd-03", name: "BMW 3 Series" },
+  { img: "pcd-35", alt: "pcd-34", name: "BMW X3" },
+  { img: "pcd-43", alt: "pcd-39", name: "Range Rover" },
 ];
 
 // Quotes as supplied in the reference demo, from Craig's Facebook reviews.

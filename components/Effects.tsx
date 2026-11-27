@@ -30,6 +30,9 @@ export default function Effects() {
     }, { rootMargin: "50% 0px" });
     if (gal) { gal.classList.add("off"); gio.observe(gal); }
 
+    // second angle on hover: only fetched on devices that can hover, on first hover of the gallery
+    if (canHover && gal) gal.addEventListener("pointerenter", () => gal.querySelectorAll<HTMLImageElement>("img[data-hover-src]").forEach((i) => { i.src = i.dataset.hoverSrc!; i.removeAttribute("data-hover-src"); }), { once: true });
+
     // the trust strip only moves while visible
     const strip = document.querySelector(".strip");
     const sio = new IntersectionObserver((en) => strip?.classList.toggle("off", !en[0]?.isIntersecting));

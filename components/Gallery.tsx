@@ -70,6 +70,15 @@ export default function Gallery() {
                         decoding="async"
                         loading="lazy"
                       />
+                      {w.alt && (
+                        <img
+                          className="gal-alt"
+                          data-hover-src={`/img/${w.alt}-sm.webp`}
+                          alt=""
+                          aria-hidden="true"
+                          decoding="async"
+                        />
+                      )}
                       <span className="gal-cap">{w.name}</span>
                     </button>
                   );
