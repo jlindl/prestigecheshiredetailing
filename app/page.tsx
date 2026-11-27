@@ -12,7 +12,7 @@ import Gallery from "@/components/Gallery";
 
 const CARS = [
   { name: "Porsche 911 Targa", img: "p911-a", alt: "p911-b", note: "Grey, under the hex lights" },
-  { name: "Aston Martin", img: "aston-a", alt: "aston-b", note: "Black gloss, deep reflections" },
+  { name: "Aston Martin DB12", img: "aston-a", alt: "aston-b", note: "Black gloss, deep reflections" },
   { name: "BMW X5 M Competition", img: "x5-a", alt: "x5-b", note: "Bright blue, sharp in the sun" },
   { name: "Audi RS3", img: "rs3-a", alt: "rs3-b", note: "Red paint that looks wet" },
   { name: "Porsche Macan", img: "pcd-48", alt: "pcd-47", note: "Deep purple gloss" },
@@ -27,9 +27,9 @@ const SHOTS = [
   { img: "g-03", alt: "Rear of a grey Porsche 911 Targa in the garage" },
   { img: "g-04", alt: "Aston Martin badge with a Prestige Cheshire Detailing card" },
   { img: "g-10", alt: "Red Audi RS3 with the door open", wide: true },
-  { img: "g-06", alt: "Black Aston Martin front wheel and wing" },
-  { img: "g-07", alt: "Black Aston Martin headlight and bonnet" },
-  { img: "g-05", alt: "Aston Martin wheel and gloss black paint" },
+  { img: "g-06", alt: "Black Aston Martin DB12 front wheel and wing" },
+  { img: "g-07", alt: "Black Aston Martin DB12 headlight and bonnet" },
+  { img: "g-05", alt: "Aston Martin DB12 wheel and gloss black paint" },
   { img: "g-08", alt: "Blue BMW X5 M Competition on the drive" },
   { img: "g-09", alt: "Rear of a blue BMW X5 M Competition" },
   { img: "g-12", alt: "Red Audi RS3 rear wheel" },
@@ -192,8 +192,8 @@ export default function Home() {
               </ul>
             </div>
             <figure className="im" style={{ margin: 0 }}>
-              <img decoding="async" data-src="/img/aston-bonnet.webp" data-srcset="/img/aston-bonnet-xs.webp 480w, /img/aston-bonnet-sm.webp 800w, /img/aston-bonnet.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Mirror finish on a black Aston Martin bonnet" loading="lazy" data-speed="0.12" />
-              <span className="tag mono">Aston Martin</span>
+              <img decoding="async" data-src="/img/aston-bonnet.webp" data-srcset="/img/aston-bonnet-xs.webp 480w, /img/aston-bonnet-sm.webp 800w, /img/aston-bonnet.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Mirror finish on a black Aston Martin DB12 bonnet" loading="lazy" data-speed="0.12" />
+              <span className="tag mono">Aston Martin DB12</span>
             </figure>
           </article>
 
