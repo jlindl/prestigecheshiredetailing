@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 import { CtaStrip } from "@/components/Cta";
 import Gallery from "@/components/Gallery";
+import SmoothScroll from "@/components/SmoothScroll";
 import { PHOTOS } from "@/lib/gallery";
 
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ export default function GalleryPage() {
         </div>
       </main>
       <SiteFooter />
+      <SmoothScroll />
     </>
   );
 }

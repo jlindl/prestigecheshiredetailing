@@ -36,6 +36,9 @@ export default function Gallery() {
         {PHOTOS.map(([k, w, h, sw], i) => (
           <button type="button" key={k} className="wall-item" onClick={() => setOpen(i)} aria-label="Open photo">
             <img src={`/gallery/${k}-sm.webp`} srcSet={`/gallery/${k}-sm.webp ${sw}w, /gallery/${k}.webp ${w}w`} sizes="(max-width: 600px) 50vw, (max-width: 1100px) 33vw, 25vw" width={w} height={h} alt={ALT} loading={i < 8 ? "eager" : "lazy"} decoding="async" />
+            <span className="wall-ov" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /></svg>
+            </span>
           </button>
         ))}
       </div>
