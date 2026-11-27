@@ -218,7 +218,7 @@ export default function Home() {
 
         {/* FINAL */}
         <section className="final" id="contact" aria-labelledby="fin-h">
-          <div className="final-bg" aria-hidden="true"><Img name="pcd-73" alt="" sizes="100vw" /></div>
+          <div className="final-bg" aria-hidden="true"><Img name="rs3" alt="" sizes="100vw" /></div>
           <div className="wrap final-in">
             <div className="final-tx">
               <p className="eyebrow" data-rv>Get a quote</p>

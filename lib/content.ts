@@ -14,7 +14,7 @@ export const SERVICES = [
     title: "Paint correction",
     body: "Machine polishing to take out fine scratches, marring and dullness, bringing the depth, clarity and true colour back to the paint.",
     img: "pcd-48",
-    alt: "Front of a purple Porsche Macan with a deep gloss on the bonnet",
+    alt: "Front of a Porsche Macan with a deep gloss on the bonnet",
   },
   {
     n: "03",
