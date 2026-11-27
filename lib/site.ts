@@ -5,8 +5,7 @@ export const SITE = {
   phoneHref: "tel:+447791543486",
   email: "prestige.valeting@outlook.com",
   facebook: "https://www.facebook.com/prestigecheshirevaleting",
-  // [PLACEHOLDER] swap for Craig's real Instagram profile URL
-  instagram: "https://www.instagram.com/",
+  instagram: "https://www.instagram.com/prestigecheshiredetailing/",
   facebookReviews: "https://www.facebook.com/prestigecheshirevaleting/reviews",
   waNumber: "447791543486",
   reviews: { count: 21, recommend: 100 },
