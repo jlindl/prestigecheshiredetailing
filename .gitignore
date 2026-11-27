@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+tools/gen
+qa-*.log
+qa/*.json
+qa/r1-*
+qa/r2-*
+qa/probe*
+.env*
+qa/*.html
