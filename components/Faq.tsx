@@ -9,21 +9,21 @@ const QA: { q: string; a: React.ReactNode }[] = [
     a: (
       <>
         It depends on the size of the vehicle, the condition of the paint and whether you want polishing, a coating or both. The quickest way to get a price is to{" "}
-        <a href={waLink("Hi Craig, could I get a price? Here are some photos of my car: ")} target="_blank" rel="noopener">send Craig a few photos on WhatsApp</a>.
+        <a href={waLink("Hi Craig, could I get a price? Here are some photos of my car: ")} target="_blank" rel="noopener">send us a few photos on WhatsApp</a>.
       </>
     ),
   },
   {
     q: "Do I need to provide water or electricity?",
-    a: <>You don&rsquo;t need to provide water, Craig is fully mobile and brings his own. He will need access to a power socket.</>,
+    a: <>You don&rsquo;t need to provide water, we&rsquo;re fully mobile and bring our own. We will need access to a power socket.</>,
   },
   {
     q: "Which areas do you cover?",
-    a: <>{SITE.areas}, as far north as Wigan and Manchester. Not sure if you&rsquo;re covered? Just message Craig.</>,
+    a: <>{SITE.areas}, as far north as Wigan and Manchester. Not sure if you&rsquo;re covered? Just message us.</>,
   },
   {
     q: "How long does a ceramic coating last?",
-    a: <>Craig uses Gyeon coatings, most often Gyeon&rsquo;s 5-year coating. How long any coating lasts in practice depends on how the car is washed and looked after.</>,
+    a: <>We use Gyeon ceramic coatings. How long any coating lasts in practice depends on how the car is washed and looked after.</>,
   },
   {
     q: "Do you do vans and motorbikes?",
@@ -46,8 +46,8 @@ export default function Faq() {
       <div>
         <span className="mono eyebrow">Before you message</span>
         <h2 id="faq-h" className="display">Good <span className="red">questions.</span></h2>
-        <p className="lede">Anything else, just ask Craig directly. He&rsquo;s known for getting back quickly.</p>
-        <div style={{ marginTop: 28 }}><WaButton label="Ask Craig" text="Hi Craig, I have a quick question: " /></div>
+        <p className="lede">Anything else, just ask us directly. We&rsquo;re known for getting back quickly.</p>
+        <div style={{ marginTop: 28 }}><WaButton label="Ask us" text="Hi Craig, I have a quick question: " /></div>
       </div>
       <div>
         {QA.map((item, i) => (

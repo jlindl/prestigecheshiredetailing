@@ -9,7 +9,7 @@ const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variab
 export const metadata: Metadata = {
   title: "Prestige Cheshire Detailing | Machine polishing & Gyeon ceramic coatings",
   description:
-    "Mobile detailing across Cheshire, the North West and North Wales: machine polishing to remove swirl marks and Gyeon ceramic coatings for cars, vans and motorbikes. Brings his own water. Appointment only.",
+    "Mobile detailing across Cheshire, the North West and North Wales: machine polishing to remove fine scratches and Gyeon ceramic coatings for cars, vans and motorbikes. We bring our own water. Appointment only.",
   robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
   icons: { icon: "/mark.svg" },
 };

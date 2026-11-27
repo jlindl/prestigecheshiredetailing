@@ -19,7 +19,7 @@ const CARS = [
 ];
 
 const STATEMENT =
-  "Over time, most washing leaves fine circular scratches in the paint. In sunlight they show up as swirls, and they scatter the light so the colour looks flat. Craig polishes them out by machine, then locks the finish in with a Gyeon ceramic coating.";
+  "Over time, most washing leaves fine scratches in the paint. In sunlight they scatter the light so the colour looks flat. We polish them out by machine, then lock the finish in with a Gyeon ceramic coating.";
 
 export default function Home() {
   return (
@@ -39,7 +39,7 @@ export default function Home() {
       </header>
 
       <div className="mbar" role="navigation" aria-label="Quick contact">
-        <a className="wa" href={waLink()} target="_blank" rel="noopener"><WaIcon /> WhatsApp Craig</a>
+        <a className="wa" href={waLink()} target="_blank" rel="noopener"><WaIcon /> WhatsApp us</a>
         <a className="call" href={SITE.phoneHref}><PhoneIcon /> Call</a>
       </div>
 
@@ -58,7 +58,7 @@ export default function Home() {
                 <span className="ln ln-last"><span>yourself</span><span className="in-word"><span className="red">in.</span></span></span>
               </h1>
               <p className="lede">
-                <b>Machine polishing</b> to take out swirl marks and <b>Gyeon ceramic coatings</b> to keep the gloss, for cars, vans and motorbikes. Craig comes to you across Cheshire, the North West and North Wales, and <b>brings his own water</b>.
+                <b>Machine polishing</b> to take out fine scratches and <b>Gyeon ceramic coatings</b> to keep the gloss, for cars, vans and motorbikes. We come to you across Cheshire, the North West and North Wales, and <b>bring our own water</b>.
               </p>
               <div className="hero-ctas">
                 <WaButton label="Get a quote on WhatsApp" />
@@ -131,7 +131,7 @@ export default function Home() {
           <div className="garage-next wrap">
             <div>
               <span className="mono eyebrow">Yours next</span>
-              <h3 className="display">Send Craig a photo of yours.</h3>
+              <h3 className="display">Send us a photo of yours.</h3>
               <p className="lede" style={{ margin: 0 }}>A couple of pictures on WhatsApp is all it takes to get a quote.</p>
             </div>
             <WaButton label="Send photos" text="Hi Craig, here are a few photos of my car. Could you give me a quote? " />
@@ -140,6 +140,9 @@ export default function Home() {
 
         {/* PROOF */}
         <section className="proof wrap" aria-labelledby="pr-h">
+          <div className="proof-bg" aria-hidden="true">
+            <img decoding="async" data-src="/img/rs3.webp" data-srcset="/img/rs3-sm.webp 800w, /img/rs3.webp 1600w" sizes="100vw" alt="" loading="lazy" />
+          </div>
           <div className="proof-top">
             <div className="pct" aria-label={`${SITE.reviews.recommend} percent`}><span data-count={SITE.reviews.recommend}>{SITE.reviews.recommend}</span><sup>%</sup></div>
             <div>
@@ -151,9 +154,9 @@ export default function Home() {
             </div>
           </div>
           <div className="themes">
-            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>He replies quickly.</h3><p>Reviewers say Craig gets back to them quickly.</p></div>
-            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>He turns up on time.</h3><p>Appointment only, and reviewers say he turns up on time.</p></div>
-            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>He talks you through it.</h3><p>Reviewers say he talks them through the job.</p></div>
+            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>Quick replies.</h3><p>Reviewers say we get back to them quickly.</p></div>
+            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>On time, every time.</h3><p>Appointment only, and reviewers say we turn up on time.</p></div>
+            <div className="theme" data-reveal><span className="mono red">What reviewers mention</span><h3>Talked through it.</h3><p>Reviewers say we talk them through the job.</p></div>
           </div>
         </section>
 
@@ -161,19 +164,20 @@ export default function Home() {
         <section className="services wrap" id="services" aria-labelledby="svc-h">
           <div className="svc-head">
             <div>
-              <span className="mono eyebrow">What Craig does</span>
+              <span className="mono eyebrow">What we do</span>
               <h2 id="svc-h" className="display" data-reveal>Two things, done <span className="red">properly.</span></h2>
+              <p className="svc-tag mono" data-reveal>One job, one coating, done once.</p>
             </div>
-            <p className="lede" data-reveal>Prestige Cheshire Detailing specialises in correcting paint and then protecting it, on cars, vans and motorbikes. Fully mobile.</p>
+            <p className="lede" data-reveal>Prestige Cheshire Detailing specialises in paint correction and ceramic coatings, on cars, vans and motorbikes. Fully mobile.</p>
           </div>
 
           <article className="svc">
             <span className="no mono">01</span>
             <div className="tx">
               <h3 className="display">Machine <span className="red">polishing</span></h3>
-              <p className="lede">Paint correction by machine to take out the swirl marks and fine scratches that make paint look flat, bringing back depth, clarity and true colour.</p>
+              <p className="lede">Paint correction by machine to take out the fine scratches that make paint look flat, bringing back depth, clarity and true colour.</p>
               <ul>
-                <li>Removes swirls and wash marring</li>
+                <li>Removes marring and fine scratches</li>
                 <li>Brings back gloss and colour depth</li>
                 <li>The right prep before any coating</li>
               </ul>
@@ -188,9 +192,9 @@ export default function Home() {
             <span className="no mono" style={{ gridColumn: "1", gridRow: "1" }}>02</span>
             <div className="tx">
               <h3 className="display">Gyeon ceramic <span className="red">coatings</span></h3>
-              <p className="lede">A hard, glossy layer of protection over the corrected paint. Water beads and runs off, dirt struggles to stick, and the car is far easier to keep clean. Craig&rsquo;s posts most often feature Gyeon&rsquo;s 5-year coating.</p>
+              <p className="lede">A hard, glossy layer of protection over the corrected paint. Water beads and runs off, dirt struggles to stick, and the car is far easier to keep clean.</p>
               <ul>
-                <li>Gyeon coatings, most often the 5-year</li>
+                <li>Gyeon ceramic coatings</li>
                 <li>Strong water beading</li>
                 <li>Easier, safer washing afterwards</li>
               </ul>
@@ -202,7 +206,7 @@ export default function Home() {
           </article>
 
           <div className="process" data-reveal>
-            <p className="mono eyebrow">How Craig does it</p>
+            <p className="mono eyebrow">How we do it</p>
             <ol>
               <li><span className="mono">01</span>Digital paint mapping</li>
               <li><span className="mono">02</span>Pre-wash</li>
@@ -218,7 +222,7 @@ export default function Home() {
             <span className="chip">Fully mobile</span>
             <span className="chip">Appointment only</span>
           </div>
-          <CtaStrip line="Not sure which you need?" sub="Send Craig a photo and ask." text="Hi Craig, I'm not sure whether my car needs polishing, a ceramic coating or both. Here's a photo: " />
+          <CtaStrip line="Not sure which you need?" sub="Send us a photo and ask." text="Hi Craig, I'm not sure whether my car needs polishing, a ceramic coating or both. Here's a photo: " />
         </section>
 
         {/* VANS */}
@@ -241,7 +245,7 @@ export default function Home() {
             <div>
               <span className="mono eyebrow">Fully mobile</span>
               <h2 id="cov-h" className="display" data-reveal>We bring the water. <span className="red">You supply the power.</span></h2>
-              <p className="lede" data-reveal>No need to provide water, Craig brings his own. All he needs from you is access to a power socket. He covers Cheshire, the North West and North Wales, as far north as Wigan and Manchester. By appointment.</p>
+              <p className="lede" data-reveal>No need to provide water, we bring our own. All we need from you is access to a power socket. We cover Cheshire, the North West and North Wales, as far north as Wigan and Manchester. By appointment.</p>
               <div className="facts">
                 <div><span className="mono" style={{ color: "var(--dim)" }}>Water</span><span className="k">Own supply</span></div>
                 <div><span className="mono" style={{ color: "var(--dim)" }}>Power</span><span className="k">Your socket</span></div>
@@ -263,13 +267,13 @@ export default function Home() {
             <div>
               <span className="mono eyebrow">Ready when you are</span>
               <h2 id="fin-h" className="display">Let&rsquo;s get&nbsp;it <span className="red">booked&nbsp;in.</span></h2>
-              <p className="lede">Tell Craig what you drive and where you are. It opens WhatsApp with the message written for you. Add a photo and send.</p>
+              <p className="lede">Tell us what you drive and where you are. It opens WhatsApp with the message written for you. Add a photo and send.</p>
               <div className="alt-contact">
                 <span>Or call <a href={SITE.phoneHref}>{SITE.phoneDisplay}</a></span>
                 <span>Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a></span>
               </div>
               <div className="follow-row">
-                <span className="mono">See more of Craig&rsquo;s work</span>
+                <span className="mono">See more of our work</span>
                 <Social />
               </div>
             </div>

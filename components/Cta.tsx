@@ -4,7 +4,7 @@ import { SITE, waLink } from "@/lib/site";
 import { WaIcon, PhoneIcon } from "./Icons";
 
 /** Magnetic WhatsApp button: drifts toward the cursor, springs back on leave. */
-export function WaButton({ label = "WhatsApp Craig", text, className = "" }: { label?: string; text?: string; className?: string }) {
+export function WaButton({ label = "WhatsApp us", text, className = "" }: { label?: string; text?: string; className?: string }) {
   const ref = useRef<HTMLAnchorElement>(null);
   const move = (e: React.MouseEvent) => {
     const el = ref.current;
