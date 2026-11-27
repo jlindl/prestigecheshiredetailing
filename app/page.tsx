@@ -54,7 +54,7 @@ export default function Home() {
       <link rel="preload" as="image" href="/img/hero-rs3.webp" media="(min-width: 761px)" fetchPriority="high" />
 
       <header className="nav" data-nav>
-        <a href="#top" className="nav-logo" aria-label="Prestige Cheshire Detailing, back to top"><Logo size="sm" decorative /></a>
+        <a href="#top" className="nav-logo" aria-label="Prestige Cheshire Detailing"><Logo size="sm" decorative /></a>
         <nav aria-label="Main">
           <a href="#services">Services</a>
           <a href="#work">Recent work</a>
@@ -72,7 +72,7 @@ export default function Home() {
           <picture className="hero-media" data-hero>
             <source media="(max-width: 760px)" srcSet="/img/hero-rs3-m.webp" />
             <source srcSet="/img/hero-rs3-sm.webp 1200w, /img/hero-rs3.webp 2000w" sizes="100vw" />
-            <img src="/img/hero-rs3.webp" alt="Craig's red Audi RS3, gloss black grille, parked in the sun" fetchPriority="high" decoding="async" />
+            <img src="/img/hero-rs3.webp" alt="Our red Audi RS3 with its gloss black grille" fetchPriority="high" decoding="async" />
           </picture>
           <div className="hero-shade" aria-hidden="true" />
           <div className="hero-in wrap">
@@ -133,7 +133,7 @@ export default function Home() {
             </div>
             <div className="inline-cta" data-rv>
               <p>Not sure which you need? Send us a photo and we&rsquo;ll tell you honestly.</p>
-              <Wa label="Ask us" text="Hi Craig, I'm not sure whether my car needs polishing, a coating or both. Here's a photo: " />
+              <Wa label="Ask us" text="Hi, I'm not sure whether my car needs polishing, a coating or both. Here's a photo: " />
             </div>
           </div>
         </section>
@@ -141,7 +141,7 @@ export default function Home() {
         {/* WORK */}
         <section className="sec sec-work" id="work" aria-labelledby="work-h">
           <div className="wrap">
-            <Head id="work-h" eyebrow="Recent work" title={<>Finished on the driveway<em>.</em></>} sub="Customer cars from across Cheshire. Tap any photo to see it bigger." />
+            <Head id="work-h" eyebrow="Recent work" title={<>Finished on the driveway<em>.</em></>} sub="Recent work from across Cheshire. Tap any photo to see it bigger." />
           </div>
           <Gallery />
         </section>
@@ -192,18 +192,24 @@ export default function Home() {
                 <div><dt>Booking</dt><dd>Appointment only</dd></div>
               </dl>
               <div className="cta-row" data-rv>
-                <Wa label="Check a date" text="Hi Craig, do you have any availability coming up? I'm in " />
+                <Wa label="Check a date" text="Hi, do you have any availability coming up? I'm in " />
                 <Call />
               </div>
             </div>
-            <div className="areas-map" data-rv><CoverageMap /></div>
+            <div className="areas-map" data-rv>
+              <CoverageMap />
+              <ul className="town-list" aria-label="Towns we cover">
+                {SITE.towns.map((t) => <li key={t}>{t}</li>)}
+                <li>North Wales</li>
+              </ul>
+            </div>
           </div>
         </section>
 
         {/* FAQ */}
         <section className="sec" id="faqs" aria-labelledby="faq-h">
           <div className="wrap faq-wrap">
-            <Head id="faq-h" eyebrow="FAQs" title={<>Before you book<em>.</em></>} sub="Anything else, just ask us. We're known for getting back quickly." />
+            <Head id="faq-h" eyebrow="FAQs" title={<>Before you book<em>.</em></>} sub="Anything else, just ask us. Reviewers say we reply quickly." />
             <Faq />
           </div>
         </section>
@@ -215,7 +221,7 @@ export default function Home() {
             <div className="final-tx">
               <p className="eyebrow" data-rv>Get a quote</p>
               <h2 id="fin-h" data-rv>Tell us about your vehicle<em>.</em></h2>
-              <p className="lede" data-rv>Three taps and WhatsApp opens with your message written. Add a couple of photos and send. Prefer to talk?</p>
+              <p className="lede" data-rv>Fill in a few details and WhatsApp opens with your message written. Add a couple of photos and send. Prefer to talk?</p>
               <a className="big-call" href={SITE.phoneHref} data-rv><PhoneIcon size={20} /> {SITE.phoneDisplay}</a>
             </div>
             <div data-rv><Builder /></div>

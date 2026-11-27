@@ -13,6 +13,6 @@ export const SITE = {
   towns: ["Chester", "Northwich", "Winsford", "Sandbach", "Crewe", "Nantwich", "Macclesfield", "Wilmslow", "Bramhall", "Manchester", "Wigan"],
 };
 
-export function waLink(text = "Hi Craig, I'd like a quote for a detail on my vehicle. ") {
+export function waLink(text = "Hi, I'd like a quote for a detail on my vehicle. ") {
   return `https://wa.me/${SITE.waNumber}?text=${encodeURIComponent(text)}`;
 }

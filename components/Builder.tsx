@@ -4,31 +4,32 @@ import { SITE, waLink } from "@/lib/site";
 import { WaIcon } from "./Icons";
 
 const SERVICES = ["Ceramic coating", "Paint correction", "Detailing", "Not sure yet"];
-const NONE = "";
 
 export default function Builder() {
   const [vehicle, setVehicle] = useState("");
-  const [service, setService] = useState(NONE);
+  const [picked, setPicked] = useState<string[]>([]);
   const [town, setTown] = useState("");
 
   const msg = useMemo(() => {
     const v = vehicle.trim() ? `my ${vehicle.trim()}` : "my vehicle";
-    const s = !service ? "What would you recommend" : service === "Not sure yet" ? "I'm not sure what it needs" : `I'm interested in ${service === "Detailing" ? "a detail" : service.toLowerCase()}`;
+    const real = picked.filter((p) => p !== "Not sure yet").map((p) => (p === "Detailing" ? "a detail" : p.toLowerCase()));
+    const list = real.length > 1 ? `${real.slice(0, -1).join(", ")} and ${real[real.length - 1]}` : real[0];
+    const s = !picked.length ? "What would you recommend" : !real.length ? "I'm not sure what it needs" : `I'm interested in ${list}`;
     const t = town ? ` I'm in ${town}.` : "";
-    return `Hi Craig, I'd like a quote for ${v}. ${s}${service ? "." : "?"}${t} I'll send a couple of photos.`;
-  }, [vehicle, service, town]);
+    return `Hi, I'd like a quote for ${v}. ${s}${picked.length ? "." : "?"}${t} I'll send a couple of photos.`;
+  }, [vehicle, picked, town]);
 
   return (
     <form className="builder" id="quote" onSubmit={(e) => { e.preventDefault(); window.open(waLink(msg), "_blank", "noopener"); }} aria-label="Build your WhatsApp quote request">
       <div className="fld">
-        <label htmlFor="veh">Your vehicle</label>
+        <label htmlFor="veh">Your vehicle <span className="opt">(optional)</span></label>
         <input id="veh" placeholder="e.g. Transit Custom" value={vehicle} onChange={(e) => setVehicle(e.target.value)} autoComplete="off" />
       </div>
       <div className="fld">
-        <span className="lbl" id="svc-l">What you&rsquo;re after</span>
+        <span className="lbl" id="svc-l">What you&rsquo;re after <span className="opt">(pick any)</span></span>
         <div className="seg" role="group" aria-labelledby="svc-l">
           {SERVICES.map((s) => (
-            <button type="button" key={s} aria-pressed={service === s} onClick={() => setService(service === s ? NONE : s)}>{s}</button>
+            <button type="button" key={s} aria-pressed={picked.includes(s)} onClick={() => setPicked((p) => (s === "Not sure yet" ? (p.includes(s) ? [] : [s]) : p.includes(s) ? p.filter((x) => x !== s) : [...p.filter((x) => x !== "Not sure yet"), s]))}>{s}</button>
           ))}
         </div>
       </div>

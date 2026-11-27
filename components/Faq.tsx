@@ -8,7 +8,7 @@ const QA: { q: string; a: React.ReactNode }[] = [
     a: (
       <>
         It depends on the size of the vehicle, the condition of the paint and whether you want polishing, a coating or both. The quickest way to get a price is to{" "}
-        <a href={waLink("Hi Craig, could I get a price? Here are some photos of my car: ")} target="_blank" rel="noopener">send us a few photos on WhatsApp</a>.
+        <a href={waLink("Hi, could I get a price? Here are some photos of my car: ")} target="_blank" rel="noopener">send us a few photos on WhatsApp</a>.
       </>
     ),
   },
@@ -30,7 +30,7 @@ const QA: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "Do you do vans and motorbikes?",
-    a: <>Yes. Cars, vans and motorbikes, including VW Transporters and Transit Customs.</>,
+    a: <>Yes. Cars, vans and motorbikes.</>,
   },
   {
     q: "How do I book?",

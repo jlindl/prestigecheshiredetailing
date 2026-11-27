@@ -7,13 +7,15 @@ import { WORK } from "@/lib/content";
 export default function Gallery() {
   const [open, setOpen] = useState<number | null>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const opener = useRef<HTMLElement | null>(null);
+  const close = () => { setOpen(null); requestAnimationFrame(() => opener.current?.focus()); };
   const rows = [WORK.slice(0, 6), WORK.slice(6)];
 
   useEffect(() => {
     if (open === null) return;
     closeRef.current?.focus();
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(null);
+      if (e.key === "Escape") close();
       if (e.key === "ArrowRight") setOpen((i) => (i === null ? i : (i + 1) % WORK.length));
       if (e.key === "ArrowLeft") setOpen((i) => (i === null ? i : (i - 1 + WORK.length) % WORK.length));
     };
@@ -36,7 +38,7 @@ export default function Gallery() {
                       type="button"
                       className="gal-item"
                       key={`${loop}-${idx}`}
-                      onClick={() => setOpen(idx)}
+                      onClick={(e) => { opener.current = e.currentTarget; setOpen(idx); }}
                       aria-label={loop ? undefined : `${w.name}, view larger`}
                       aria-hidden={loop ? true : undefined}
                       tabIndex={loop ? -1 : 0}
@@ -60,10 +62,10 @@ export default function Gallery() {
       </div>
 
       {open !== null && (
-        <div className="lb" role="dialog" aria-modal="true" aria-label={WORK[open].name} onClick={() => setOpen(null)}>
+        <div className="lb" role="dialog" aria-modal="true" aria-label={WORK[open].name} onClick={close}>
           <img src={`/img/${WORK[open].img}.webp`} alt={WORK[open].name} onClick={(e) => e.stopPropagation()} />
           <p className="lb-cap">{WORK[open].name} <span>{open + 1} / {WORK.length}</span></p>
-          <button ref={closeRef} type="button" className="lb-x" aria-label="Close" onClick={() => setOpen(null)}>×</button>
+          <button ref={closeRef} type="button" className="lb-x" aria-label="Close" onClick={close}>×</button>
           <button type="button" className="lb-nav prev" aria-label="Previous photo" onClick={(e) => { e.stopPropagation(); setOpen((open - 1 + WORK.length) % WORK.length); }}>‹</button>
           <button type="button" className="lb-nav next" aria-label="Next photo" onClick={(e) => { e.stopPropagation(); setOpen((open + 1) % WORK.length); }}>›</button>
         </div>
