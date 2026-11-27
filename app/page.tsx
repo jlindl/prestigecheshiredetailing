@@ -7,15 +7,33 @@ import Builder from "@/components/Builder";
 import Motion from "@/components/Motion";
 import CoverageMap from "@/components/CoverageMap";
 import LazyLoader from "@/components/LazyLoader";
+import GarageRail from "@/components/GarageRail";
+import Gallery from "@/components/Gallery";
 
 const CARS = [
+  { name: "Porsche 911 Targa", img: "p911-a", alt: "p911-b", note: "Grey, under the hex lights" },
+  { name: "Aston Martin", img: "aston-a", alt: "aston-b", note: "Black gloss, deep reflections" },
+  { name: "BMW X5 M Competition", img: "x5-a", alt: "x5-b", note: "Bright blue, sharp in the sun" },
+  { name: "Audi RS3", img: "rs3-a", alt: "rs3-b", note: "Red paint that looks wet" },
   { name: "Porsche Macan", img: "pcd-48", alt: "pcd-47", note: "Deep purple gloss" },
-  { name: "Range Rover", img: "pcd-43", alt: "pcd-39", note: "Deep black gloss" },
   { name: "Audi RS6 Avant", img: "pcd-73", alt: "pcd-78", note: "Gloss black estate" },
   { name: "BMW M2", img: "pcd-80", alt: "pcd-82", note: "Bright paint, crisp reflections" },
   { name: "Range Rover Sport", img: "pcd-66", alt: "pcd-70", note: "Grey metallic, deep and clean" },
-  { name: "BMW 3 Series", img: "pcd-02", alt: "pcd-03", note: "Blue that looks wet" },
-  { name: "BMW X3", img: "pcd-35", alt: "pcd-34", note: "Dark paint, sharp lines" },
+];
+
+const SHOTS = [
+  { img: "g-01", alt: "Grey Porsche 911 Targa front wing under hexagon lights" },
+  { img: "g-02", alt: "Hexagon lights reflected in a Porsche bonnet" },
+  { img: "g-03", alt: "Rear of a grey Porsche 911 Targa in the garage" },
+  { img: "g-04", alt: "Aston Martin badge with a Prestige Cheshire Detailing card" },
+  { img: "g-10", alt: "Red Audi RS3 with the door open", wide: true },
+  { img: "g-06", alt: "Black Aston Martin front wheel and wing" },
+  { img: "g-07", alt: "Black Aston Martin headlight and bonnet" },
+  { img: "g-05", alt: "Aston Martin wheel and gloss black paint" },
+  { img: "g-08", alt: "Blue BMW X5 M Competition on the drive" },
+  { img: "g-09", alt: "Rear of a blue BMW X5 M Competition" },
+  { img: "g-12", alt: "Red Audi RS3 rear wheel" },
+  { img: "g-11", alt: "Audi RS puddle light on the drive", wide: true },
 ];
 
 const STATEMENT =
@@ -110,25 +128,7 @@ export default function Home() {
             </div>
             <span className="mono r" style={{ color: "var(--dim)" }}>Hover for a second angle</span>
           </div>
-          <div className="garage-view is-off">
-            <div className="garage-track" style={{ ["--n" as string]: CARS.length }}>
-              {[0, 1].map((loop) =>
-                CARS.map((c, i) => (
-                  <article className="car" key={`${loop}-${c.name}`} aria-hidden={loop === 1 ? true : undefined}>
-                    <span className="idx mono">{String(i + 1).padStart(2, "0")} / {String(CARS.length).padStart(2, "0")}</span>
-                    <div className="ph">
-                      <img decoding="async" data-src={`/img/${c.img}.webp`} data-srcset={`/img/${c.img}-xs.webp 480w, /img/${c.img}-sm.webp 800w, /img/${c.img}.webp 1400w`} sizes="(max-width: 820px) 340px, 420px" alt={loop === 1 ? "" : `${c.name}, a Prestige Cheshire Detailing customer car`} loading="lazy" />
-                      <img decoding="async" className="alt" data-alt-src={`/img/${c.alt}.webp`} data-alt-srcset={`/img/${c.alt}-xs.webp 480w, /img/${c.alt}-sm.webp 800w, /img/${c.alt}.webp 1400w`} sizes="(max-width: 820px) 340px, 420px" alt="" loading="lazy" aria-hidden="true" />
-                    </div>
-                    <div className="meta">
-                      <h3 className="name">{c.name}</h3>
-                      <span className="mono" style={{ color: "var(--dim)" }}>{c.note}</span>
-                    </div>
-                  </article>
-                ))
-              )}
-            </div>
-          </div>
+          <GarageRail cars={CARS} />
           <div className="garage-next wrap">
             <div>
               <span className="mono eyebrow">Yours next</span>
@@ -137,6 +137,15 @@ export default function Home() {
             </div>
             <WaButton label="Send photos" text="Hi Craig, here are a few photos of my car. Could you give me a quote? " />
           </div>
+        </section>
+
+        {/* GALLERY */}
+        <section className="gallery wrap" id="gallery" aria-labelledby="gal-h">
+          <div className="gal-head">
+            <span className="mono eyebrow">Gallery</span>
+            <h2 id="gal-h" className="display">Recent <span className="red">work.</span></h2>
+          </div>
+          <Gallery shots={SHOTS} />
         </section>
 
         {/* PROOF */}
@@ -183,8 +192,8 @@ export default function Home() {
               </ul>
             </div>
             <figure className="im" style={{ margin: 0 }}>
-              <img decoding="async" data-src="/img/pcd-39.webp" data-srcset="/img/pcd-39-xs.webp 480w, /img/pcd-39-sm.webp 800w, /img/pcd-39.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Mirror finish on the rear of a black Range Rover" loading="lazy" data-speed="0.12" />
-              <span className="tag mono">Range Rover</span>
+              <img decoding="async" data-src="/img/aston-bonnet.webp" data-srcset="/img/aston-bonnet-xs.webp 480w, /img/aston-bonnet-sm.webp 800w, /img/aston-bonnet.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Mirror finish on a black Aston Martin bonnet" loading="lazy" data-speed="0.12" />
+              <span className="tag mono">Aston Martin</span>
             </figure>
           </article>
 
