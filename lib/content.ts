@@ -25,6 +25,7 @@ export const SERVICES = [
   },
 ];
 
+// one photo per vehicle
 export const WORK = [
   { img: "pcd-80", name: "BMW M2" },
   { img: "pcd-73", name: "Audi Avant" },
@@ -32,12 +33,8 @@ export const WORK = [
   { img: "pcd-23", name: "Volkswagen van" },
   { img: "pcd-66", name: "Range Rover Sport" },
   { img: "pcd-02", name: "BMW 3 Series" },
-  { img: "pcd-35", name: "BMW X3" },
-  { img: "pcd-43", name: "Range Rover" },
-  { img: "pcd-82", name: "BMW M2" },
   { img: "pcd-34", name: "BMW X3" },
-  { img: "pcd-39", name: "Range Rover" },
-  { img: "pcd-03", name: "BMW 3 Series" },
+  { img: "pcd-43", name: "Range Rover" },
 ];
 
 // Quotes as supplied in the reference demo, from Craig's Facebook reviews.

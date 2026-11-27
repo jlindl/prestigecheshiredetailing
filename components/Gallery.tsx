@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { WORK } from "@/lib/content";
 
 // Two rows of customer cars drifting in opposite directions (Craig asked for auto-scroll).
@@ -8,8 +9,9 @@ export default function Gallery() {
   const [open, setOpen] = useState<number | null>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const opener = useRef<HTMLElement | null>(null);
+  const dlg = useRef<HTMLDivElement>(null);
   const close = () => { setOpen(null); requestAnimationFrame(() => opener.current?.focus()); };
-  const rows = [WORK.slice(0, 6), WORK.slice(6)];
+  const rows = [WORK];
 
   useEffect(() => {
     if (open === null) return;
@@ -19,9 +21,25 @@ export default function Gallery() {
       if (e.key === "ArrowRight") setOpen((i) => (i === null ? i : (i + 1) % WORK.length));
       if (e.key === "ArrowLeft") setOpen((i) => (i === null ? i : (i - 1 + WORK.length) % WORK.length));
     };
+    // keep Tab inside the dialog and make the page behind it inert
+    const trap = (e: KeyboardEvent) => {
+      if (e.key !== "Tab" || !dlg.current) return;
+      const f = [...dlg.current.querySelectorAll<HTMLElement>("button")];
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
+    const bg = [...document.querySelectorAll<HTMLElement>("body > header, main, body > footer, .mbar")];
+    bg.forEach((el) => el.setAttribute("inert", ""));
     window.addEventListener("keydown", onKey);
+    window.addEventListener("keydown", trap);
     document.documentElement.classList.add("lb-open");
-    return () => { window.removeEventListener("keydown", onKey); document.documentElement.classList.remove("lb-open"); };
+    return () => {
+      bg.forEach((el) => el.removeAttribute("inert"));
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("keydown", trap);
+      document.documentElement.classList.remove("lb-open");
+    };
   }, [open]);
 
   return (
@@ -32,7 +50,7 @@ export default function Gallery() {
             <div className="gal-track">
               {[0, 1].map((loop) =>
                 row.map((w, i) => {
-                  const idx = r * 6 + i;
+                  const idx = r * 8 + i;
                   return (
                     <button
                       type="button"
@@ -61,14 +79,15 @@ export default function Gallery() {
         ))}
       </div>
 
-      {open !== null && (
-        <div className="lb" role="dialog" aria-modal="true" aria-label={WORK[open].name} onClick={close}>
+      {open !== null && createPortal(
+        <div ref={dlg} className="lb" role="dialog" aria-modal="true" aria-label={WORK[open].name} onClick={close}>
           <img src={`/img/${WORK[open].img}.webp`} alt={WORK[open].name} onClick={(e) => e.stopPropagation()} />
           <p className="lb-cap">{WORK[open].name} <span>{open + 1} / {WORK.length}</span></p>
           <button ref={closeRef} type="button" className="lb-x" aria-label="Close" onClick={close}>×</button>
           <button type="button" className="lb-nav prev" aria-label="Previous photo" onClick={(e) => { e.stopPropagation(); setOpen((open - 1 + WORK.length) % WORK.length); }}>‹</button>
           <button type="button" className="lb-nav next" aria-label="Next photo" onClick={(e) => { e.stopPropagation(); setOpen((open + 1) % WORK.length); }}>›</button>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

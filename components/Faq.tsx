@@ -26,7 +26,7 @@ const QA: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "Which coatings do you use?",
-    a: <>Gyeon and Gtechniq ceramic coatings. How long any coating lasts in practice depends on how the vehicle is washed and looked after, and we&rsquo;ll talk you through aftercare.</>,
+    a: <>Gyeon and Gtechniq ceramic coatings. How long any coating lasts in practice depends on how the vehicle is washed and looked after.</>,
   },
   {
     q: "Do you do vans and motorbikes?",

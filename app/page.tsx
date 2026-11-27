@@ -35,9 +35,9 @@ function Img({ name, alt, sizes, className = "", eager = false }: { name: string
   );
 }
 
-function Head({ eyebrow, title, sub, id }: { eyebrow: string; title: React.ReactNode; sub?: string; id: string }) {
+function Head({ eyebrow, title, sub, id, left = false }: { eyebrow: string; title: React.ReactNode; sub?: string; id: string; left?: boolean }) {
   return (
-    <header className="sh">
+    <header className={`sh ${left ? "sh-left" : ""}`}>
       <p className="eyebrow" data-rv>{eyebrow}</p>
       <div>
         <h2 id={id} data-rv>{title}</h2>
@@ -54,7 +54,7 @@ export default function Home() {
       <link rel="preload" as="image" href="/img/hero-rs3.webp" media="(min-width: 761px)" fetchPriority="high" />
 
       <header className="nav" data-nav>
-        <a href="#top" className="nav-logo" aria-label="Prestige Cheshire Detailing"><Logo size="sm" decorative /></a>
+        <a href="#top" className="nav-logo"><Logo size="sm" /></a>
         <nav aria-label="Main">
           <a href="#services">Services</a>
           <a href="#work">Recent work</a>
@@ -62,6 +62,7 @@ export default function Home() {
           <a href="#process">The process</a>
           <a href="#areas">Areas</a>
           <a href="#faqs">FAQs</a>
+          <a href="#contact" className="nav-quote">Get a quote</a>
         </nav>
         <Wa className="btn-sm" />
       </header>
@@ -71,10 +72,11 @@ export default function Home() {
         <section className="hero" aria-labelledby="hero-h">
           <picture className="hero-media" data-hero>
             <source media="(max-width: 760px)" srcSet="/img/hero-rs3-m.webp" />
-            <source srcSet="/img/hero-rs3-sm.webp 1200w, /img/hero-rs3.webp 2000w" sizes="100vw" />
+            <source srcSet="/img/hero-rs3-sm.webp 1200w, /img/hero-rs3.webp 1536w" sizes="100vw" />
             <img src="/img/hero-rs3.webp" alt="Our red Audi RS3 with its gloss black grille" fetchPriority="high" decoding="async" />
           </picture>
           <div className="hero-shade" aria-hidden="true" />
+          <div className="grain" aria-hidden="true" />
           <div className="hero-in wrap">
             <h1 id="hero-h">
               <span className="l"><span>Ceramic coating</span></span>
@@ -174,7 +176,7 @@ export default function Home() {
         {/* PROCESS */}
         <section className="sec" id="process" aria-labelledby="pro-h">
           <div className="wrap">
-            <Head id="pro-h" eyebrow="The process" title={<>What goes into a coating<em>.</em></>} sub="A coating is only as good as the paint underneath it, so most of the work happens before it goes on." />
+            <Head left id="pro-h" eyebrow="The process" title={<>What goes into a coating<em>.</em></>} sub="A coating is only as good as the paint underneath it, so most of the work happens before it goes on." />
             <Process steps={PROCESS} />
           </div>
         </section>
@@ -209,7 +211,7 @@ export default function Home() {
         {/* FAQ */}
         <section className="sec" id="faqs" aria-labelledby="faq-h">
           <div className="wrap faq-wrap">
-            <Head id="faq-h" eyebrow="FAQs" title={<>Before you book<em>.</em></>} sub="Anything else, just ask us. Reviewers say we reply quickly." />
+            <Head left id="faq-h" eyebrow="FAQs" title={<>Before you book<em>.</em></>} sub="Anything else, just ask us. Reviewers say we reply quickly." />
             <Faq />
           </div>
         </section>
