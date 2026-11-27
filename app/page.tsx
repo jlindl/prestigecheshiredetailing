@@ -143,7 +143,7 @@ export default function Home() {
         {/* WORK */}
         <section className="sec sec-work" id="work" aria-labelledby="work-h">
           <div className="wrap">
-            <Head id="work-h" eyebrow="Recent work" title={<>Finished on the driveway<em>.</em></>} sub="Recent work from across Cheshire. Tap any photo to see it bigger." />
+            <Head id="work-h" eyebrow="Recent work" title={<>Finished on the driveway<em>.</em></>} sub="Recent work from across Cheshire and the North West. Tap any photo to see it bigger." />
           </div>
           <Gallery />
         </section>
@@ -211,7 +211,14 @@ export default function Home() {
         {/* FAQ */}
         <section className="sec" id="faqs" aria-labelledby="faq-h">
           <div className="wrap faq-wrap">
-            <Head left id="faq-h" eyebrow="FAQs" title={<>Before you book<em>.</em></>} sub="Anything else, just ask us. Reviewers say we reply quickly." />
+            <div className="faq-side">
+              <Head left id="faq-h" eyebrow="FAQs" title={<>Before you book<em>.</em></>} sub="Anything else, just ask us. Reviewers say we reply quickly." />
+              <div className="unsure" data-rv>
+                <p>Still unsure what your vehicle needs?</p>
+                <span>Send us a photo and we&rsquo;ll tell you honestly.</span>
+                <Wa label="Send a photo" text="Hi, I'm not sure what my vehicle needs. Here's a photo: " />
+              </div>
+            </div>
             <Faq />
           </div>
         </section>
@@ -225,6 +232,7 @@ export default function Home() {
               <h2 id="fin-h" data-rv>Tell us about your vehicle<em>.</em></h2>
               <p className="lede" data-rv>Fill in a few details and WhatsApp opens with your message written. Add a couple of photos and send. Prefer to talk?</p>
               <a className="big-call" href={SITE.phoneHref} data-rv><PhoneIcon size={20} /> {SITE.phoneDisplay}</a>
+              <a className="final-proof" href="#reviews" data-rv><b>{SITE.reviews.recommend}%</b><span>recommend us<br />across {SITE.reviews.count} Facebook reviews</span></a>
             </div>
             <div data-rv><Builder /></div>
           </div>

@@ -29,7 +29,7 @@ export default function Process({ steps }: { steps: { t: string; d: string }[] }
     <div className="pro">
       <div className="pro-media" data-rv>
         <div className={`stage s${active}`} role="img" aria-label={`Illustration: ${STATUS[active]}`}>
-          <svg viewBox="20 20 1170 260" aria-hidden="true">
+          <svg viewBox="20 20 1180 260" aria-hidden="true">
             <defs>
               <linearGradient id="gl" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0" stopColor="#ffffff" />

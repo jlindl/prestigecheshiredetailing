@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { WORK } from "@/lib/content";
+import { waLink } from "@/lib/site";
 
 // Two rows of customer cars drifting in opposite directions (Craig asked for auto-scroll).
 // Hover pauses a row; tap or click any photo to see it full size.
@@ -82,7 +83,10 @@ export default function Gallery() {
       {open !== null && createPortal(
         <div ref={dlg} className="lb" role="dialog" aria-modal="true" aria-label={WORK[open].name} onClick={close}>
           <img src={`/img/${WORK[open].img}.webp`} alt={WORK[open].name} onClick={(e) => e.stopPropagation()} />
-          <p className="lb-cap">{WORK[open].name} <span>{open + 1} / {WORK.length}</span></p>
+          <div className="lb-foot" onClick={(e) => e.stopPropagation()}>
+            <p className="lb-cap">{WORK[open].name} <span>{open + 1} / {WORK.length}</span></p>
+            <a className="btn btn-red btn-sm" href={waLink(`Hi, I saw the ${WORK[open].name} on your website. Could I get a quote for mine? It's a `)} target="_blank" rel="noopener"><span>Ask about this</span></a>
+          </div>
           <button ref={closeRef} type="button" className="lb-x" aria-label="Close" onClick={close}>×</button>
           <button type="button" className="lb-nav prev" aria-label="Previous photo" onClick={(e) => { e.stopPropagation(); setOpen((open - 1 + WORK.length) % WORK.length); }}>‹</button>
           <button type="button" className="lb-nav next" aria-label="Next photo" onClick={(e) => { e.stopPropagation(); setOpen((open + 1) % WORK.length); }}>›</button>
