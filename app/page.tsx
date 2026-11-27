@@ -55,9 +55,9 @@ export default function Home() {
             <div>
               <span className="mono eyebrow hero-eb">Mobile detailing · Cheshire<span className="hide-m"> · By appointment</span></span>
               <h1 className="display">
-                <span className="ln"><span>Paint you</span></span>
-                <span className="ln"><span>can see</span></span>
-                <span className="ln ln-last"><span>yourself</span><span className="in-word"><span className="red">in.</span></span></span>
+                <span className="ln"><span>Ceramic</span></span>
+                <span className="ln"><span>coating</span></span>
+                <span className="ln ln-last"><span className="red">specialists.</span></span>
               </h1>
               <p className="lede">
                 <b>Machine polishing</b> to take out fine scratches and <b>Gyeon ceramic coatings</b> to keep the gloss, for cars, vans and motorbikes. We come to you across Cheshire, the North West and North Wales, and <b>bring our own water</b>.
@@ -167,8 +167,7 @@ export default function Home() {
           <div className="svc-head">
             <div>
               <span className="mono eyebrow">What we do</span>
-              <h2 id="svc-h" className="display" data-reveal>Two things, done <span className="red">properly.</span></h2>
-              <p className="svc-tag mono" data-reveal>One job, one coating, done once.</p>
+              <h2 id="svc-h" className="display" data-reveal>One job, one coating, <span className="red">done once.</span></h2>
             </div>
             <p className="lede" data-reveal>Prestige Cheshire Detailing specialises in paint correction and ceramic coatings, on cars, vans and motorbikes. Fully mobile.</p>
           </div>
