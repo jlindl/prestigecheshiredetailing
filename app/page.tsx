@@ -48,7 +48,7 @@ export default function Home() {
                 <span className="ln ln-last"><span className="red">specialist.</span></span>
               </h1>
               <p className="lede">
-                <b>Machine polishing</b> to remove fine scratches and <b>Gyeon ceramic coatings</b> for the ultimate protection with a Crystal Gloss finish, for cars, vans and motorbikes. We come to you across Cheshire, the North West and North Wales, and <b>bring our own water</b>.
+                <b>Machine polishing</b> to remove fine scratches and marring, and <b>Gyeon ceramic coatings</b> for the ultimate protection with a Crystal Gloss finish, for cars, vans and motorbikes. We come to you across Cheshire, the North West and North Wales, and <b>bring our own water</b>.
               </p>
               <div className="hero-ctas">
                 <WaButton label="Get a quote on WhatsApp" />
@@ -154,7 +154,6 @@ export default function Home() {
             </div>
             <figure className="im" style={{ margin: 0 }}>
               <img decoding="async" data-src="/img/aston-bonnet.webp" data-srcset="/img/aston-bonnet-xs.webp 480w, /img/aston-bonnet-sm.webp 800w, /img/aston-bonnet.webp 1086w" sizes="(max-width: 820px) 90vw, 40vw" alt="Aston Martin DB12 badge with a Prestige Cheshire Detailing card" style={{ objectPosition: "50% 82%" }} loading="lazy" data-speed="0.12" />
-              <span className="tag mono tag-r">Aston Martin DB12</span>
             </figure>
           </article>
 
@@ -171,7 +170,6 @@ export default function Home() {
             </div>
             <figure className="im" style={{ margin: 0 }}>
               <img decoding="async" data-src="/img/pcd-51.webp" data-srcset="/img/pcd-51-xs.webp 480w, /img/pcd-51-sm.webp 800w, /img/pcd-51.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Glossy purple Porsche wing reflecting its surroundings" loading="lazy" data-speed="0.12" />
-              <span className="tag mono">Porsche Macan</span>
             </figure>
           </article>
 
