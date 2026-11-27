@@ -1,25 +1,20 @@
-const SWOOSH_BODY = "M40 178 C110 148 200 134 320 132 C520 130 760 152 965 160 L1135 168 C1080 186 1010 194 930 192 C760 188 560 168 400 154 C280 146 160 150 40 178 Z";
-const SWOOSH_ROOF = "M360 112 C470 62 600 42 720 43 C830 44 900 80 990 132 L1135 168 L965 162 C900 112 820 66 720 66 C610 66 480 84 360 112 Z";
-const SWOOSH_RED = "M790 240 C870 236 950 230 1010 225 L962 218 C1040 210 1100 198 1142 176 C1166 198 1160 236 1100 252 C1020 268 900 256 790 240 Z";
+/** Vector redraw of Craig's badge from his business card: double hexagon frame, stacked serif name, Est 2024. */
+const HEX_OUTER = "M6 87 L51 7 L149 7 L194 87 L149 167 L51 167 Z";
+const HEX_INNER = "M22 87 L60 21 L140 21 L178 87 L140 153 L60 153 Z";
 
-/** Vector redraw of Craig's logo car: white body and roof lines with the red sweep under the nose. */
-export function LogoSwoosh({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="30 34 1140 232" aria-hidden="true">
-      <path fill="currentColor" d={SWOOSH_BODY} />
-      <path fill="currentColor" d={SWOOSH_ROOF} />
-      <path fill="#e3120b" d={SWOOSH_RED} />
-    </svg>
-  );
-}
-
-/** Full stacked lockup, as in Craig's logo: car above "PRESTIGE CHESHIRE / DETAILING". */
 export function Logo({ size = "md", decorative = false }: { size?: "sm" | "md" | "lg"; decorative?: boolean }) {
   return (
-    <span className={`logo logo-${size}`} {...(decorative ? { "aria-hidden": true } : { role: "img", "aria-label": "Prestige Cheshire Detailing" })}>
-      <LogoSwoosh className="logo-car" />
-      <span className="logo-t1">PRESTIGE CHESHIRE</span>
-      <span className="logo-t2">DETAILING</span>
+    <span className={`logo logo-${size}`} {...(decorative ? { "aria-hidden": true } : { role: "img", "aria-label": "Prestige Cheshire Valeting, established 2024" })}>
+      <svg className="logo-badge" viewBox="0 0 200 174" aria-hidden="true">
+        <path d={HEX_OUTER} fill="none" stroke="currentColor" strokeWidth="9" strokeLinejoin="miter" />
+        <path d={HEX_INNER} fill="none" stroke="currentColor" strokeWidth="5" strokeLinejoin="miter" />
+        <g className="logo-name" fill="currentColor" textAnchor="middle">
+          <text x="100" y="72">PRESTIGE</text>
+          <text x="100" y="93">CHESHIRE</text>
+          <text x="100" y="114">VALETING</text>
+        </g>
+        <text className="logo-est" x="100" y="135" textAnchor="middle" fill="currentColor">Est 2024</text>
+      </svg>
     </span>
   );
 }
