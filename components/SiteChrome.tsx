@@ -59,7 +59,10 @@ export function SiteFooter() {
       </div>
       <div className="legal mono">
         <span>© {new Date().getFullYear()} Prestige Cheshire Detailing</span>
-        <span>Concept homepage by Integrate</span>
+        <a className="int-credit" href="https://www.integrate-tech.co.uk/web-design" target="_blank" rel="noopener">
+            <img src="/integrate-mark.png" width={22} height={21} alt="" aria-hidden="true" />
+            <span>Designed by <b>Integrate Web Design</b></span>
+          </a>
       </div>
     </footer>
   );
