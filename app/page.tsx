@@ -153,8 +153,8 @@ export default function Home() {
               </ul>
             </div>
             <figure className="im" style={{ margin: 0 }}>
-              <img decoding="async" data-src="/img/aston-bonnet.webp" data-srcset="/img/aston-bonnet-xs.webp 480w, /img/aston-bonnet-sm.webp 800w, /img/aston-bonnet.webp 1086w" sizes="(max-width: 820px) 90vw, 40vw" alt="Aston Martin DB12 badge with a Prestige Cheshire Detailing card" style={{ objectPosition: "50% 82%" }} loading="lazy" data-speed="0.12" />
-              <span className="tag mono tag-r">Aston Martin DB12</span>
+              <img decoding="async" data-src="/img/aston-bonnet.webp" data-srcset="/img/aston-bonnet-xs.webp 480w, /img/aston-bonnet-sm.webp 800w, /img/aston-bonnet.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Aston Martin DB12 badge with a Prestige Cheshire Detailing card" style={{ objectPosition: "50% 70%" }} loading="lazy" data-speed="0.12" />
+              <span className="tag mono">Aston Martin DB12</span>
             </figure>
           </article>
 
