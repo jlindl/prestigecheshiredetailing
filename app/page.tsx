@@ -57,7 +57,7 @@ export default function Home() {
               <h1 className="display">
                 <span className="ln"><span>Ceramic</span></span>
                 <span className="ln"><span>coating</span></span>
-                <span className="ln ln-last"><span className="red">specialists.</span></span>
+                <span className="ln ln-last"><span className="red">specialist.</span></span>
               </h1>
               <p className="lede">
                 <b>Machine polishing</b> to take out fine scratches and <b>Gyeon ceramic coatings</b> to keep the gloss, for cars, vans and motorbikes. We come to you across Cheshire, the North West and North Wales, and <b>bring our own water</b>.
@@ -110,7 +110,6 @@ export default function Home() {
             </div>
             <span className="mono r" style={{ color: "var(--dim)" }}>Hover for a second angle</span>
           </div>
-          <div className="garage-ghost display" aria-hidden="true">PRESTIGE</div>
           <div className="garage-view is-off">
             <div className="garage-track" style={{ ["--n" as string]: CARS.length }}>
               {[0, 1].map((loop) =>
@@ -254,7 +253,10 @@ export default function Home() {
               </div>
               <div style={{ marginTop: 30 }}><WaButton label="Check a date" text="Hi Craig, do you have any availability coming up? I'm in " /></div>
             </div>
-            <CoverageMap />
+            <div className="map-wrap">
+              <CoverageMap />
+              <p className="map-note">and surrounding areas.</p>
+            </div>
           </div>
         </section>
 
