@@ -1,22 +1,10 @@
-"use client";
-import { useRef } from "react";
 import { SITE, waLink } from "@/lib/site";
 import { WaIcon, PhoneIcon } from "./Icons";
 
-/** Magnetic WhatsApp button: drifts toward the cursor, springs back on leave. */
+/** WhatsApp button. Static HTML; the magnetic drift on desktop is one shared listener in LazyLoader. */
 export function WaButton({ label = "WhatsApp us", text, className = "" }: { label?: string; text?: string; className?: string }) {
-  const ref = useRef<HTMLAnchorElement>(null);
-  const move = (e: React.MouseEvent) => {
-    const el = ref.current;
-    if (!el || window.matchMedia("(hover: none)").matches) return;
-    const r = el.getBoundingClientRect();
-    const x = (e.clientX - (r.left + r.width / 2)) * 0.18;
-    const y = (e.clientY - (r.top + r.height / 2)) * 0.3;
-    el.style.transform = `translate(${x}px, ${y}px)`;
-  };
-  const leave = () => { if (ref.current) ref.current.style.transform = ""; };
   return (
-    <a ref={ref} href={waLink(text)} target="_blank" rel="noopener" className={`btn btn-red ${className}`} onMouseMove={move} onMouseLeave={leave}>
+    <a href={waLink(text)} target="_blank" rel="noopener" className={`btn btn-red ${className}`} data-magnet>
       {label}
       <span className="ico"><WaIcon /></span>
     </a>

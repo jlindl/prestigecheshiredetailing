@@ -13,16 +13,45 @@ export default function LazyLoader() {
     };
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) { load(e.target); io.unobserve(e.target); } }),
-      { rootMargin: "120% 120% 120% 120%" }
+      { rootMargin: "60% 0px 60% 0px" }
     );
     const els = document.querySelectorAll("img[data-src], [data-bg]");
     els.forEach((el) => io.observe(el));
-    // horizontally pinned cards never "intersect" sideways until scrolled; load the whole garage once it is near
+    // the garage strip scrolls sideways on its own: load its main photos once it is near,
+    // pause the loop while it is off screen, and fetch the hover angles only on devices that can hover
     const gar = document.querySelector(".garage");
+    const view = document.querySelector(".garage-view");
     const gio = new IntersectionObserver((en) => {
-      if (en[0]?.isIntersecting) { document.querySelectorAll(".garage img[data-src]").forEach(load); gio.disconnect(); }
-    }, { rootMargin: "100% 0px" });
+      const on = !!en[0]?.isIntersecting;
+      view?.classList.toggle("is-off", !on);
+      if (on) document.querySelectorAll(".garage img[data-src]").forEach(load);
+    }, { rootMargin: "40% 0px" });
     if (gar) gio.observe(gar);
+    const loadAlts = () => {
+      document.querySelectorAll<HTMLImageElement>("img[data-alt-src]").forEach((im) => {
+        if (im.dataset.altSrcset) im.setAttribute("srcset", im.dataset.altSrcset);
+        im.setAttribute("src", im.dataset.altSrc!);
+        im.removeAttribute("data-alt-src");
+      });
+    };
+    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (canHover) view?.addEventListener("pointerenter", loadAlts, { once: true });
+    // magnetic WhatsApp buttons: one delegated listener, desktop only, one style write per frame
+    let mag: HTMLElement | null = null, mRaf = 0, mx = 0, my = 0;
+    const onMag = (e: PointerEvent) => {
+      const t = (e.target as Element | null)?.closest<HTMLElement>("[data-magnet]") ?? null;
+      if (t !== mag) { if (mag) mag.style.transform = ""; mag = t; }
+      if (!mag) return;
+      mx = e.clientX; my = e.clientY;
+      if (mRaf) return;
+      mRaf = requestAnimationFrame(() => {
+        mRaf = 0;
+        if (!mag) return;
+        const r = mag.getBoundingClientRect();
+        mag.style.transform = `translate(${(mx - (r.left + r.width / 2)) * 0.18}px, ${(my - (r.top + r.height / 2)) * 0.3}px)`;
+      });
+    };
+    if (canHover) document.addEventListener("pointermove", onMag, { passive: true });
     // header gets its solid background as soon as the page scrolls (no dependency on the animation libraries)
     const hdr = document.querySelector(".hdr");
     const onScroll = () => hdr?.classList.toggle("scrolled", window.scrollY > 40);
@@ -37,7 +66,7 @@ export default function LazyLoader() {
     }, { threshold: 0.25 });
     // the final form has its own send button
     document.querySelectorAll(".final").forEach((el) => fio.observe(el));
-    return () => { io.disconnect(); gio.disconnect(); fio.disconnect(); window.removeEventListener("scroll", onScroll); };
+    return () => { io.disconnect(); gio.disconnect(); fio.disconnect(); window.removeEventListener("scroll", onScroll); document.removeEventListener("pointermove", onMag); };
   }, []);
   return null;
 }

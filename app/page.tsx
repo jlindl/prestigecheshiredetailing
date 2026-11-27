@@ -45,6 +45,8 @@ export default function Home() {
 
       <main id="top">
         {/* HERO */}
+        <link rel="preload" as="image" href="/img/beads-sm.webp" media="(max-width: 820px)" fetchPriority="high" />
+        <link rel="preload" as="image" href="/img/beads.webp" media="(min-width: 821px)" fetchPriority="high" />
         <section className="hero" aria-label="Introduction">
           <div className="hero-bg" aria-hidden="true" />
           <div className="hero-shade" aria-hidden="true" />
@@ -109,15 +111,15 @@ export default function Home() {
             <span className="mono r" style={{ color: "var(--dim)" }}>Hover for a second angle</span>
           </div>
           <div className="garage-ghost display" aria-hidden="true">PRESTIGE</div>
-          <div className="garage-view">
+          <div className="garage-view is-off">
             <div className="garage-track" style={{ ["--n" as string]: CARS.length }}>
               {[0, 1].map((loop) =>
                 CARS.map((c, i) => (
                   <article className="car" key={`${loop}-${c.name}`} aria-hidden={loop === 1 ? true : undefined}>
                     <span className="idx mono">{String(i + 1).padStart(2, "0")} / {String(CARS.length).padStart(2, "0")}</span>
                     <div className="ph">
-                      <img decoding="async" data-src={`/img/${c.img}.webp`} data-srcset={`/img/${c.img}-sm.webp 800w, /img/${c.img}.webp 1400w`} sizes="(max-width: 820px) 70vw, 420px" alt={loop === 1 ? "" : `${c.name}, a Prestige Cheshire Detailing customer car`} loading="lazy" />
-                      <img decoding="async" className="alt" data-src={`/img/${c.alt}.webp`} data-srcset={`/img/${c.alt}-sm.webp 800w, /img/${c.alt}.webp 1400w`} sizes="(max-width: 820px) 70vw, 420px" alt="" loading="lazy" aria-hidden="true" />
+                      <img decoding="async" data-src={`/img/${c.img}.webp`} data-srcset={`/img/${c.img}-xs.webp 480w, /img/${c.img}-sm.webp 800w, /img/${c.img}.webp 1400w`} sizes="(max-width: 820px) 340px, 420px" alt={loop === 1 ? "" : `${c.name}, a Prestige Cheshire Detailing customer car`} loading="lazy" />
+                      <img decoding="async" className="alt" data-alt-src={`/img/${c.alt}.webp`} data-alt-srcset={`/img/${c.alt}-xs.webp 480w, /img/${c.alt}-sm.webp 800w, /img/${c.alt}.webp 1400w`} sizes="(max-width: 820px) 340px, 420px" alt="" loading="lazy" aria-hidden="true" />
                     </div>
                     <div className="meta">
                       <h3 className="name">{c.name}</h3>
@@ -141,7 +143,7 @@ export default function Home() {
         {/* PROOF */}
         <section className="proof wrap" aria-labelledby="pr-h">
           <div className="proof-bg" aria-hidden="true">
-            <img decoding="async" data-src="/img/rs3.webp" data-srcset="/img/rs3-sm.webp 800w, /img/rs3.webp 1600w" sizes="100vw" alt="" loading="lazy" />
+            <img decoding="async" data-src="/img/rs3.webp" data-srcset="/img/rs3-xs.webp 480w, /img/rs3-sm.webp 800w, /img/rs3.webp 1600w" sizes="100vw" alt="" loading="lazy" />
           </div>
           <div className="proof-top">
             <div className="pct" aria-label={`${SITE.reviews.recommend} percent`}><span data-count={SITE.reviews.recommend}>{SITE.reviews.recommend}</span><sup>%</sup></div>
@@ -183,7 +185,7 @@ export default function Home() {
               </ul>
             </div>
             <figure className="im" style={{ margin: 0 }}>
-              <img decoding="async" data-src="/img/pcd-39.webp" data-srcset="/img/pcd-39-sm.webp 800w, /img/pcd-39.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Mirror finish on the rear of a black Range Rover" loading="lazy" data-speed="0.12" />
+              <img decoding="async" data-src="/img/pcd-39.webp" data-srcset="/img/pcd-39-xs.webp 480w, /img/pcd-39-sm.webp 800w, /img/pcd-39.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Mirror finish on the rear of a black Range Rover" loading="lazy" data-speed="0.12" />
               <span className="tag mono">Range Rover</span>
             </figure>
           </article>
@@ -200,7 +202,7 @@ export default function Home() {
               </ul>
             </div>
             <figure className="im" style={{ margin: 0 }}>
-              <img decoding="async" data-src="/img/pcd-51.webp" data-srcset="/img/pcd-51-sm.webp 800w, /img/pcd-51.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Glossy purple Porsche wing reflecting its surroundings" loading="lazy" data-speed="0.12" />
+              <img decoding="async" data-src="/img/pcd-51.webp" data-srcset="/img/pcd-51-xs.webp 480w, /img/pcd-51-sm.webp 800w, /img/pcd-51.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Glossy purple Porsche wing reflecting its surroundings" loading="lazy" data-speed="0.12" />
               <span className="tag mono">Porsche Macan</span>
             </figure>
           </article>
@@ -234,8 +236,8 @@ export default function Home() {
               <p className="lede" data-reveal>Vans are a big part of the work, from Transporters to Transit Customs. Send a photo of yours for a quote.</p>
               <div style={{ marginTop: 30 }}><WaButton label="Book your van in" text="Hi Craig, I'd like a quote for my van. It's a " /></div>
             </div>
-            <figure className="ph p1" style={{ margin: 0 }}><img decoding="async" data-src="/img/pcd-21.webp" data-srcset="/img/pcd-21-sm.webp 800w, /img/pcd-21.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Black VW Transporter after a detail, front view" loading="lazy" data-speed="0.1" /></figure>
-            <figure className="ph p2" style={{ margin: 0 }}><img decoding="async" data-src="/img/pcd-23.webp" data-srcset="/img/pcd-23-sm.webp 800w, /img/pcd-23.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Black VW Transporter flank reflecting the sky" loading="lazy" data-speed="0.18" /></figure>
+            <figure className="ph p1" style={{ margin: 0 }}><img decoding="async" data-src="/img/pcd-21.webp" data-srcset="/img/pcd-21-xs.webp 480w, /img/pcd-21-sm.webp 800w, /img/pcd-21.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Black VW Transporter after a detail, front view" loading="lazy" data-speed="0.1" /></figure>
+            <figure className="ph p2" style={{ margin: 0 }}><img decoding="async" data-src="/img/pcd-23.webp" data-srcset="/img/pcd-23-xs.webp 480w, /img/pcd-23-sm.webp 800w, /img/pcd-23.webp 1400w" sizes="(max-width: 820px) 90vw, 40vw" alt="Black VW Transporter flank reflecting the sky" loading="lazy" data-speed="0.18" /></figure>
           </div>
         </section>
 

@@ -10,7 +10,15 @@ export default function Motion() {
   useEffect(() => {
     let cleanup = () => {};
     let dead = false;
-    Promise.all([loadGsap(), import("lenis")]).then(([{ gsap, ScrollTrigger }, { default: LenisCtor }]) => {
+    // start the animation libraries once the page has finished loading and the browser is idle,
+    // so they never compete with the first paint or the first tap (hero intro runs in CSS)
+    const idle = (fn: () => void) => {
+      const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number };
+      const go = () => (w.requestIdleCallback ? w.requestIdleCallback(fn, { timeout: 1500 }) : setTimeout(fn, 200));
+      if (document.readyState === "complete") go(); else window.addEventListener("load", go, { once: true });
+    };
+    idle(() => { if (!dead) start(); });
+    const start = () => Promise.all([loadGsap(), import("lenis")]).then(([{ gsap, ScrollTrigger }, { default: LenisCtor }]) => {
     if (dead) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const root = document.documentElement;
@@ -45,13 +53,19 @@ export default function Motion() {
 
     // ---------- hero cursor specular ----------
     const hero = document.querySelector<HTMLElement>(".hero");
+    // one style write per frame at most, and only on devices with a real cursor
+    let mvRaf = 0, mx = 0, my = 0;
     const onMove = (e: MouseEvent) => {
-      if (!hero) return;
-      const r = hero.getBoundingClientRect();
-      hero.style.setProperty("--mx", `${((e.clientX - r.left) / r.width) * 100}%`);
-      hero.style.setProperty("--my", `${((e.clientY - r.top) / r.height) * 100}%`);
+      mx = e.clientX; my = e.clientY;
+      if (mvRaf || !hero) return;
+      mvRaf = requestAnimationFrame(() => {
+        mvRaf = 0;
+        const r = hero.getBoundingClientRect();
+        hero.style.setProperty("--mx", `${((mx - r.left) / r.width) * 100}%`);
+        hero.style.setProperty("--my", `${((my - r.top) / r.height) * 100}%`);
+      });
     };
-    hero?.addEventListener("mousemove", onMove);
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) hero?.addEventListener("mousemove", onMove, { passive: true });
 
     const ctx = gsap.context(() => {
       gsap.to(".progress", { scaleX: 1, ease: "none", scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 0.3 } });

@@ -22,10 +22,6 @@ export default function CoverageMap() {
           <pattern id="dots" width="16" height="16" patternUnits="userSpaceOnUse">
             <circle cx="1" cy="1" r="1" fill="rgba(242,241,237,.09)" />
           </pattern>
-          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="4" result="b" />
-            <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-          </filter>
         </defs>
         <rect width="600" height="520" fill="url(#dots)" />
         {[90, 170, 250].map((r) => (
@@ -37,7 +33,9 @@ export default function CoverageMap() {
           <text x="112" y="323" textAnchor="middle">North Wales</text>
         </g>
         <path d="M243 336 L204 326" fill="none" stroke="#e3120b" strokeWidth="2" strokeDasharray="3 5" opacity=".8" />
-        <path d={d} fill="none" stroke="#e3120b" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" filter="url(#glow)" data-route pathLength={1} strokeDasharray="1" strokeDashoffset="0" />
+        {/* soft glow is a wide translucent stroke, not an SVG filter, so drawing the route stays cheap */}
+        <path d={d} fill="none" stroke="rgba(227,18,11,.28)" strokeWidth="9" strokeLinejoin="round" strokeLinecap="round" data-route pathLength={1} strokeDasharray="1" strokeDashoffset="0" />
+        <path d={d} fill="none" stroke="#e3120b" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" data-route pathLength={1} strokeDasharray="1" strokeDashoffset="0" />
         {TOWNS.map((t) => (
           <g key={t.n} className="town" data-town>
             <circle cx={t.x} cy={t.y} r="14" fill="rgba(227,18,11,.14)" />
