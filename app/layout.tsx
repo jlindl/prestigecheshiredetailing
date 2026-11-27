@@ -1,10 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, JetBrains_Mono, Tinos } from "next/font/google";
+import { Archivo, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import FeedbackGate from "@/components/FeedbackGate";
 
 const archivo = Archivo({ subsets: ["latin"], axes: ["wdth"], variable: "--font-archivo", display: "swap" });
-const logoSerif = Tinos({ subsets: ["latin"], weight: ["700"], variable: "--font-logo", display: "swap" });
 const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono", display: "swap" });
 
 export const metadata: Metadata = {
@@ -19,7 +18,7 @@ export const viewport: Viewport = { themeColor: "#08080a", width: "device-width"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-GB" className={`${archivo.variable} ${mono.variable} ${logoSerif.variable}`}>
+    <html lang="en-GB" className={`${archivo.variable} ${mono.variable}`}>
       <body>
         {children}
         <FeedbackGate />

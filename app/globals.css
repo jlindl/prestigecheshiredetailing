@@ -381,14 +381,13 @@ img[data-src] { opacity: 0; } img { transition: opacity .7s var(--ease-out); }
 .proof { border-top: 0; }
 @media (max-width: 820px) { .hero-foot .towns { flex-wrap: nowrap; white-space: nowrap; overflow: hidden; height: 16px; line-height: 16px; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); } .hero-foot > span:first-child { height: 14px; line-height: 14px; } }
 
-/* ---------- logo (vector redraw of Craig's hexagon badge) ---------- */
-.logo { display: inline-flex; color: var(--chrome); line-height: 1; }
-.logo-badge { display: block; width: 6.4em; height: auto; overflow: visible; }
-.logo-name { font-family: var(--font-logo), "Times New Roman", serif; font-weight: 700; font-size: 17.5px; letter-spacing: 0.01em; }
-.logo-est { font-family: var(--font-display); font-weight: 600; font-size: 10.5px; letter-spacing: 0.02em; }
+/* ---------- logo (vector redraw of Craig's lockup) ---------- */
+.logo { display: inline-flex; flex-direction: column; align-items: center; color: var(--chrome); font-weight: 800; font-variation-settings: "wdth" 100; letter-spacing: -0.005em; line-height: 1.02; text-align: center; white-space: nowrap; }
+.logo-car { display: block; width: 7.6em; height: auto; margin-bottom: 0.3em; overflow: visible; }
+.logo-t1, .logo-t2 { display: block; }
 .logo-sm { font-size: 13px; }
-.logo-md { font-size: 16px; }
-.logo-lg { font-size: 22px; }
+.logo-md { font-size: 18px; }
+.logo-lg { font-size: 24px; }
 .hdr-brand { transition: opacity .3s; }
 .hdr-brand:hover { opacity: .85; }
 .hero-logo { justify-self: end; align-self: center; font-size: clamp(20px, 2vw, 32px); filter: drop-shadow(0 20px 40px rgba(0,0,0,.6)); }
