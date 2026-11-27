@@ -1,15 +1,16 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { PHOTOS } from "@/lib/gallery";
 
-export type Shot = { img: string; alt: string; wide?: boolean };
+const ALT = "Customer car detailed by Prestige Cheshire Detailing";
 
-// Photo grid; tap a photo to see it large, arrows or swipe to move through.
-export default function Gallery({ shots }: { shots: Shot[] }) {
+// Full photo wall; tap a photo to see it large, arrows, keys or swipe to move through.
+export default function Gallery() {
   const [open, setOpen] = useState<number | null>(null);
   const dlg = useRef<HTMLDialogElement>(null);
   const sx = useRef(0);
-
-  const go = useCallback((d: number) => setOpen((i) => (i === null ? i : (i + d + shots.length) % shots.length)), [shots.length]);
+  const n = PHOTOS.length;
+  const go = useCallback((d: number) => setOpen((i) => (i === null ? i : (i + d + n) % n)), [n]);
 
   useEffect(() => {
     const d = dlg.current;
@@ -22,17 +23,19 @@ export default function Gallery({ shots }: { shots: Shot[] }) {
     if (open === null) return;
     const k = (e: KeyboardEvent) => { if (e.key === "ArrowRight") go(1); if (e.key === "ArrowLeft") go(-1); };
     window.addEventListener("keydown", k);
+    // warm the neighbours so arrows feel instant
+    [1, -1].forEach((d) => { const im = new Image(); im.src = `/gallery/${PHOTOS[(open + d + n) % n][0]}.webp`; });
     return () => window.removeEventListener("keydown", k);
-  }, [open, go]);
+  }, [open, go, n]);
 
-  const cur = open === null ? null : shots[open];
+  const cur = open === null ? null : PHOTOS[open];
 
   return (
     <>
-      <div className="gal-grid">
-        {shots.map((s, i) => (
-          <button type="button" key={s.img} className={`gal-item${s.wide ? " wide" : ""}`} onClick={() => setOpen(i)} aria-label={`Open photo: ${s.alt}`}>
-            <img decoding="async" data-src={`/img/${s.img}.webp`} data-srcset={`/img/${s.img}-xs.webp 480w, /img/${s.img}-sm.webp 800w, /img/${s.img}.webp 1400w`} sizes="(max-width: 820px) 50vw, 25vw" alt={s.alt} loading="lazy" />
+      <div className="wall">
+        {PHOTOS.map(([k, w, h, sw], i) => (
+          <button type="button" key={k} className="wall-item" onClick={() => setOpen(i)} aria-label="Open photo">
+            <img src={`/gallery/${k}-sm.webp`} srcSet={`/gallery/${k}-sm.webp ${sw}w, /gallery/${k}.webp ${w}w`} sizes="(max-width: 600px) 50vw, (max-width: 1100px) 33vw, 25vw" width={w} height={h} alt={ALT} loading={i < 8 ? "eager" : "lazy"} decoding="async" />
           </button>
         ))}
       </div>
@@ -46,7 +49,7 @@ export default function Gallery({ shots }: { shots: Shot[] }) {
       >
         {cur && (
           <figure>
-            <img src={`/img/${cur.img}.webp`} alt={cur.alt} />
+            <img src={`/gallery/${cur[0]}.webp`} width={cur[1]} height={cur[2]} alt={ALT} />
           </figure>
         )}
         <button type="button" className="gal-x" aria-label="Close" onClick={() => setOpen(null)}>

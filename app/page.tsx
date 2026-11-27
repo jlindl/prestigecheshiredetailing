@@ -1,5 +1,5 @@
-import { SITE, waLink } from "@/lib/site";
-import { Logo, WaIcon, PhoneIcon, Arrow } from "@/components/Icons";
+import { SITE } from "@/lib/site";
+import { Logo, Arrow } from "@/components/Icons";
 import { WaButton, CallButton, CtaStrip } from "@/components/Cta";
 import Social from "@/components/Social";
 import Faq from "@/components/Faq";
@@ -8,7 +8,7 @@ import Motion from "@/components/Motion";
 import CoverageMap from "@/components/CoverageMap";
 import LazyLoader from "@/components/LazyLoader";
 import GarageRail from "@/components/GarageRail";
-import Gallery from "@/components/Gallery";
+import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 
 const CARS = [
   { name: "Porsche 911 Targa", img: "p911-a", alt: "p911-b", note: "Grey, under the hex lights" },
@@ -21,20 +21,6 @@ const CARS = [
   { name: "Range Rover Sport", img: "pcd-66", alt: "pcd-70", note: "Grey metallic, deep and clean" },
 ];
 
-const SHOTS = [
-  { img: "g-01", alt: "Grey Porsche 911 Targa front wing under hexagon lights" },
-  { img: "g-02", alt: "Hexagon lights reflected in a Porsche bonnet" },
-  { img: "g-03", alt: "Rear of a grey Porsche 911 Targa in the garage" },
-  { img: "g-04", alt: "Aston Martin badge with a Prestige Cheshire Detailing card" },
-  { img: "g-10", alt: "Red Audi RS3 with the door open", wide: true },
-  { img: "g-06", alt: "Black Aston Martin DB12 front wheel and wing" },
-  { img: "g-07", alt: "Black Aston Martin DB12 headlight and bonnet" },
-  { img: "g-05", alt: "Aston Martin DB12 wheel and gloss black paint" },
-  { img: "g-08", alt: "Blue BMW X5 M Competition on the drive" },
-  { img: "g-09", alt: "Rear of a blue BMW X5 M Competition" },
-  { img: "g-12", alt: "Red Audi RS3 rear wheel" },
-  { img: "g-11", alt: "Audi RS puddle light on the drive", wide: true },
-];
 
 const STATEMENT =
   "Over time, most washing leaves fine scratches in the paint. In sunlight they scatter the light so the colour looks flat. We polish them out by machine, then lock the finish in with a Gyeon ceramic coating.";
@@ -43,23 +29,7 @@ export default function Home() {
   return (
     <>
       <div className="progress" aria-hidden="true" />
-      <header className="hdr">
-        <a href="#top" className="hdr-brand">
-          <Logo size="sm" />
-        </a>
-        <nav className="hdr-nav" aria-label="Main">
-          <a className="lnk" href="#services">Services</a>
-          <a className="lnk" href="#work">Work</a>
-          <a className="lnk" href="#areas">Areas</a>
-          <a className="lnk tel" href={SITE.phoneHref}>{SITE.phoneDisplay}</a>
-          <WaButton label="WhatsApp" />
-        </nav>
-      </header>
-
-      <div className="mbar" role="navigation" aria-label="Quick contact">
-        <a className="wa" href={waLink()} target="_blank" rel="noopener"><WaIcon /> WhatsApp us</a>
-        <a className="call" href={SITE.phoneHref}><PhoneIcon /> Call</a>
-      </div>
+      <SiteHeader />
 
       <main id="top">
         {/* HERO */}
@@ -137,15 +107,6 @@ export default function Home() {
             </div>
             <WaButton label="Send photos" text="Hi Craig, here are a few photos of my car. Could you give me a quote? " />
           </div>
-        </section>
-
-        {/* GALLERY */}
-        <section className="gallery wrap" id="gallery" aria-labelledby="gal-h">
-          <div className="gal-head">
-            <span className="mono eyebrow">Gallery</span>
-            <h2 id="gal-h" className="display">Recent <span className="red">work.</span></h2>
-          </div>
-          <Gallery shots={SHOTS} />
         </section>
 
         {/* PROOF */}
@@ -295,37 +256,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="foot">
-        <div className="foot-cols">
-          <div>
-            <Logo size="lg" />
-            <p style={{ marginTop: 18, maxWidth: 340 }}>Machine polishing and Gyeon ceramic coatings. Mobile across Cheshire, the North West and North Wales, by appointment.</p>
-          </div>
-          <div>
-            <p className="mono fh">Contact</p>
-            <a href={waLink()} target="_blank" rel="noopener">WhatsApp</a>
-            <a href={SITE.phoneHref}>{SITE.phoneDisplay}</a>
-            <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
-          </div>
-          <div>
-            <p className="mono fh">Areas</p>
-            <p>{SITE.areas}. As far north as Wigan and Manchester.</p>
-          </div>
-          <div>
-            <p className="mono fh">Follow</p>
-            <Social />
-            <a href={SITE.facebookReviews} target="_blank" rel="noopener" style={{ marginTop: 10 }}>Read the reviews</a>
-          </div>
-        </div>
-        <div className="wordmark" aria-hidden="true">
-          <div className="w display">PRESTIGE</div>
-          <div className="rl" data-rl />
-        </div>
-        <div className="legal mono">
-          <span>© {new Date().getFullYear()} Prestige Cheshire Detailing</span>
-          <span>Concept homepage by Integrate</span>
-        </div>
-      </footer>
+      <SiteFooter />
 
       <LazyLoader />
       <Motion />
