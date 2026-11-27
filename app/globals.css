@@ -453,8 +453,11 @@ img[data-src] { opacity: 0; } img { transition: opacity .7s var(--ease-out); }
 .nw { white-space: nowrap; }
 
 /* ---------- Integrate credit ---------- */
-.int-credit { display: inline-flex; align-items: center; gap: 10px; padding: 9px 16px 9px 12px; border-radius: 999px; border: 1px solid var(--line); background: rgba(242, 241, 237, 0.04); color: var(--mist); font-size: 12px; letter-spacing: 0.04em; text-transform: none; transition: border-color 0.3s, background-color 0.3s, color 0.3s, transform 0.4s var(--ease-out); }
-.int-credit img { width: 22px; height: auto; display: block; }
+.int-credit { display: inline-flex; align-items: center; gap: 11px; padding: 8px 18px 8px 12px; border-radius: 999px; border: 1px solid var(--line); background: rgba(242, 241, 237, 0.04); color: var(--mist); font-size: 12px; letter-spacing: 0.04em; text-transform: none; transition: border-color 0.3s, background-color 0.3s, color 0.3s, transform 0.4s var(--ease-out); }
+.int-credit img { width: 24px; height: auto; display: block; }
 .int-credit b { color: var(--chrome); font-weight: 600; }
+.int-credit .ic-t { display: flex; flex-direction: column; gap: 2px; line-height: 1.2; text-align: left; }
+.int-credit small { font-size: 10px; letter-spacing: 0.06em; color: var(--dim); }
+.int-credit:hover small { color: var(--mist); }
 .int-credit:hover { border-color: rgba(242, 241, 237, 0.4); background: rgba(242, 241, 237, 0.08); color: var(--chrome); transform: translateY(-2px); }
 .int-credit:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
