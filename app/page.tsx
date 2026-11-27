@@ -11,7 +11,7 @@ import LazyLoader from "@/components/LazyLoader";
 const CARS = [
   { name: "Porsche Macan", img: "pcd-48", alt: "pcd-47", note: "Deep purple gloss" },
   { name: "Range Rover", img: "pcd-43", alt: "pcd-39", note: "Deep black gloss" },
-  { name: "Audi Avant", img: "pcd-73", alt: "pcd-78", note: "Gloss black estate" },
+  { name: "Audi RS6 Avant", img: "pcd-73", alt: "pcd-78", note: "Gloss black estate" },
   { name: "BMW M2", img: "pcd-80", alt: "pcd-82", note: "Bright paint, crisp reflections" },
   { name: "Range Rover Sport", img: "pcd-66", alt: "pcd-70", note: "Grey metallic, deep and clean" },
   { name: "BMW 3 Series", img: "pcd-02", alt: "pcd-03", note: "Blue that looks wet" },
@@ -60,7 +60,7 @@ export default function Home() {
                 <span className="ln ln-last"><span className="red">specialist.</span></span>
               </h1>
               <p className="lede">
-                <b>Machine polishing</b> to take out fine scratches and <b>Gyeon ceramic coatings</b> to keep the gloss, for cars, vans and motorbikes. We come to you across Cheshire, the North West and North Wales, and <b>bring our own water</b>.
+                <b>Machine polishing</b> to remove fine scratches and <b>Gyeon ceramic coatings</b> for the ultimate protection with a Crystal Gloss finish, for cars, vans and motorbikes. We come to you across Cheshire, the North West and North Wales, and <b>bring our own water</b>.
               </p>
               <div className="hero-ctas">
                 <WaButton label="Get a quote on WhatsApp" />
@@ -166,7 +166,7 @@ export default function Home() {
           <div className="svc-head">
             <div>
               <span className="mono eyebrow">What we do</span>
-              <h2 id="svc-h" className="display" data-reveal>One job, one coating, <span className="red">done once.</span></h2>
+              <h2 id="svc-h" className="display" data-reveal>One job, <span className="nw">one coating,</span> <span className="red">done once.</span></h2>
             </div>
             <p className="lede" data-reveal>Prestige Cheshire Detailing specialises in paint correction and ceramic coatings, on cars, vans and motorbikes. Fully mobile.</p>
           </div>
@@ -175,7 +175,7 @@ export default function Home() {
             <span className="no mono">01</span>
             <div className="tx">
               <h3 className="display">Machine <span className="red">polishing</span></h3>
-              <p className="lede">Paint correction by machine to take out the fine scratches that make paint look flat, bringing back depth, clarity and true colour.</p>
+              <p className="lede">Paint correction by machine to remove fine scratches and swirling that make paint look flat, bringing back depth, clarity and true colour.</p>
               <ul>
                 <li>Removes marring and fine scratches</li>
                 <li>Brings back gloss and colour depth</li>
@@ -192,7 +192,7 @@ export default function Home() {
             <span className="no mono" style={{ gridColumn: "1", gridRow: "1" }}>02</span>
             <div className="tx">
               <h3 className="display">Gyeon ceramic <span className="red">coatings</span></h3>
-              <p className="lede">A hard, glossy layer of protection over the corrected paint. Water beads and runs off, dirt struggles to stick, and the car is far easier to keep clean.</p>
+              <p className="lede">A hard, glossy layer of protection over the corrected paint. Water beads and runs off, dirt struggles to stick, and the car is much easier to keep clean.</p>
               <ul>
                 <li>Gyeon ceramic coatings</li>
                 <li>Strong water beading</li>
@@ -212,6 +212,7 @@ export default function Home() {
               <li><span className="mono">02</span>Pre-wash</li>
               <li><span className="mono">03</span>Contact wash</li>
               <li><span className="mono">04</span>Chemical decontamination</li>
+              <li><span className="mono">05</span>Machine polish</li>
             </ol>
           </div>
 
